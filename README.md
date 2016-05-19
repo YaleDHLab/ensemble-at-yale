@@ -1,31 +1,58 @@
-# Scribe 
+### Gather Source Code
+<pre><code># pull down source repository and build placeholder project 
+git clone https://github.com/zooniverse/scribeAPI.git  
 
-[Scribe](http://scribeproject.github.io/) is a framework for crowdsourcing the transcription of text-based documents, particularly documents that are not well suited for Optical Character Recognition. It is a collaboration between [Zooniverse](https://www.zooniverse.org/) and [The New York Public Library Labs](http://labs.nypl.org/) with generous support from [The National Endowment for the Humanities (NEH), Office of Digital Humanities](http://www.neh.gov/divisions/odh).
+# install dependencies
+npm install  
+bundle install  
 
-## For Project Creators
+# create a placeholder project using available resources
+rm -r project/emingrant/subjects   
+mv project/whale_tales/subjects project/emigrant/  
+rake project:load[emigrant]  
 
-Are you an organization or individual interested in using Scribe for your next crowdsourced transcription project? Start here!
+# update classification.rb to use Mongoid 5.x API
+# by replacing find_and_modify calls to find_one_and_update  
 
-* What is Scribe and is it for me? Read our [Scribe Primer](https://github.com/zooniverse/scribeAPI/wiki/Getting-started)
-* Ready to set up your project? Head over to our [Project Setup page](https://github.com/zooniverse/scribeAPI/wiki/Setting-up-your-project)
+# update config/mongoid.yml to follow Mongoid 5.x config syntax
+# For more on the changes made in Mongoid 5.x, see: https://docs.mongodb.com/ecosystem/tutorial/mongoid-upgrade/  
 
-## For Contributors
+# fire up the server
+rails s {{-e production}}</code></pre>
 
-Would you like to contribute to the codebase? Check out these technical resources about the Scribe framework and make your first pull request!
+### Configure MongoDB
+<pre><code># access admin db  
+mongo aws-us-east-1-portal.17.dblayer.com:10331/admin -u {{username}} -p {{user-password}}
 
-* [Terms and Keywords](https://github.com/zooniverse/scribeAPI/wiki/Terms-and-Keywords)
-* Setting up your environment on [Mac OSX](https://github.com/zooniverse/scribeAPI/wiki/Setup-Mac-OSX), [Windows](https://github.com/zooniverse/scribeAPI/wiki/Setup-in-Windows-Vagrant), or [Unix](https://github.com/zooniverse/scribeAPI/wiki/Setup-Unix)
-* [Data Model & Tools Config](https://github.com/zooniverse/scribeAPI/wiki/Data-Model-%26-Tools-Config)
-* [Creating Custom Marking Tools](https://github.com/zooniverse/scribeAPI/wiki/Creating-Custom-Marking-Tools)
-* [Setting up OAuth & Deploying](https://github.com/zooniverse/scribeAPI/wiki/Setting-up-OAuth-%26-Deploying)
+# access ensemble db
+mongo aws-us-east-1-portal.17.dblayer.com:10331/ensembleDb -u {{username}} -p {{user-password}}
 
-## Example Projects
+# check current db name  
+db.getName()  
 
-We are launching Scribe with three very different projects by [Zooniverse](https://www.zooniverse.org/) and [The New York Public Library](http://www.nypl.org/):
+# check current db user
+db.runCommand({connectionStatus : 1})  
 
-* [Emigrant City (NYPL)](http://emigrantcity.nypl.org)
-* [Measuring the Anzacs (Zooniverse)](http://measuringtheanzacs.org)
-* [Old Weather: Whaling (Zooniverse)](http://whaling.oldweather.org)
+# create users at https://app.compose.io, then grant user privileges as follows:
+https://app.compose.io  
+db.grantRolesToUser("ded34", [{role: "read", db: "ensembleDb"}])  
+db.grantRolesToUser("ded34", [{role: "readWrite", db: "ensembleDb"}])  
+db.grantRolesToUser("ded34", [{role: "dbAdmin", db: "ensembleDb"}])  
+db.grantRolesToUser("ded34", [{role: "dbOwner", db: "ensembleDb"}])  
+db.grantRolesToUser("ded34", [{role: "userAdmin", db: "ensembleDb"}])</code></pre>
 
+### Create Heroku instance
+<pre><code># create heroku instance  
+heroku create ensemble-at-yale  
+  
+# set environment variables
+heroku config:set MONGOLAB_URI={{your mongolab uri}}  
+heroku config:set SECRET_KEY_BASE_TOKEN={{your secret key base token}}  
+ENSEMBLE_DEVISE_SECRET_KEY={{your devise secret key}} 
+   
+# use multi buildpacks
+heroku buildpacks:set https://github.com/duhaime/heroku-buildpack-multi.git  
 
-
+# push application to heroku
+git push heroku master  
+</code></pre>
