@@ -1,0 +1,55 @@
+{  
+   "name":"mark",
+   "label":"Mark Workflow",
+   "subject_fetch_limit":"10",
+   "generates_subjects":true,
+   "generates_subjects_after":1,
+   "generates_subjects_method": "one-per-classification",
+   "generates_subjects_for":"transcribe",
+   "generates_subjects_max":null,
+   "retire_limit":0.75,
+   "first_task":"determine_org",
+  "tasks": {
+	    "determine_org": {
+      "tool": "pickOne",
+      "instruction": "Which organization put on this play?",
+      "help": {"file": "determine_org"},
+      "tool_config": {
+        "options": {
+          "yalerep": {
+            "label": "Repertory Theatre"     
+          },
+          "dramat": {
+            "label": "Dramatic Association (Dramat)"
+          },
+          "school_drama": {
+            "label": "School of Drama"
+          },
+          "dept_drama": {
+            "label": "Department of Drama"
+          }
+        }
+      },
+       "next_task": "core_metadata"
+    },
+    "core_metadata": {
+      "tool": "pickOneMarkOne",
+      "instruction": "",
+      "generates_subjects": true,
+      "tool_config" : {
+        "displays_transcribe_button": false,
+        "options": [
+          {"type": "rectangleTool", "label": "Title", "color": "red", "generates_subject_type": "ey_title", "help": {"file": "ey_title"}},
+          {"type": "rectangleTool", "label": "Director", "color": "blue", "generates_subject_type": "ey_director", "help":  {"file": "ey_director"}}
+        ]
+      },
+      "next_task": null
+    },
+
+    "completion_assessment_task": {
+      "tool_config": {
+        "displays_transcribe_button": false
+      }
+    }
+  }
+}
