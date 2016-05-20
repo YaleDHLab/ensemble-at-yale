@@ -1,0 +1,58 @@
+{
+  "title": "Ensemble@Yale",
+  "short_title": "Ensemble",
+  "summary": "Help build a database of Yale theater history in New Haven.",
+  "background": "/images/background.png",
+  "admin_email": "peter.leonard@yale.edu",
+  "logo": "/images/logo.png",
+  "favicon": "/images/favicon.ico",
+  "privacy_policy": "http://www.yale.edu/privacy-policy",
+  "terms_map": {
+    "group": "collection",
+    "subject set": "program",
+    "subject": "page",
+    "mark": "region"
+  },
+  "team_emails": [
+    "peter.leonard@yale.edu",
+    "lindsay.king@yale.edu"
+  ],
+  "team": [
+    {
+      "name": "Peter Leonard",
+      "role": "Director",
+      "organization": "Yale DHLab"
+    },
+
+    {
+      "name": "Lindsay King",
+      "role": "Assistant Director for Access & Research Services",
+      "organization": "Robert B. Haas Family Arts Library"
+    }
+  ],
+  "organizations": [
+    {
+      "title": "Yale DHLab",
+      "description": "Space, community, and resources for Yale faculty and students who are working with digital methods to address humanistic inquiries",
+      "url":"http://dhlab.yale.edu",
+      "logo": "assets/Yale_DHLab.png"
+    }
+  ],
+
+  "analytics": {
+
+  },
+
+  "forum": {
+
+  },
+
+  "menus": {
+    "main": [
+      {"label": "Intro", "page": "intro"},
+      {"label": "Data", "page": "data"},
+      {"label": "About", "page": "about"}
+    ],
+    "footer": []
+  }
+}
