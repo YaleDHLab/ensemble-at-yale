@@ -7,7 +7,7 @@
    "generates_subjects_method":"one-per-classification",
    "generates_subjects_for":"transcribe",
    "generates_subjects_max":null,
-   "retire_limit":0.75,
+   "retire_limit":1,
    "first_task":"core_metadata",
    "tasks":{  
       "core_metadata":{  
@@ -95,18 +95,18 @@
                   "type":"rectangleTool",
                   "label":"Actor & Role",
                   "color":"red",
-                  "generates_subject_type":"ey_actor_role",
+                  "generates_subject_type":"ey_actor_character",
                   "help":{  
-                     "file":"ey_actor_role"
+                     "file":"ey_actor_character"
                   }
                }
             ]
          },
-         "next_task":"tech_roles"
+         "next_task":"prod_staff"
       },
-      "tech_roles":{  
+      "prod_staff":{  
          "tool":"pickOneMarkOne",
-         "instruction":"Finally, we want to capture technical roles, such as set design and costuming. Draw a box around each pairing of person and responsibility.",
+         "instruction":"Finally, we want to capture production staff roles, such as set design and costuming. Draw a box around each pairing of person and responsibility.",
          "generates_subjects":true,
          "tool_config":{  
             "displays_transcribe_button":true,
@@ -115,13 +115,14 @@
                   "type":"rectangleTool",
                   "label":"Role and Person",
                   "color":"red",
-                  "generates_subject_type":"ey_tech_role",
+                  "generates_subject_type":"ey_prod_staff",
                   "help":{  
-                     "file":"ey_tech_role"
+                     "file":"ey_prod_staff"
                   }
                }
             ]
-         }
+         },
+         "next_task":null
       }
    }
 }
