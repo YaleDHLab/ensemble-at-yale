@@ -11,27 +11,35 @@
    "tasks":{  
       "ey_title":{  
          "tool":"textTool",
-         "tool_config":{},
+         "tool_config":{  
+
+         },
          "instruction":"Type the title of the play.",
-         "generates_subject_type":"ey_transcribed_title",
+         "generates_subject_type":"ey_transcribed_title"
       },
       "ey_playwright":{  
          "tool":"textTool",
-         "tool_config":{},
+         "tool_config":{  
+
+         },
          "instruction":"Type the author of the play.",
-         "generates_subject_type":"ey_transcribed_playwright",
+         "generates_subject_type":"ey_transcribed_playwright"
       },
       "ey_director":{  
          "tool":"textTool",
-         "tool_config":{},
+         "tool_config":{  
+
+         },
          "instruction":"Type the director of the play.",
-         "generates_subject_type":"ey_transcribed_director",
+         "generates_subject_type":"ey_transcribed_director"
       },
       "ey_dates":{  
-	      "tool":"dateTool",
-	      "tool_config": {},
-	      "instruction":"Indicate the opening date of the play.",
-          "generates_subject_type":"ey_transcribed_date"
+         "tool":"dateTool",
+         "tool_config":{  
+
+         },
+         "instruction":"Indicate the opening date of the play.",
+         "generates_subject_type":"ey_transcribed_date"
       },
       "ey_actor_character":{  
          "tool":"compositeTool",
@@ -39,20 +47,25 @@
             "tools":{  
                "ey_ac_charactername":{  
                   "tool":"textTool",
-                  "tool_config": {},
+                  "tool_config":{  
+
+                  },
                   "label":"Character"
-               },	            
+               },
                "ey_ac_characterdesc":{  
                   "tool":"textTool",
-                  "tool_config": {},
+                  "tool_config":{  
+
+                  },
                   "label":"Character Description (Optional)"
-               },	
+               },
                "ey_ac_actor":{  
                   "tool":"textTool",
-                  "tool_config": {},
+                  "tool_config":{  
+
+                  },
                   "label":"Actor"
                }
-
             }
          },
          "instruction":"Type the name of the actor and the name of the character."
@@ -63,15 +76,18 @@
             "tools":{  
                "ey_ps_responsibility":{  
                   "tool":"textTool",
-                  "tool_config": {},
+                  "tool_config":{  
+
+                  },
                   "label":"Responsibility"
-               },	            
+               },
                "ey_ps_person":{  
                   "tool":"textTool",
-                  "tool_config": {},
+                  "tool_config":{  
+
+                  },
                   "label":"Person"
                }
-
             }
          },
          "instruction":"Type the name of the person and responsibility they have."

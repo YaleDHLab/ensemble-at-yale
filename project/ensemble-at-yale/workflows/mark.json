@@ -101,7 +101,8 @@
                   }
                }
             ]
-         }
+         },
+         "next_task":"tech_roles"
       },
       "tech_roles":{  
          "tool":"pickOneMarkOne",
