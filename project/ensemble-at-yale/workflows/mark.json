@@ -54,7 +54,8 @@
                   }
                }
             ]
-         }
+         },
+         "next_task":"determine_org"
       },
       "determine_org":{  
          "tool":"pickOne",
@@ -80,7 +81,8 @@
                   "label":"Other / Unknown"
                }
             }
-         }
+         },
+         "next_task":"actors_roles"
       },
       "actors_roles":{  
          "tool":"pickOneMarkOne",
