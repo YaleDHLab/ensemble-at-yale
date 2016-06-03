@@ -4,52 +4,121 @@
    "subject_fetch_limit":"10",
    "generates_subjects":true,
    "generates_subjects_after":1,
-   "generates_subjects_method": "one-per-classification",
+   "generates_subjects_method":"one-per-classification",
    "generates_subjects_for":"transcribe",
    "generates_subjects_max":null,
    "retire_limit":0.75,
-   "first_task":"determine_org",
-  "tasks": {
-	    "determine_org": {
-      "tool": "pickOne",
-      "instruction": "Which organization put on this play?",
-      "help": {"file": "determine_org"},
-      "tool_config": {
-        "options": {
-          "yalerep": {
-            "label": "Repertory Theatre"     
-          },
-          "dramat": {
-            "label": "Dramatic Association (Dramat)"
-          },
-          "school_drama": {
-            "label": "School of Drama"
-          },
-          "dept_drama": {
-            "label": "Department of Drama"
-          }
-        }
+   "first_task":"core_metadata",
+   "tasks":{  
+      "core_metadata":{  
+         "tool":"pickOneMarkOne",
+         "instruction":"Draw boxes around the following pieces of information.",
+         "generates_subjects":true,
+         "tool_config":{  
+            "displays_transcribe_button":true,
+            "options":[  
+               {  
+                  "type":"rectangleTool",
+                  "label":"Title",
+                  "color":"red",
+                  "generates_subject_type":"ey_title",
+                  "help":{  
+                     "file":"ey_title"
+                  }
+               },
+               {  
+                  "type":"rectangleTool",
+                  "label":"Playwright",
+                  "color":"green",
+                  "generates_subject_type":"ey_playwright",
+                  "help":{  
+                     "file":"ey_playwright"
+                  }
+               },
+               {  
+                  "type":"rectangleTool",
+                  "label":"Director",
+                  "color":"blue",
+                  "generates_subject_type":"ey_director",
+                  "help":{  
+                     "file":"ey_director"
+                  }
+               },
+               {  
+                  "type":"rectangleTool",
+                  "label":"Dates",
+                  "color":"orange",
+                  "generates_subject_type":"ey_dates",
+                  "help":{  
+                     "file":"ey_dates"
+                  }
+               }
+            ]
+         }
       },
-       "next_task": "core_metadata"
-    },
-    "core_metadata": {
-      "tool": "pickOneMarkOne",
-      "instruction": "",
-      "generates_subjects": true,
-      "tool_config" : {
-        "displays_transcribe_button": false,
-        "options": [
-          {"type": "rectangleTool", "label": "Title", "color": "red", "generates_subject_type": "ey_title", "help": {"file": "ey_title"}},
-          {"type": "rectangleTool", "label": "Director", "color": "blue", "generates_subject_type": "ey_director", "help":  {"file": "ey_director"}}
-        ]
+      "determine_org":{  
+         "tool":"pickOne",
+         "instruction":"Which organization put on this play?",
+         "help":{  
+            "file":"determine_org"
+         },
+         "tool_config":{  
+            "options":{  
+               "yalerep":{  
+                  "label":"Yale Repertory Theatre"
+               },
+               "dramat":{  
+                  "label":"Dramatic Association (Dramat)"
+               },
+               "school_drama":{  
+                  "label":"School of Drama"
+               },
+               "dept_drama":{  
+                  "label":"Department of Drama"
+               },
+               "dept_other":{  
+                  "label":"Other / Unknown"
+               }
+            }
+         }
       },
-      "next_task": null
-    },
-
-    "completion_assessment_task": {
-      "tool_config": {
-        "displays_transcribe_button": false
+      "actors_roles":{  
+         "tool":"pickOneMarkOne",
+         "instruction":"Next, we want to identify who acted in this play. Draw a box around each pairing of character and  actor.",
+         "generates_subjects":true,
+         "tool_config":{  
+            "displays_transcribe_button":true,
+            "options":[  
+               {  
+                  "type":"rectangleTool",
+                  "label":"Actor & Role",
+                  "color":"red",
+                  "generates_subject_type":"ey_actor_role",
+                  "help":{  
+                     "file":"ey_actor_role"
+                  }
+               }
+            ]
+         }
+      },
+      "tech_roles":{  
+         "tool":"pickOneMarkOne",
+         "instruction":"Finally, we want to capture technical roles, such as set design and costuming. Draw a box around each pairing of person and responsibility.",
+         "generates_subjects":true,
+         "tool_config":{  
+            "displays_transcribe_button":true,
+            "options":[  
+               {  
+                  "type":"rectangleTool",
+                  "label":"Role and Person",
+                  "color":"red",
+                  "generates_subject_type":"ey_tech_role",
+                  "help":{  
+                     "file":"ey_tech_role"
+                  }
+               }
+            ]
+         }
       }
-    }
-  }
+   }
 }
