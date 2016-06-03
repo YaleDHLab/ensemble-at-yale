@@ -12,7 +12,7 @@
    "tasks":{  
       "core_metadata":{  
          "tool":"pickOneMarkOne",
-         "instruction":"Draw boxes around the following pieces of information.",
+         "instruction":"Draw one rectangle around all of the text comprising the field you are selecting. Click the **DONE** box when you’re finished, and then select another field to mark, or click the X to delete your selection and re-mark the same field.",
          "generates_subjects":true,
          "tool_config":{  
             "displays_transcribe_button":true,
@@ -21,28 +21,19 @@
                   "type":"rectangleTool",
                   "label":"Title",
                   "color":"red",
-                  "generates_subject_type":"ey_title",
-                  "help":{  
-                     "file":"ey_title"
-                  }
+                  "generates_subject_type":"ey_title"
                },
                {  
                   "type":"rectangleTool",
                   "label":"Playwright",
                   "color":"green",
-                  "generates_subject_type":"ey_playwright",
-                  "help":{  
-                     "file":"ey_playwright"
-                  }
+                  "generates_subject_type":"ey_playwright"
                },
                {  
                   "type":"rectangleTool",
                   "label":"Director",
                   "color":"blue",
-                  "generates_subject_type":"ey_director",
-                  "help":{  
-                     "file":"ey_director"
-                  }
+                  "generates_subject_type":"ey_director"
                },
                {  
                   "type":"rectangleTool",

@@ -1,0 +1,1 @@
+For opening and closing dates, use the date picker to choose the calendar dates of the first and last performances.
