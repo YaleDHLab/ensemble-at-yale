@@ -68,7 +68,7 @@
                }
             }
          },
-         "instruction":"Type the name of the actor and the name of the character."
+         "instruction":"Type the name of the actor and the name of the character. For roles with multiple actors and only one character name, draw a box around each actor."
       },
       "ey_prod_staff":{  
          "tool":"compositeTool",
@@ -90,7 +90,7 @@
                }
             }
          },
-         "instruction":"Type the name of the person and responsibility they have."
+         "instruction":"Type the name of the person and responsibility they have. For roles with multiple people and only one description, draw a box around each person."
       }
    }
 }
