@@ -33,7 +33,10 @@
                   "type":"rectangleTool",
                   "label":"Director",
                   "color":"blue",
-                  "generates_subject_type":"ey_director"
+                  "generates_subject_type":"ey_director",
+                  "help":{  
+                     "file":"ey_director"
+                  }
                },
                {  
                   "type":"rectangleTool",
@@ -50,10 +53,7 @@
       },
       "determine_org":{  
          "tool":"pickOne",
-         "instruction":"Which organization put on this play?",
-         "help":{  
-            "file":"determine_org"
-         },
+         "instruction":"According to the text in the program, which organization put on this play?",
          "tool_config":{  
             "options":{  
                "yalerep":{  
@@ -77,7 +77,7 @@
       },
       "actors_roles":{  
          "tool":"pickOneMarkOne",
-         "instruction":"Next, we want to identify who acted in this play. Draw a box around each pairing of character and  actor.",
+         "instruction":"Draw a box around each pairing of character and actor.",
          "generates_subjects":true,
          "tool_config":{  
             "displays_transcribe_button":true,
@@ -85,11 +85,8 @@
                {  
                   "type":"rectangleTool",
                   "label":"Actor & Role",
-                  "color":"red",
-                  "generates_subject_type":"ey_actor_character",
-                  "help":{  
-                     "file":"ey_actor_character"
-                  }
+                  "color":"orange",
+                  "generates_subject_type":"ey_actor_character"
                }
             ]
          },
@@ -97,7 +94,7 @@
       },
       "prod_staff":{  
          "tool":"pickOneMarkOne",
-         "instruction":"Finally, we want to capture production staff roles, such as set design and costuming. Draw a box around each pairing of person and responsibility.",
+         "instruction":"Finally, we want to capture production staff roles, such as set design, costume design, or translation. Draw a box around each pairing of person and responsibility.",
          "generates_subjects":true,
          "tool_config":{  
             "displays_transcribe_button":true,
@@ -105,11 +102,8 @@
                {  
                   "type":"rectangleTool",
                   "label":"Role and Person",
-                  "color":"red",
-                  "generates_subject_type":"ey_prod_staff",
-                  "help":{  
-                     "file":"ey_prod_staff"
-                  }
+                  "color":"purple",
+                  "generates_subject_type":"ey_prod_staff"
                }
             ]
          },
