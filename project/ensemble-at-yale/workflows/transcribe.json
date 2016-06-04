@@ -42,12 +42,30 @@
          "generates_subject_type":"ey_transcribed_director"
       },
       "ey_dates":{  
-         "tool":"dateTool",
+         "tool":"compositeTool",
          "tool_config":{  
+            "tools":{  
+               "ey_transcribed_date_start":{  
+                  "tool":"dateTool",
+                  "tool_config":{ 
+	                  "minimum" : "1924-01-01",
+	                  "maximum" : "2013-01-01",
+	                  "range" : true,
+	                  "allow_approximate": true 
 
+                  },
+                  "label":"Opening Date"
+               },
+               "ey_transcribed_date_stop":{  
+                  "tool":"dateTool",
+                  "tool_config":{  
+
+                  },
+                  "label":"Closing Date"
+               }
+            }
          },
-         "instruction":"Indicate the opening date of the play.",
-         "generates_subject_type":"ey_transcribed_date"
+         "instruction":"Indicate the opening and closing date of the play."
       },
       "ey_actor_character":{  
          "tool":"compositeTool",

@@ -49,8 +49,6 @@
 
   "menus": {
     "main": [
-      {"label": "Intro", "page": "intro"},
-      {"label": "Data", "page": "data"},
       {"label": "About", "page": "about"}
     ],
     "footer": []

@@ -1,9 +1,15 @@
 development:
+  options:
+    # follow Scribe's practice of refraining from raising not found errors
+    raise_not_found_error: false
   clients:
     default:
       uri: <%= ENV["MONGOLAB_URI"] %>
 
 production:
+  options:
+    # follow Scribe's practice of refraining from raising not found errors
+    raise_not_found_error: false
   clients:
     default:
       uri: <%= ENV["MONGOLAB_URI"] %>
