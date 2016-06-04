@@ -10,12 +10,20 @@
    "generates_subjects_method":"collect-unique",
    "tasks":{  
       "ey_title":{  
-         "tool":"textTool",
+         "tool":"compositeTool",
          "tool_config":{  
-
+            "tools":{  
+               "ey_transcribed_title":{  
+                  "tool":"textTool",
+                  "label":"Title"
+               },
+               "ey_transcribed_subtitle":{  
+                  "tool":"textTool",
+                  "label":"Subtitle (Optional)"
+               }
+            }
          },
-         "instruction":"Type the title of the play.",
-         "generates_subject_type":"ey_transcribed_title"
+         "instruction":"Type the title of the play."
       },
       "ey_playwright":{  
          "tool":"textTool",

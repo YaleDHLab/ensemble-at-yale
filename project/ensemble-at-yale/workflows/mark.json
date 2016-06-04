@@ -19,7 +19,7 @@
             "options":[  
                {  
                   "type":"rectangleTool",
-                  "label":"Title",
+                  "label":"Title (and Subtitle)",
                   "color":"red",
                   "generates_subject_type":"ey_title"
                },
