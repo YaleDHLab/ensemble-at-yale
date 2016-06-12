@@ -41,10 +41,13 @@ module.exports = React.createClass
 
   specificSelection: (blah, new_index) ->
     # this prevents navigating away from the subject during a workflow --AMS
-    if @props.workflow.first_task == @props.task.key
-      @props.onViewSubject? new_index
-    else
-      return null
+    # NB: By commenting out the following block and always sending users on
+    # to a new page upon click, we can enable multipage traversal -DD
+    #if @props.workflow.first_task == @props.task.key
+    #  @props.onViewSubject? new_index
+    #else
+    #  return null
+    @props.onViewSubject? new_index
 
   onToolbarExpand: ->
     @setState toolbar_expanded: true
