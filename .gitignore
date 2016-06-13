@@ -91,3 +91,5 @@ dump
 #Avoid pushing images to github
 /project/ensemble-at-yale/assets/images/
 /project/ensemble-at-yale/assets/thumbs/
+/project/ensemble-at-yale/assets/group_thumbs/
+
