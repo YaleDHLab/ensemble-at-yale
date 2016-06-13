@@ -48,7 +48,9 @@ heroku create ensemble-at-yale
 # set environment variables
 heroku config:set MONGOLAB_URI={{your mongolab uri}}  
 heroku config:set SECRET_KEY_BASE_TOKEN={{your secret key base token}}  
-ENSEMBLE_DEVISE_SECRET_KEY={{your devise secret key}} 
+heroku config:set ENSEMBLE_DEVISE_SECRET_KEY={{your devise secret key}}
+heroku config:set GOOGLE_ID={{your google id}}
+heroku config:set GOOGLE_SECRET={{your google secret}} 
    
 # use multi buildpacks
 heroku buildpacks:set https://github.com/duhaime/heroku-buildpack-multi.git  
