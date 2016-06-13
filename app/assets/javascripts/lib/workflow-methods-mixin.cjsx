@@ -355,7 +355,7 @@ module.exports =
 
     # If we've exhausted pages in this subject set, move to next one:
     # NB: By commenting out the following line we can ensure user is always sent to the
-    # next subject set after clicking the big green Done button in the Mark stage
+    # next subject set after clicking the big green Done button in the Mark stage -DD
     #if new_subject_index >= @getCurrentSubjectSet().subjects.length
     new_subject_set_index += 1
     new_subject_index = 0

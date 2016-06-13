@@ -27,7 +27,10 @@ module.exports = React.createClass
 
   render: ->
     # disable LightBox if work has begun
-    disableLightBox = if @props.task.key isnt @props.workflow.first_task then true else false
+    # NB: By commenting out the following line we can prevent the lightbox
+    # from being disabled after users complete the first task
+    #disableLightBox = if @props.task.key isnt @props.workflow.first_task then true else false
+    disableLightBox = false
     <div className="subject-set-toolbar">
       <div className="subject-set-toolbar-panes">
         <div className={"light-box-area multi-page pane" + if @state.active_pane == 'multi-page' then ' active' else '' }>
