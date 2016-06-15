@@ -4,6 +4,8 @@ SmallButton            = require 'components/buttons/small-button'
 HelpButton             = require 'components/buttons/help-button'
 BadSubjectButton       = require 'components/buttons/bad-subject-button'
 IllegibleSubjectButton = require 'components/buttons/illegible-subject-button'
+DatePicker             = require 'react-datepicker'
+moment                 = require 'moment'
 
 TextTool = React.createClass
   displayName: 'TextTool'
@@ -12,6 +14,11 @@ TextTool = React.createClass
     annotation: @props.annotation ? {}
     viewerSize: @props.viewerSize
     autocompleting: false
+    # The selectedDate attribute of the DatePicker component will store the
+    # currently selected date. This object must be of type moment() or blank.
+    # If blank, the input element within the DatePicker component will display the
+    # text identified in the placeholderText attribute (specified below)
+    selectedDate: ''
 
   # this can go into a mixin? (common across all transcribe tools)
   getPosition: (data) ->
@@ -141,6 +148,13 @@ TextTool = React.createClass
   handleChange: (e) ->
     @updateValue e.target.value
 
+  # Event handler that parses Moment.js objects
+  handleDateChange: (e) ->
+    @setState
+      selectedDate: moment(e._d)
+      date: moment(e._d)
+    @updateValue e._d
+
   handleKeyDown: (e) ->
     @handleChange(e) # updates any autocomplete values
 
@@ -208,8 +222,29 @@ TextTool = React.createClass
             # Let's not make it input[type=number] because we don't want the browser to absolutely *force* numeric; We should coerce numerics without obliging
             <input type="text" value={val} {...atts} />
 
+          # If this is a date input, set new attributes
           else if @props.inputType == "date"
-            <input type="date" value={val} {...atts} />
+            atts =
+              ref: ref
+              key: "#{@props.task.key}.#{@props.annotation_key}"
+              "data-task_key": @props.task.key
+              onKeyDown: @handleKeyDown
+              onFocus: ( () => @props.onInputFocus? @props.annotation_key )
+              # value will control the value attribute of the input element within the DatePicker
+              value: this.state.startDate
+              disabled: @props.badSubject
+
+            <DatePicker
+              value={val}
+              date={val}
+              selected={this.state.selectedDate}
+              onChange={@handleDateChange}
+              placeholderText="Click to select a date"
+              minDate={moment().subtract(5, 'days')}
+              maxDate={moment()}
+              type="custom-date"
+              {...atts}
+            />
 
           else console.warn "Invalid inputType specified: #{@props.inputType}"
 
