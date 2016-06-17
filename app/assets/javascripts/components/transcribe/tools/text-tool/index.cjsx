@@ -18,7 +18,7 @@ TextTool = React.createClass
     # currently selected date. This object must be of type moment() or blank.
     # If blank, the input element within the DatePicker component will display the
     # text identified in the placeholderText attribute (specified below)
-    selectedDate: ''
+    selectedDate: moment(this.props.subject.meta_data.year + "-01-01")
 
   # this can go into a mixin? (common across all transcribe tools)
   getPosition: (data) ->
@@ -150,10 +150,15 @@ TextTool = React.createClass
 
   # Event handler that parses Moment.js objects
   handleDateChange: (e) ->
-    @setState
-      selectedDate: moment(e._d)
-      date: moment(e._d)
-    @updateValue e._d
+    if not e? or e.length is 0
+      @setState
+        selectedDate: moment( this.props.subject.meta_data.year + "-01-01" )
+      @updateValue moment( this.props.subject.meta_data.year + "-01-01" )
+
+    else
+      @setState
+        selectedDate: moment(e._d)
+      @updateValue e._d
 
   handleKeyDown: (e) ->
     @handleChange(e) # updates any autocomplete values
@@ -169,6 +174,12 @@ TextTool = React.createClass
   handleBadMark: ()->
     newAnnotation = []
     newAnnotation["low_quality_subject"]
+
+  findMinDate: ()->
+    return moment( this.props.subject.meta_data.year + "-01-01" )
+
+  findMaxDate: ()->
+    return moment( String(parseInt(this.props.subject.meta_data.year) + 1) + "-01-01" )
 
   render: ->
     return null if @props.loading # hide transcribe tool while loading image
@@ -235,13 +246,11 @@ TextTool = React.createClass
               disabled: @props.badSubject
 
             <DatePicker
-              value={val}
-              date={val}
               selected={this.state.selectedDate}
               onChange={@handleDateChange}
               placeholderText="Click to select a date"
-              minDate={moment().subtract(5, 'days')}
-              maxDate={moment()}
+              minDate={ moment( this.props.subject.meta_data.year + "-01-01" ) }
+              maxDate={ moment( String(parseInt(this.props.subject.meta_data.year) + 1) + "-01-01" ) }
               type="custom-date"
               {...atts}
             />
