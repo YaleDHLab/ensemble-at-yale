@@ -14,6 +14,7 @@ TextTool = React.createClass
     annotation: @props.annotation ? {}
     viewerSize: @props.viewerSize
     autocompleting: false
+    
     # The selectedDate attribute of the DatePicker component will store the
     # currently selected date. This object must be of type moment() or blank.
     # If blank, the input element within the DatePicker component will display the
@@ -151,14 +152,14 @@ TextTool = React.createClass
   # Event handler that parses Moment.js objects
   handleDateChange: (e) ->
     if not e? or e.length is 0
-      @setState
+      this.setState
         selectedDate: moment( this.props.subject.meta_data.year + "-01-01" )
-      @updateValue moment( this.props.subject.meta_data.year + "-01-01" )
+      this.updateValue moment( this.props.subject.meta_data.year + "-01-01" )
 
     else
-      @setState
+      this.setState
         selectedDate: moment(e._d)
-      @updateValue e._d
+      this.updateValue e._d
 
   handleKeyDown: (e) ->
     @handleChange(e) # updates any autocomplete values
@@ -242,7 +243,6 @@ TextTool = React.createClass
               onKeyDown: @handleKeyDown
               onFocus: ( () => @props.onInputFocus? @props.annotation_key )
               # value will control the value attribute of the input element within the DatePicker
-              value: this.state.startDate
               disabled: @props.badSubject
 
             <DatePicker

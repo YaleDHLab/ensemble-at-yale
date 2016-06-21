@@ -17,7 +17,7 @@
     "normalize-styl": "^3.0.3",
     "normalize.css": "^3.0.3",
     "react": "^0.13.3",
-    "react-datepicker": "^0.13.0",
+    "react-datepicker": "git://github.com/duhaime/v13-react-datepicker.git#v13-with-custom-input",
     "react-router": "^0.13.3"
   },
   "scripts": {
