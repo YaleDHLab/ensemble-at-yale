@@ -10,3 +10,13 @@ providers:
   zooniverse:
     id: <%=ENV["ZOONIVERSE_ID"]%>
     secret: <%=ENV["ZOONIVERSE_SECRET"]%>
+
+  cas:
+    id: "some_id"
+    secret: "some_secret"
+    custom_auth_params:
+      host: 'secure.its.yale.edu'
+      ssl: true
+      login_url: '/cas/login'
+      logout_url: '/cas/logout'
+      service_validate_url: '/cas/serviceValidate'
