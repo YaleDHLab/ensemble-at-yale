@@ -11,15 +11,16 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'omniauth-facebook'
-gem "omniauth-google-oauth2"
+gem 'omniauth-google-oauth2'
 gem 'omniauth-zooniverse', '~> 0.0.3'
+gem 'omniauth-cas'
 
 gem 'mongoid', '~> 5.1.0'
 gem 'active_model_serializers'
 gem 'mongoid-serializer'
 gem 'rack-cors', :require => 'rack/cors'
-gem "bson"
-gem "moped"
+gem 'bson'
+gem 'moped'
 gem 'sprockets-coffee-react'
 gem 'stylus', '~> 1.0.1'
 gem 'browserify-rails', '~> 0.9.1'

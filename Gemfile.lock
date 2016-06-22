@@ -181,6 +181,10 @@ GEM
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
+    omniauth-cas (1.1.0)
+      addressable (~> 2.3)
+      nokogiri (~> 1.5)
+      omniauth (~> 1.2.0)
     omniauth-facebook (2.0.1)
       omniauth-oauth2 (~> 1.2)
     omniauth-google-oauth2 (0.2.6)
@@ -321,6 +325,7 @@ DEPENDENCIES
   moped
   newrelic_moped
   newrelic_rpm
+  omniauth-cas
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-zooniverse (~> 0.0.3)
