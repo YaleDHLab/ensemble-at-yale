@@ -4,6 +4,8 @@ SmallButton            = require 'components/buttons/small-button'
 HelpButton             = require 'components/buttons/help-button'
 BadSubjectButton       = require 'components/buttons/bad-subject-button'
 IllegibleSubjectButton = require 'components/buttons/illegible-subject-button'
+DatePicker             = require 'react-datepicker'
+moment                 = require 'moment'
 
 TextTool = React.createClass
   displayName: 'TextTool'
@@ -12,6 +14,12 @@ TextTool = React.createClass
     annotation: @props.annotation ? {}
     viewerSize: @props.viewerSize
     autocompleting: false
+    
+    # The selectedDate attribute of the DatePicker component will store the
+    # currently selected date. This object must be of type moment() or blank.
+    # If blank, the input element within the DatePicker component will display the
+    # text identified in the placeholderText attribute (specified below)
+    selectedDate: moment(this.props.subject.meta_data.year + "-01-01")
 
   # this can go into a mixin? (common across all transcribe tools)
   getPosition: (data) ->
@@ -141,6 +149,18 @@ TextTool = React.createClass
   handleChange: (e) ->
     @updateValue e.target.value
 
+  # Event handler that parses Moment.js objects
+  handleDateChange: (e) ->
+    if not e? or e.length is 0
+      this.setState
+        selectedDate: moment( this.props.subject.meta_data.year + "-01-01" )
+      this.updateValue moment( this.props.subject.meta_data.year + "-01-01" )
+
+    else
+      this.setState
+        selectedDate: moment(e._d)
+      this.updateValue e._d
+
   handleKeyDown: (e) ->
     @handleChange(e) # updates any autocomplete values
 
@@ -155,6 +175,12 @@ TextTool = React.createClass
   handleBadMark: ()->
     newAnnotation = []
     newAnnotation["low_quality_subject"]
+
+  findMinDate: ()->
+    return moment( this.props.subject.meta_data.year + "-01-01" )
+
+  findMaxDate: ()->
+    return moment( String(parseInt(this.props.subject.meta_data.year) + 1) + "-01-01" )
 
   render: ->
     return null if @props.loading # hide transcribe tool while loading image
@@ -208,8 +234,26 @@ TextTool = React.createClass
             # Let's not make it input[type=number] because we don't want the browser to absolutely *force* numeric; We should coerce numerics without obliging
             <input type="text" value={val} {...atts} />
 
+          # If this is a date input, set new attributes
           else if @props.inputType == "date"
-            <input type="date" value={val} {...atts} />
+            atts =
+              ref: ref
+              key: "#{@props.task.key}.#{@props.annotation_key}"
+              "data-task_key": @props.task.key
+              onKeyDown: @handleKeyDown
+              onFocus: ( () => @props.onInputFocus? @props.annotation_key )
+              # value will control the value attribute of the input element within the DatePicker
+              disabled: @props.badSubject
+
+            <DatePicker
+              selected={this.state.selectedDate}
+              onChange={@handleDateChange}
+              placeholderText="Click to select a date"
+              minDate={ moment( this.props.subject.meta_data.year + "-01-01" ) }
+              maxDate={ moment( String(parseInt(this.props.subject.meta_data.year) + 1) + "-01-01" ) }
+              type="custom-date"
+              {...atts}
+            />
 
           else console.warn "Invalid inputType specified: #{@props.inputType}"
 
