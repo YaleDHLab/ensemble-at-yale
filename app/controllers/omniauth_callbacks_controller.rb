@@ -27,6 +27,15 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     success_redirect
   end
 
+  def twitter
+   @user = User.find_for_oauth(request.env["omniauth.auth"], current_user)
+
+   if @user
+     sign_in(@user, :bypass => true)
+   end
+   success_redirect
+  end
+
   def cas
     @user = User.find_for_oauth(request.env["omniauth.auth"], current_user)
 
