@@ -7,7 +7,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2,:zooniverse,:cas]
+  devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2,:zooniverse,:cas,:twitter]
 
 
   ## Database authenticatable
@@ -124,8 +124,11 @@ class User
 
   def self.find_for_oauth(access_token, signed_in_resource=nil)
 
+    # If this user has authenticated with this auth provider and had the same uid,
+    # log them in as the already-saved user
     if user = self.find_by({provider: access_token[:provider], uid: access_token[:uid]})
       user
+
     else # Create a user with a stub password.
       details = details_from_oauth access_token[:provider], access_token
       tmp_pass = Devise.friendly_token[0,20]
@@ -143,6 +146,8 @@ class User
       details_from_zooniverse(access_token)
     when "cas"
       details_from_cas(access_token)
+    when "twitter"
+      details_from_twitter(access_token)
     end
   end
 
@@ -184,7 +189,19 @@ class User
     {
       name: access_token["uid"],
       uid: access_token["uid"],
-      provider: access_token["provider"]
+      provider: access_token["provider"],
+      email: "sample@email.com"
+    }
+  end
+
+  def self.details_from_twitter(access_token)
+    info = access_token["info"]
+    {
+      name: info["name"],
+      uid: access_token["uid"],
+      provider: access_token["provider"],
+      avatar: info["image"],
+      email: "douglas.duhaime@gmail.com"
     }
   end
   
@@ -211,6 +228,8 @@ class User
         { id: p, path: '/users/auth/zooniverse', name: 'Zooniverse' }
       when 'cas'
         { id: p, path: '/users/auth/cas', name: 'CAS' }
+      when 'twitter'
+        { id: p, path: '/users/auth/twitter', name: 'Twitter' }
       end
     end
   end
