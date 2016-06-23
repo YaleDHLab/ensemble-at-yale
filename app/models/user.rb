@@ -184,7 +184,8 @@ class User
     {
       name: access_token["uid"],
       uid: access_token["uid"],
-      provider: access_token["provider"]
+      provider: access_token["provider"],
+      email: access_token["uid"] + "@yale.edu"
     }
   end
   
