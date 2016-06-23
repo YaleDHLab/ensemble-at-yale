@@ -50,7 +50,7 @@ Login = React.createClass
 
   renderLoginOptions: (label,classNames) ->
     links = @props.loginProviders.map (link) ->
-      icon_id = if link.id == 'zooniverse' then 'dot-circle-o' else link.id
+      icon_id = if link.id == 'zooniverse' then 'dot-circle-o' else if link.id == 'cas' then 'graduation-cap' else link.id
       <a key="login-link-#{link.id}" href={link.path} title="Log in using #{link.name}"><i className="fa fa-#{icon_id} fa-2" /></a>
 
     <span className={classNames}>

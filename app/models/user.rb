@@ -7,7 +7,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2,:zooniverse]
+  devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2,:zooniverse,:cas]
 
 
   ## Database authenticatable
@@ -141,6 +141,8 @@ class User
       details_from_google(access_token)
     when "zooniverse"
       details_from_zooniverse(access_token)
+    when "cas"
+      details_from_cas(access_token)
     end
   end
 
@@ -177,6 +179,14 @@ class User
       provider: access_token["provider"]
     }
   end
+
+  def self.details_from_cas(access_token)
+    {
+      name: access_token["uid"],
+      uid: access_token["uid"],
+      provider: access_token["provider"]
+    }
+  end
   
   def self.create_guest_user
     u = create({
@@ -199,6 +209,8 @@ class User
         { id: p, path: '/users/auth/google_oauth2', name: 'Google' }
       when 'zooniverse'
         { id: p, path: '/users/auth/zooniverse', name: 'Zooniverse' }
+      when 'cas'
+        { id: p, path: '/users/auth/cas', name: 'CAS' }
       end
     end
   end

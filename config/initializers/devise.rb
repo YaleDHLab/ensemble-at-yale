@@ -255,13 +255,24 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
   providers = YAML.load(ERB.new(File.read(Rails.root.join('config', 'login_providers.yml.erb'))).result)["providers"]
 
-  config.omniauth :zooniverse, providers["zooniverse"]["id"], providers["zooniverse"]["secret"] if providers["zooniverse"]
-  config.omniauth :google_oauth2, providers["google"]["id"], providers["google"]["secret"] if providers["google"]
   if providers["facebook"]
     # FB seems to require explicit info_fields w/email or else doesn't return email:
     config.omniauth :facebook, providers["facebook"]["id"], providers["facebook"]["secret"], info_fields: 'name,email'  
+  end
+
+  if providers["zooniverse"]
+    config.omniauth :zooniverse, providers["zooniverse"]["id"], providers["zooniverse"]["secret"] if providers["zooniverse"]
+  end
+
+  if providers["google"]
+    config.omniauth :google_oauth2, providers["google"]["id"], providers["google"]["secret"] if providers["google"]
+  end
+
+  if providers["cas"]
+    config.omniauth :cas, providers["cas"]["custom_auth_params"]
   end
 
 end

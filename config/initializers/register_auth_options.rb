@@ -5,6 +5,10 @@ Rails.application.config.before_initialize do
   providers.each do |k,v| 
     if ! v['id'].blank? && ! v['secret'].blank?
       provider_keys << k
+  
+    # whitelist cas authentication by virtue of its custom_auth_params
+    elsif ! v['custom_auth_params'].blank?
+      provider_keys << k
     end
   end
 
