@@ -190,18 +190,22 @@ class User
       name: access_token["uid"],
       uid: access_token["uid"],
       provider: access_token["provider"],
-      email: "sample@email.com"
+      email: access_token["uid"] + "@yale.edu"
     }
   end
 
   def self.details_from_twitter(access_token)
     info = access_token["info"]
+
+    # Try to retrieve the user's email address on twitter. 
+    # If that address is left blank, use a unique id
+    email = info["email"] ? info["email"] : access_token["uid"] + "@twitter.com"
     {
       name: info["name"],
       uid: access_token["uid"],
       provider: access_token["provider"],
       avatar: info["image"],
-      email: "douglas.duhaime@gmail.com"
+      email: email
     }
   end
   
