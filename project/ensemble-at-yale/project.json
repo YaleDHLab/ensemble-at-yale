@@ -2,10 +2,10 @@
   "title": "Ensemble@Yale",
   "short_title": "Ensemble",
   "summary": "Help build a database of Yale theater history in New Haven.",
-  "background": "/images/background.png",
+  "background": "http://hcremacmini01.library.yale.edu/images/background.png",
   "admin_email": "peter.leonard@yale.edu",
-  "logo": "/images/logo.png",
-  "favicon": "/images/favicon.ico",
+  "logo": "http://hcremacmini01.library.yale.edu/images/logo.png",
+  "favicon": "http://d6-support.yale.edu/sites/default/files/favicon.ico",
   "privacy_policy": "http://www.yale.edu/privacy-policy",
   "terms_map": {
     "group": "collection",
