@@ -7,7 +7,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2,:zooniverse,:cas]
+  devise :omniauthable, :omniauth_providers => [:facebook,:google_oauth2,:zooniverse,:cas,:twitter]
 
 
   ## Database authenticatable
@@ -122,14 +122,23 @@ class User
   end
 
 
-  def self.find_for_oauth(access_token, signed_in_resource=nil)
+  def self.find_for_oauth(access_token, signed_in_resource=nil, email=nil)
 
+    # If this user has authenticated with this auth provider and had the same uid,
+    # log them in as the already-saved user
     if user = self.find_by({provider: access_token[:provider], uid: access_token[:uid]})
       user
-    else # Create a user with a stub password.
+
+    # Else if the user has registered with another auth provider using the same email address,
+    # return their already-saved user
+    elsif user = self.find_by({email: email})
+      user
+
+    # Otherwise create a user with a stub password, and fail loudly if there's an error
+    else
       details = details_from_oauth access_token[:provider], access_token
       tmp_pass = Devise.friendly_token[0,20]
-      self.create details.merge(password: tmp_pass, password_confirmation: tmp_pass)
+      self.create! details.merge(password: tmp_pass, password_confirmation: tmp_pass)
     end
   end
 
@@ -143,6 +152,8 @@ class User
       details_from_zooniverse(access_token)
     when "cas"
       details_from_cas(access_token)
+    when "twitter"
+      details_from_twitter(access_token)
     end
   end
 
@@ -184,7 +195,23 @@ class User
     {
       name: access_token["uid"],
       uid: access_token["uid"],
-      provider: access_token["provider"]
+      provider: access_token["provider"],
+      email: access_token["uid"] + "@yale.edu"
+    }
+  end
+
+  def self.details_from_twitter(access_token)
+    info = access_token["info"]
+
+    # Try to retrieve the user's email address on twitter. 
+    # If that address is left blank, use a unique id
+    email = info["email"] ? info["email"] : access_token["uid"] + "@twitter.com"
+    {
+      name: info["name"],
+      uid: access_token["uid"],
+      provider: access_token["provider"],
+      avatar: info["image"],
+      email: email
     }
   end
   
@@ -211,6 +238,8 @@ class User
         { id: p, path: '/users/auth/zooniverse', name: 'Zooniverse' }
       when 'cas'
         { id: p, path: '/users/auth/cas', name: 'CAS' }
+      when 'twitter'
+        { id: p, path: '/users/auth/twitter', name: 'Twitter' }
       end
     end
   end
