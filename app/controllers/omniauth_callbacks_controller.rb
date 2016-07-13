@@ -42,7 +42,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in(@user, :bypass => true)
       @user.update_attribute(:sign_in_count, @user.sign_in_count + 1)
     end
-   success_redirect
+    success_redirect
   end
 
   def cas
