@@ -275,4 +275,8 @@ Devise.setup do |config|
     config.omniauth :cas, providers["cas"]["custom_auth_params"]
   end
 
+  if providers["twitter"]
+    config.omniauth :twitter, providers["twitter"]["id"], providers["twitter"]["secret"] if providers["twitter"]
+  end
+
 end
