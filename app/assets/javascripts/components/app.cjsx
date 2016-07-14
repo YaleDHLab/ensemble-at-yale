@@ -1,6 +1,6 @@
 React = require("react")
-MainHeader                    = require '../partials/main-header'
-Footer                        = require '../partials/footer'
+MainHeader                    = require '../partials/yale-header'
+Footer                        = require '../partials/yale-footer'
 API                           = require '../lib/api'
 Project                       = require 'models/project.coffee'
 
