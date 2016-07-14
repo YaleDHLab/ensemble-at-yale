@@ -30,40 +30,27 @@ GroupBrowser = React.createClass
     else
       groupNameClasses.push "active"
 
-    <div
-      onMouseOver={@showButtonsForGroup.bind this, group}
-      onMouseOut={@hideButtonsForGroup.bind this, group}
-      className='group'
-      style={backgroundImage: "url(#{group.cover_image_url})"}
-      key={group.id}
-      >
-      <div className="button-container #{buttonContainerClasses.join ' '}">
-        { for workflow in @props.project.workflows
-            if (group.stats.workflow_counts?[workflow.id]?.active_subjects ? 0) > 0
-              <a href={"/#/#{workflow.name}?group_id=#{group.id}"} className="button small-button" key={workflow.id} >{workflow.name.capitalize()}</a>
-        }
-        <a href="/#/groups/#{group.id}" className="button small-button ghost">More info</a>
+    <a href="/#/groups/#{group.id}" className="drama-era-group-link">
+      <div
+        className='drama-era-image-container'
+        style={backgroundImage: "url(#{group.cover_image_url})"}
+        key={group.id}>
+          <div className="drama-era-image-overlay">
+            {group.meta_data.start_year} &#8210; {group.meta_data.end_year} &#8231; {group.name}
+          </div>
       </div>
-      <p className="group-name #{groupNameClasses.join ' '}">{group.name}</p>
-    </div>
+    </a>
 
   render: ->
     # Only display GroupBrowser if more than one group defined:
     return null if @state.groups.length <= 1
 
     groups = [@renderGroup(group) for group in @state.groups]
-    <div className="group-browser">
-      <h3 className="groups-header">
-        {
-          if @props.title?
-            <span>{@props.title}</span>
-          else
-            <span>Select a {@props.project.term('group')}</span>
-        }
-      </h3>
-      <div className="groups">
+    <div className="drama-era-gallery-container">
+      <div className="drama-era-center">
         {groups}
       </div>
     </div>
+
 
 module.exports = GroupBrowser
