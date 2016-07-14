@@ -1,0 +1,340 @@
+/**********
+* Helpers *
+**********/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 1em;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #1B282B;;
+}
+
+.clear-both {
+  clear: both;
+}
+
+/*************
+* Background *
+*************/
+
+.readymade-site-background {
+  display: none;
+}
+
+.panoptes-main {
+  background-color: #1B282B;;
+}
+
+/*********
+* Navbar *
+*********/
+
+.main-header-group {
+  background-image: none;
+  background-color: #0f4e70;
+}
+
+.main-header-group .logo {
+  height: none;
+  transform: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  padding: 0;
+  width: 70px;
+  max-width: 70px;
+}
+
+.main-header-item.logo img {
+  width: 45px;
+  height: auto;
+  margin: 17px -3px 0 -6px;
+}
+
+.brand-title-container {
+  width: 330px;
+  min-width: 330px;
+  height: 100%;
+  background: #789ab4;
+  text-align: center;
+}
+
+.brand-title {
+  color: #fff;
+  letter-spacing: .1em;
+  font-size: 2.6em;
+  text-align: center;
+  font-family: Times;
+  height: 46px;
+}
+
+.brand-subtitle {
+  color: #fff;
+  font-size: .8em;
+  font-weight: 100;
+  letter-spacing: .08em;
+  margin: 0 35px;
+}
+
+/**********************
+* Main Page Overrides *
+**********************/
+
+.main-content {
+  margin-top: 72px;
+  padding-bottom: 50px;
+  margin-bottom: 0px;
+}
+
+.home-page {
+  margin: 0;
+}
+
+.page-content {
+  padding: 0;
+}
+
+/*******
+* Hero *
+*******/
+
+.home-page .hero-container {
+  height: 0;
+  padding-top: 48%;
+  min-height: 490px;
+  width: 100%;
+  margin-top: -5px;
+  overflow: hidden;
+}
+
+.home-page .hero-container .image-container {
+  height: 100%;
+}
+
+.home-page .hero-image {
+  background-image: url("/assets/winter-tale-flip.jpg");
+  background-size: cover;
+  height: 100%;
+  background-position: 50% 40%;
+}
+
+.home-page .hero-overlay-container {
+  position: absolute;
+  color: #fff;
+  background: rgba(31, 31, 60, 0.8);
+  width: 260px;
+  margin: 50px 70px;
+  padding: 35px;
+  font-size: .7em;
+  line-height: 1em;
+}
+
+.home-page .hero-overlay-title {
+  font-size: 1.35em;
+  font-weight: 300;
+  font-family: serif;
+  line-height: 1.1em;
+}
+
+.home-page .hero-overlay-text {
+  margin: 20px 0;
+  font-weight: 100;
+  font-family: Arial;
+  letter-spacing: .02em;
+  font-family: Arial;
+  font-size: .9em;
+  line-height: 1.1em;
+}
+
+.home-page .hero-overlay-button {
+  background: #85acc9;
+  width: 180px;
+  height: 16px;
+  border-radius: 3px;
+  margin-top: 7px;
+  text-align: center;
+  padding: 10px;
+  font-family: Arial;
+  letter-spacing: .03em;
+  font-size: .8em;
+}
+
+.home-page .hero-overlay-container a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/********************
+* Drama Era Gallery *
+********************/
+
+.drama-era-gallery-container {
+  height: auto;
+  background: #21272d;
+  padding: 20px;
+}
+
+.drama-era-center {
+  display: block;
+  width: 100%;
+  margin: 0 16%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.drama-era-image-container {
+  width: 33%;
+  height: 0;
+  margin: 1% .5%;
+  float: left;
+  background-size: cover;
+  height: 0;
+  padding-top: 13%;
+}
+
+.drama-era-image {
+  border: 1px solid #767676;
+  position: relative;
+  cursor: pointer;
+}
+
+.drama-era-image-1 {
+  background-image: url("hamlet2_th.jpg");
+  background-size: cover;
+  height: 100%;
+}
+
+.drama-era-image-2 {
+  background-image: url("america_th.jpg");
+  background-size: cover;
+  height: 100%;
+}
+
+.drama-era-image-3 {
+  background-image: url("fences_th.jpg");
+  background-size: cover;
+  height: 100%;
+}
+
+.drama-era-image-4 {
+  background-image: url("streep_th.jpg");
+  background-size: cover;
+  height: 100%;
+}
+
+.drama-era-image-5 {
+  background-image: url("viet-rock_th.jpg");
+  background-size: cover;
+  height: 100%;
+}
+
+.drama-era-image-6 {
+  background-image: url("yellow-jacket_th.jpg");
+  background-size: cover;
+  height: 100%;
+}
+
+.drama-era-group-link {
+  width: 44%;
+}
+
+.drama-era-image-container .drama-era-image-overlay {
+  background: rgba(34, 34, 34, 0.65);
+  position: absolute;
+  width: inherit;
+  color: #fff;
+  padding: 7px 0;
+  text-align: center;
+  font-size: .55em;
+  letter-spacing: .03em;
+  line-height: 1em;
+  font-family: Times;
+  margin-top: -30px;
+}
+
+.drama-era-image-container:hover .drama-era-image-overlay {
+  background: rgba(35, 77, 145, 0.75);
+}
+
+/*********
+* Footer *
+*********/
+
+.footer-container {
+  height: 115px;
+  position: relative;
+}
+
+.footer-left {
+  width: 250px;
+  height: 100px;
+  margin-left: 60px;
+  margin-top: 14px;
+  display: inline-block;
+}
+
+.footer-left img {
+  width: 100%;
+}
+
+.footer-right-container {
+  width: 235px;
+  height: 90px;  
+  float: right;
+  margin-right: 52px;
+}
+
+.footer-right-top {
+  height: 60px;
+}
+
+.footer-right .footer-top-text {
+  display: inline-block;
+  width: 50px;
+  color: #c3c3c3;
+  font-size: .95em;
+  letter-spacing: .04em;
+  margin: 17px 0 0 15px;
+  position: absolute;
+}
+
+.footer-right-top img {
+  display: inline-block;
+  width: 180px;
+  float: right;
+}
+
+.footer-bottom-text {
+  color: lightgray;
+  font-style: italic;
+  font-size: .7em;
+  margin-left: 15px;
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    display: none;
+  }
+}
+
+/****************
+* Sticky Footer *
+****************/
+
+.wrapper {
+  height: inherit;
+  margin: 0 auto -100px; 
+}
+
+.footer, .push {
+  height: 100px;
+}
