@@ -56,32 +56,34 @@ App = React.createClass
     style = {}
     style.backgroundImage = "url(#{project.background})" if project.background?
 
-    <div>
-      <div className="readymade-site-background" style={style}>
-        <div className="readymade-site-background-effect"></div>
-      </div>
-      <div className="panoptes-main">
-
-        <MainHeader
-          workflows={project.workflows}
-          feedbackFormUrl={project.feedback_form_url}
-          discussUrl={project.discuss_url}
-          blogUrl={project.blog_url}
-          pages={project.pages}
-          short_title={project.short_title}
-          logo={project.logo}
-          menus={project.menus}
-          user={@state.user}
-          loginProviders={@state.loginProviders}
-          onLogout={() => @setState user: null}
-        />
-
-        <div className="main-content">
-          <BrowserWarning />
-          <RouteHandler hash={window.location.hash} project={project} onCloseTutorial={@setTutorialComplete} user={@state.user}/>
+    <div className="footer-wrapper">
+      <div className="react-wrapper">
+        <div className="readymade-site-background" style={style}>
+          <div className="readymade-site-background-effect"></div>
         </div>
-        <Footer privacyPolicy={ project.privacy_policy } menus={project.menus} partials={project.partials} />
+        <div className="panoptes-main">
+
+          <MainHeader
+            workflows={project.workflows}
+            feedbackFormUrl={project.feedback_form_url}
+            discussUrl={project.discuss_url}
+            blogUrl={project.blog_url}
+            pages={project.pages}
+            short_title={project.short_title}
+            logo={project.logo}
+            menus={project.menus}
+            user={@state.user}
+            loginProviders={@state.loginProviders}
+            onLogout={() => @setState user: null}
+          />
+
+          <div className="main-content">
+            <BrowserWarning />
+            <RouteHandler hash={window.location.hash} project={project} onCloseTutorial={@setTutorialComplete} user={@state.user}/>
+          </div>
+        </div>
       </div>
+      <Footer privacyPolicy={ project.privacy_policy } menus={project.menus} partials={project.partials} />
     </div>
 
 module.exports = App

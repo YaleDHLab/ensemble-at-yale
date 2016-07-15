@@ -15,8 +15,13 @@ html, body {
   padding: 0;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
-  background-color: #1B282B;;
+  background-color: #1B282B;
 }
 
 .clear-both {
@@ -83,6 +88,10 @@ body {
   font-weight: 100;
   letter-spacing: .08em;
   margin: 0 35px;
+}
+
+.login-container {
+  max-height: 100%;
 }
 
 /**********************
@@ -269,14 +278,24 @@ body {
 * Footer *
 *********/
 
+.footer-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.react-wrapper {
+  flex: 1;
+}
+
 .footer-container {
-  height: 115px;
   position: relative;
+  width: 100%;
 }
 
 .footer-left {
   width: 250px;
-  height: 100px;
+  height: 85px;
   margin-left: 60px;
   margin-top: 14px;
   display: inline-block;
@@ -324,17 +343,4 @@ body {
   .footer-container {
     display: none;
   }
-}
-
-/****************
-* Sticky Footer *
-****************/
-
-.wrapper {
-  height: inherit;
-  margin: 0 auto -100px; 
-}
-
-.footer, .push {
-  height: 100px;
 }
