@@ -145,7 +145,7 @@ def build_master_spreadsheet():
   last_year = ""
 
   with codecs.open("DRA37Boxes1-11.tsv", "r", "latin1") as f:
-    rows = f.read().split("\n")
+    rows = f.read().replace('"','').split("\n")
 
     # Skip the last row
     for c, row in enumerate(rows[:-1]):
@@ -187,7 +187,6 @@ def build_master_spreadsheet():
           continue
 
         # add the current row information to the master spreadsheet
-        #print play_era, playbill_height, playbill_width, split_row
         add_row_to_master_spreadsheet(split_row, play_era, playbill_height, playbill_width)
 
 
@@ -256,8 +255,9 @@ def build_overview_group_spreadsheet():
   # additional metadata fields may be added as desired
 
   # define each group's data in d
-  d = {
-    "department_of_drama": {
+  d = [
+    
+    {
       "key": "department_of_drama",
       "name": "Department of Drama",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
@@ -267,7 +267,7 @@ def build_overview_group_spreadsheet():
       "end_year": "1955"
     },
 
-    "founding_era": {
+    {
       "key": "founding_era",
       "name": "Founding Era",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
@@ -277,7 +277,7 @@ def build_overview_group_spreadsheet():
       "end_year": "1966"
     },
 
-    "robert_brustein": {
+    {
       "key": "robert_brustein",
       "name": "Robert Brustein",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
@@ -287,7 +287,7 @@ def build_overview_group_spreadsheet():
       "end_year": "1979"
     },
 
-    "lloyd_richards": {
+    {
       "key": "lloyd_richards",
       "name": "Lloyd Richards",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
@@ -297,17 +297,17 @@ def build_overview_group_spreadsheet():
       "end_year": "1991"
     },
 
-    "stan_wojewodski": {
+    {
       "key": "stan_wojewodski",
-      "name": "Stan Wojewodski",
+      "name": "Stanley Wojewodski Jr.",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/stan_wojewodski_1.jpg",
       "external_url": "NA",
-      "start_year": "1925",
-      "end_year": "1955"
+      "start_year": "1991",
+      "end_year": "2002"
     },
 
-    "james_bundy": {
+    {
       "key": "james_bundy",
       "name": "James Bundy",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
@@ -316,27 +316,27 @@ def build_overview_group_spreadsheet():
       "start_year": "2002",
       "end_year": "2016"
     }
-  }
+  ]
 
   # write the csv headers
   with open("groups.csv", "w") as groups_csv_out:
     csv_writer = csv.writer(groups_csv_out, delimiter=',')
 
-    groups_csv_headers = [k for k in d["department_of_drama"]]
+    groups_csv_headers = [k for k in d[0]]
 
     # write the headers identified above
     csv_writer.writerow(groups_csv_headers)
   
     # iterate over keys in d and build groups.csv
-    for group in d.iterkeys():
-      group_vals = [d[group][k] for k in d[group]]
+    for group in d:
+      group_vals = [group[k] for k in group.iterkeys()]
       csv_writer.writerow(group_vals)
 
 
 if __name__ == "__main__":
 
   # Specify a path to the subject csv's within the Ensemble at Yale app
-  path_to_group_csvs = glob.glob("../yale/web_apps/ensemble-at-yale/project/ensemble-at-yale/subjects/*.csv") 
+  path_to_group_csvs = glob.glob("group_csvs_organized_by_box_folder/group_*.csv") 
 
   # assign a name to the master spreadsheet of playbill metadata
   master_playbill_spreadsheet = "master_ensemble_playbill_spreadsheet.csv"
