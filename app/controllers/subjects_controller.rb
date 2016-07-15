@@ -73,5 +73,11 @@ class SubjectsController < ApplicationController
     respond_with SubjectResultSerializer.new(@subject, scope: self.view_context), links: links
   end
 
+  def all_subjects
+    requested_subject_set = params[:subject_set_id]
+    @all_subjects = Subject.all
+    respond_with SubjectResultSerializer.new(@all_subjects)
+  end
+
 
 end
