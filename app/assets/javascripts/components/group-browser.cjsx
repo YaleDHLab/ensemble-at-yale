@@ -23,6 +23,12 @@ GroupBrowser = React.createClass
     @forceUpdate() # trigger re-render to update buttons
 
   renderGroup: (group) ->
+    isEven = 0
+    if @state.groups.indexOf(group) + 2 %% 2 == 0
+      isEven = 0
+    else 
+      isEven = 1
+
     buttonContainerClasses = []
     groupNameClasses = []
     if group.showButtons
@@ -30,27 +36,29 @@ GroupBrowser = React.createClass
     else
       groupNameClasses.push "active"
 
-    <a href="/#/groups/#{group.id}" className="drama-era-group-link">
-      <div
-        className='drama-era-image-container'
-        style={backgroundImage: "url(#{group.cover_image_url})"}
-        key={group.id}>
-          <div className="drama-era-image-overlay">
-            {group.meta_data.start_year} &#8210; {group.meta_data.end_year} &#8231; {group.name}
-          </div>
-      </div>
-    </a>
+    <div className="drama-era-image-wrapper center-xs">
+      <a href="/#/groups/#{group.id}" className="drama-era-group-link">
+        <div
+          className='drama-era-image-container'
+          style={backgroundImage: "url(#{group.cover_image_url})"}
+          key={group.id}>
+            <div className="drama-era-image-overlay">
+              {group.meta_data.start_year} &#8210; {group.meta_data.end_year} &#8231; {group.name}
+            </div>
+        </div>
+      </a>
+    </div>
 
   render: ->
     # Only display GroupBrowser if more than one group defined:
     return null if @state.groups.length <= 1
 
     groups = [@renderGroup(group) for group in @state.groups]
-    <div className="drama-era-gallery-container">
-      <div className="drama-era-center">
+    <div className="flexbox-wrapper-groups">
+      <div className="row">
         {groups}
       </div>
     </div>
-
+    
 
 module.exports = GroupBrowser
