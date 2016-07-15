@@ -264,7 +264,8 @@ def build_overview_group_spreadsheet():
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/department_of_drama_1.jpg",
       "external_url": "NA",
       "start_year": "1925",
-      "end_year": "1955"
+      "end_year": "1955",
+      "order": "0"
     },
 
     {
@@ -274,7 +275,8 @@ def build_overview_group_spreadsheet():
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/founding_era_1.jpg",
       "external_url": "NA",
       "start_year": "1955",
-      "end_year": "1966"
+      "end_year": "1966",
+      "order": "1"
     },
 
     {
@@ -284,7 +286,8 @@ def build_overview_group_spreadsheet():
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/robert_brustein_1.jpg",
       "external_url": "NA",
       "start_year": "1966",
-      "end_year": "1979"
+      "end_year": "1979",
+      "order": "2"
     },
 
     {
@@ -294,7 +297,8 @@ def build_overview_group_spreadsheet():
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/lloyd_richards_1.jpg",
       "external_url": "NA",
       "start_year": "1979",
-      "end_year": "1991"
+      "end_year": "1991",
+      "order": "3"
     },
 
     {
@@ -304,7 +308,8 @@ def build_overview_group_spreadsheet():
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/stan_wojewodski_1.jpg",
       "external_url": "NA",
       "start_year": "1991",
-      "end_year": "2002"
+      "end_year": "2002",
+      "order": "4"
     },
 
     {
@@ -314,7 +319,8 @@ def build_overview_group_spreadsheet():
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/james_bundy_1.jpg",
       "external_url": "NA",
       "start_year": "2002",
-      "end_year": "2016"
+      "end_year": "2016", 
+      "order": "5"
     }
   ]
 
