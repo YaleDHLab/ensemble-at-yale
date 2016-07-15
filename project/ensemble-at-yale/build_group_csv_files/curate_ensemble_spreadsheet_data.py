@@ -181,6 +181,7 @@ def build_master_spreadsheet():
           height_and_width = height_width_mappings[playbill_identifier]
           playbill_height = height_and_width["height"]
           playbill_width = height_and_width["width"]
+          set_key = playbill_identifier
 
         except KeyError:
           print playbill_identifier, "has no height and width information, so skipping"
@@ -215,21 +216,25 @@ def build_group_spreadsheets():
         width          = row[16]
         height         = row[15]
         page_number    = row[3].split("-")[-1].replace("p","").replace("0","")
-        set_key        = row[14].replace('"','')
+        set_key        = "-".join(row[3].split("-")[:-1])
         year           = row[6].replace('"','')
         written_by     = row[7].replace('"','')
         director       = row[8].replace('"','')
         location       = " ".join( row[9].replace('"','').split() )
 
-        d[set_key].append([
+        # The group key is the reference to the group of subject sets
+        # And the set key is the reference to the playbill identifier
+        group_key      = row[14].replace('"','')
+
+        d[group_key].append([
           file_path, thumbnail_path, width, height, 
           page_number, set_key, year, written_by, 
           director, location
         ])
 
-  for playbill_era in d.iterkeys():
+  for group_key in d.iterkeys():
 
-    with open("group_" + playbill_era + ".csv", "w") as group_out:
+    with open("group_" + group_key + ".csv", "w") as group_out:
       csv_writer = csv.writer(group_out, delimiter=',')
       
       group_headers = [
@@ -241,7 +246,7 @@ def build_group_spreadsheets():
       # write the headers identified above
       csv_writer.writerow(group_headers)
 
-      for r in d[playbill_era]:
+      for r in d[group_key]:
         csv_writer.writerow(r)
 
 
