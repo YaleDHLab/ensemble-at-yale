@@ -58,9 +58,6 @@ App = React.createClass
 
     <div className="footer-wrapper">
       <div className="react-wrapper">
-        <div className="readymade-site-background" style={style}>
-          <div className="readymade-site-background-effect"></div>
-        </div>
         <div className="panoptes-main">
 
           <MainHeader
