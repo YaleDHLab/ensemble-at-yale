@@ -140,6 +140,23 @@ namespace :subjects do
         })
         subject.activate!
         puts "Added subject: #{subject.location[:standard]}"
+
+        ###########################################
+        # Add to first page subjects if necessary #
+        ###########################################
+
+        # check whether the current subject is the first page for its subject set 
+        if data["file_path"].include? "-p0001"
+          subject_set_first_page = SubjectSetFirstPage.where("set_key" => data["set_key"]).first
+          subject_set_first_page = SubjectSetFirstPage.create if subject_set_first_page.nil?
+          subject_set_first_page.update_attributes({
+            name: name,
+            thumbnail: thumbnail,
+            meta_data: meta_data
+          })
+        end
+
+
       end
 
     end
