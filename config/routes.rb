@@ -23,7 +23,7 @@ API::Application.routes.draw do
   # Subjects
   get '/subjects/:subject_id',                                to: 'subjects#show',         defaults: { format: 'json' }
   get '/subjects',                                            to: 'subjects#index',        defaults: { format: 'json' }
-  get '/all_subjects',                                        to: 'subjects#all_subjects', defaults: { format: 'json' }
+  get '/subject_set_first_pages',                             to: 'subject_set_first_pages#index', defaults: { format: 'json' }
   get '/workflows/:workflow_id/subject_sets/:subject_set_id/subjects/:subject_id',    to: 'subject_sets#show',     defaults: { format: 'json' }
   
   # Subject_sets
