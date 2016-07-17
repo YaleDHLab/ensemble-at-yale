@@ -234,7 +234,7 @@ def build_group_spreadsheets():
 
   for group_key in d.iterkeys():
 
-    with open("group_" + group_key + ".csv", "w") as group_out:
+    with open("../subjects/group_" + group_key + ".csv", "w") as group_out:
       csv_writer = csv.writer(group_out, delimiter=',')
       
       group_headers = [
@@ -330,7 +330,7 @@ def build_overview_group_spreadsheet():
   ]
 
   # write the csv headers
-  with open("groups.csv", "w") as groups_csv_out:
+  with open("../subjects/groups.csv", "w") as groups_csv_out:
     csv_writer = csv.writer(groups_csv_out, delimiter=',')
 
     groups_csv_headers = [k for k in d[0]]
@@ -345,6 +345,9 @@ def build_overview_group_spreadsheet():
 
 
 if __name__ == "__main__":
+
+  # Delete the legacy csv data in ../subjects
+  os.popen("rm ../subjects/*.csv")
 
   # Specify a path to the subject csv's within the Ensemble at Yale app
   path_to_group_csvs = glob.glob("group_csvs_organized_by_box_folder/group_*.csv") 
