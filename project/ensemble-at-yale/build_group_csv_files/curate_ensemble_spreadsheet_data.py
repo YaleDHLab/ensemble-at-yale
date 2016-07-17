@@ -221,6 +221,7 @@ def build_group_spreadsheets():
         written_by     = row[7].replace('"','')
         director       = row[8].replace('"','')
         location       = " ".join( row[9].replace('"','').split() )
+        group_key      = row[14]
 
         # The group key is the reference to the group of subject sets
         # And the set key is the reference to the playbill identifier
@@ -229,7 +230,7 @@ def build_group_spreadsheets():
         d[group_key].append([
           file_path, thumbnail_path, width, height, 
           page_number, set_key, year, written_by, 
-          director, location
+          director, location, group_key
         ])
 
   for group_key in d.iterkeys():
@@ -240,7 +241,7 @@ def build_group_spreadsheets():
       group_headers = [
         "file_path", "thumbnail", "width", "height",
         "page_no", "set_key", "year", "written_by", 
-        "director", "location"
+        "director", "location", "group_key"
       ]
 
       # write the headers identified above
@@ -346,8 +347,9 @@ def build_overview_group_spreadsheet():
 
 if __name__ == "__main__":
 
-  # Delete the legacy csv data in ../subjects
+  # Delete the legacy csv data in pwd and ../subjects
   os.popen("rm ../subjects/*.csv")
+  os.popen("rm *.csv")
 
   # Specify a path to the subject csv's within the Ensemble at Yale app
   path_to_group_csvs = glob.glob("group_csvs_organized_by_box_folder/group_*.csv") 
