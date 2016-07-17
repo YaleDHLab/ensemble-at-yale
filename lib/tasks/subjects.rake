@@ -145,7 +145,8 @@ namespace :subjects do
         # Add to first page subjects if necessary #
         ###########################################
 
-        # check whether the current subject is the first page for its subject set 
+        # check whether the current subject is the first page for its subject set.
+        # If so, write it to the SubjectSetFirstPage table
         if data["file_path"].include? "-p0001"
           subject_set_first_page = SubjectSetFirstPage.where("set_key" => data["set_key"]).first
           subject_set_first_page = SubjectSetFirstPage.create if subject_set_first_page.nil?
