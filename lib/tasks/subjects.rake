@@ -145,7 +145,10 @@ namespace :subjects do
         # Add to first page subjects if necessary #
         ###########################################
 
-        # check whether the current subject is the first page for its subject set.
+        # Retrieve the id for the group / playbill era for the current record
+        group_key_id = Group.where(key: data["group_key"]).first._id
+
+        # Check whether the current subject is the first page for its subject set.
         # If so, write it to the SubjectSetFirstPage table
         if data["file_path"].include? "-p0001"
           subject_set_first_page = SubjectSetFirstPage.where("set_key" => data["set_key"]).first
@@ -153,7 +156,8 @@ namespace :subjects do
           subject_set_first_page.update_attributes({
             name: name,
             thumbnail: thumbnail,
-            meta_data: meta_data
+            meta_data: meta_data,
+            group_key_id: group_key_id
           })
         end
 
