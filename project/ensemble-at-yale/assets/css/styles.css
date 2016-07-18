@@ -28,6 +28,14 @@ body {
   clear: both;
 }
 
+.hidden {
+  display: none;
+}
+
+.displayed {
+  display: inline-block;
+}
+
 /*************
 * Background *
 *************/
@@ -279,6 +287,12 @@ a.drama-era-group-link {
   line-height: 1em;
   font-family: Times;
   margin-top: -30px;
+  display: none;
+}
+
+.collection-thumbnail:hover .collection-thumbnail-mark,
+.collection-thumbnail:hover .collection-thumbnail-transcribe {
+  display: block;
 }
 
 .drama-era-image-container:hover .drama-era-image-overlay {
@@ -593,6 +607,7 @@ select::-ms-expand {
 .collection-thumbnail {
   float: left;
   margin: 12px 8px;
+  position: relative;
 }
 
 .collection-thumbnail,
@@ -606,6 +621,7 @@ select::-ms-expand {
   max-width: 100%;
   height: 100%;
   max-height: 100%;
+  position: absolute;
 }
 
 /********************************
@@ -613,7 +629,7 @@ select::-ms-expand {
 ********************************/
 
 .collection-thumbnail-button-container {
-  position: relative;
+  position: absolute;
 }
 
 .collection-thumbnail-mark,
@@ -629,8 +645,8 @@ select::-ms-expand {
   text-align: center;
   font-size: .9em;
   font-family: Arial;
-  display: none;
   cursor: pointer;
+  display: none;
 }
 
 .collection-thumbnail:hover .collection-thumbnail-mark,
