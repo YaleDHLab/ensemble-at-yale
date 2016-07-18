@@ -1,6 +1,7 @@
 React         = require("react")
 GroupBrowser  = require('./group-browser')
 GenericButton   = require('components/buttons/generic-button')
+FirstPageThumbnail = require('./first-page-thumbnail')
 API           = require('../lib/api')
 
 GroupPage = React.createClass
@@ -26,17 +27,6 @@ GroupPage = React.createClass
       @setState
         subject_sets: sets
 
-  renderFirstPage: (page_json) ->
-    page_index = @state.current_first_pages.indexOf(page_json)
-    <div key={page_json.meta_data.set_key} className="collection-thumbnail">
-      <img src={page_json.thumbnail} 
-           className="group-page-image-thumbnail" />
-      <div className="collection-thumbnail-button-container">
-        <div className="collection-thumbnail-mark">MARK</div>
-        <div className="collection-thumbnail-transcribe">TRANSCRIBE</div>
-      </div>
-    </div>
-
   render: ->
     if ! @state.group?
       <div className="group-page">
@@ -44,8 +34,10 @@ GroupPage = React.createClass
       </div>
 
     else
-      firstPages = [@renderFirstPage(page_json) for page_json in @state.current_first_pages]
-      
+      firstPages = []
+      for page_json, index in @state.current_first_pages
+        firstPages.push <FirstPageThumbnail page_json={page_json} key={index} /> 
+
       <div className="collection-page-content">
         <div className="collection-title-container">
           <div className="collection-title">James Bundy Era</div>
