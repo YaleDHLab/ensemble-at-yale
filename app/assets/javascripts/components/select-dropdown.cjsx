@@ -6,10 +6,12 @@ module.exports = React.createClass
     
   render: ->
 
-    <select>
-      <option disabled selected value="">{@props.placeholder_text}</option>
+    <select onChange={@props.onSelect}>
+      <option value="" disabled selected>{@props.placeholder_text}</option>
       {
         for option, option_index in @props.options_array
-          <Option key={option_index} option_text={option} option_index={option_index} />
+          <Option key={option_index} 
+                  option_text={option} 
+                  option_index={option_index} />
       }
     </select>
