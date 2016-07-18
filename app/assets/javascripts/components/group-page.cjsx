@@ -9,7 +9,8 @@ GroupPage = React.createClass
   displayName: "GroupPage"
 
   getInitialState: ->
-    group: null
+    all_institutions: []
+    all_playwrights: []
 
   componentDidMount: ->
     # make a request to http://localhost:3000/subject_set_first_pages?group_id={{requested group id}}
