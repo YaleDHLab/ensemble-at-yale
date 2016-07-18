@@ -100,7 +100,6 @@ body {
 
 .main-content {
   margin-top: 72px;
-  padding-bottom: 50px;
   margin-bottom: 0px;
 }
 
@@ -357,6 +356,297 @@ a.drama-era-group-link {
     display: none;
   }
 }
+
+
+/**********************
+* Collection Content  *
+**********************/
+
+.collection-page-content {
+  margin: 60px;
+}
+
+.collection-title-container {
+  margin: 20px 40px;
+  color: #fff;
+}
+
+.collection-title {
+  font-size: 1.6em;
+  font-weight: 300;
+  letter-spacing: .04em;
+}
+
+.collection-browse-container {
+  background: #fff;
+  display: inline-block;
+}
+
+.collection-container {    
+  width: 100%;
+  height: 100%;
+}
+
+/*****************************
+* Collection Browse Controls *
+*****************************/
+
+.collection-browse-controls-container {
+  width: 300px;
+  height: 800px;
+  position: absolute;
+  left: 60px;
+  background: #fff;
+  font-family: Arial;
+}
+
+.collection-browse-controls-content {
+  font-size: .85em;
+  font-family: Arial;
+  color: #787878;
+  margin: 20px;
+}
+
+.collection-performance-dates-container {
+  margin-top: 30px;
+}
+
+.collection-performance-dates-container div {
+  display: inline-block;
+}
+
+.collection-question-mark-outer {
+  height: 22px;
+  width: 22px;
+  background: lightgray;
+  border-radius: 30px;
+  margin: 4px;
+  float: right;
+  margin-top: -2px;
+  cursor: pointer;
+}
+
+.collection-question-mark-inner {
+  padding: 4px 7px;
+  color: #fff;
+  font-weight: 800;
+}
+
+.collection-range-slider {
+  margin: 20px 0px;
+}
+
+.collection-browse-controls-content select {
+  margin-top: 8px;
+}
+
+/**************************
+* Mark Transcribe Buttons *
+**************************/
+
+.collection-mark-transcribe-container {
+  background: #e6e6e6;
+  padding: 30px;
+}
+
+.collection-mark-transcribe-container a {
+  text-decoration: none;
+}
+
+.collection-button {
+  border-radius: 4px;
+  text-align: center;
+  padding: 9px;
+  color: #fff;
+}
+
+.collection-button.transcribe-button a {
+  text-decoration: none !important;
+}
+
+.mark-button {
+  background: #2f5a6f;
+}
+
+.transcribe-button {
+  margin-top: 8px;
+  background: #679db8;
+}
+
+/**************************
+* Collection Select Boxes *
+**************************/
+
+.collection-browse-controls-container select {
+  width: 100%;
+}
+
+.custom-select {
+  background: url(caret.png) no-repeat 96% 0;
+  height: 29px;
+  overflow: hidden;
+  width: 260px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #e6e6e6;
+}
+
+.custom-select select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 29px;
+  padding: 5px;
+  width: 260px;
+  margin: 0px;
+  color: #656565;
+  cursor: pointer;
+  /* remove up down caret in firefox*/
+  -moz-appearance: none;
+  /* in chrome */
+  -webkit-appearance:none;
+}
+
+/* in IE10 */
+select::-ms-expand {
+  display: none;
+}
+
+
+/***************
+* Progress Bar *
+***************/
+
+.collection-progressbar-container {
+  height: 12px;
+  background: linear-gradient(lightgray, darkgray);
+}
+
+.collection-progressbar {
+  width: 72%;
+  height: 100%;
+  background: linear-gradient(#82b4d1, #356f9a);
+}
+
+/******************************
+* Collection Progress Details *
+******************************/
+
+.collection-progress-overall {
+  margin-top: 15px;
+}
+
+.collection-progress-overall-label {
+  display: inline-block;
+  margin-left: 14px;
+}
+
+.collection-progress-overall-value {
+  float: right;
+  font-size: 1.7em;
+  margin-top: -3px;
+  margin-right: 43px;
+}
+
+.collection-progress-box-container {
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 14px;
+  text-align: center;
+}
+
+.collection-progress-box {
+  display:inline-block;
+  background: #e3e1e1;
+  padding: 12px 14px;
+  border-radius: 5px;
+  width: 83px;
+  height: 40px;
+}
+
+.collection-progress-box-right {
+  float: right;
+  margin-left: 10px;
+}
+
+.collection-progress-top,
+.collection-completed-top {
+  font-size: 1.6em;
+}
+
+/************************
+* Collection Thumbnails *
+************************/
+
+.collection-thumbnails {
+  float: right;
+  padding: 20px 20px 20px 323px;
+  height: 800px;
+  max-height: 800px;
+  overflow: scroll;
+  background: #a6b1bf;  
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.collection-thumbnail {
+  float: left;
+  margin: 12px 8px;
+}
+
+.collection-thumbnail,
+.collection-thumbnail-mark-container {
+  height: 200px;
+  width: 140px;
+}
+
+.group-page-image-thumbnail {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+}
+
+/********************************
+* Collection Thumbnail Overlays *
+********************************/
+
+.collection-thumbnail-button-container {
+  position: relative;
+}
+
+.collection-thumbnail-mark,
+.collection-thumbnail-transcribe {
+  position: absolute;
+  width: 109px;
+  height: 14px;
+  padding: 7px;
+  margin-left: 10px;
+  background: #679db8;
+  color: #fff;
+  border-radius: 4px;
+  text-align: center;
+  font-size: .9em;
+  font-family: Arial;
+  display: none;
+  cursor: pointer;
+}
+
+.collection-thumbnail:hover .collection-thumbnail-mark,
+.collection-thumbnail:hover .collection-thumbnail-transcribe {
+  display: block;
+}
+
+.collection-thumbnail-mark {
+  margin-top: 65px; 
+}
+
+.collection-thumbnail-transcribe {
+  margin-top: 100px;
+}
+
+
 
 
 
