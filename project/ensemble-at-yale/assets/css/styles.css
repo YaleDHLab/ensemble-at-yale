@@ -496,7 +496,7 @@ a.drama-era-group-link {
 }
 
 .custom-select {
-  background: url(caret.png) no-repeat 96% 0;
+  background: url("/assets/caret.png") no-repeat 96% 0;
   height: 29px;
   overflow: hidden;
   width: 260px;
@@ -516,6 +516,7 @@ a.drama-era-group-link {
   margin: 0px;
   color: #656565;
   cursor: pointer;
+  padding-right: 41px;
   /* remove up down caret in firefox*/
   -moz-appearance: none;
   /* in chrome */
@@ -599,7 +600,8 @@ select::-ms-expand {
   height: 800px;
   max-height: 800px;
   overflow: scroll;
-  background: #a6b1bf;  
+  background: #a6b1bf;
+  min-width: 100%;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
