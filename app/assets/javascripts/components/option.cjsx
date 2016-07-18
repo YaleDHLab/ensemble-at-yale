@@ -4,4 +4,4 @@ module.exports = React.createClass
   displayName: 'Option'
     
   render: ->
-    <option value={@props.option_index}>{@props.option_text}</option>
+    <option value={@props.option_text}>{@props.option_text}</option>
