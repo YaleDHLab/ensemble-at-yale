@@ -156,24 +156,27 @@ GroupPage = React.createClass
             </div>
 
             <div className="collection-progressbar-container">
-              <div className="collection-progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+              <div className="collection-progressbar" 
+                   aria-valuenow={parseInt((@state.group.stats?.completeness ? 0) * 100)}
+                   aria-valuemin="0" aria-valuemax="100"
+                   style={{width: parseInt((@state.group.stats?.completeness ? 0) * 100) + "%"}}></div>
             </div>
 
             <div className="collection-browse-controls-content">
               <div className="collection-progress-details">
                 <div className="collection-progress-overall">
                   <div className="collection-progress-overall-label">Overall completion:</div>
-                  <div className="collection-progress-overall-value">72%</div>
+                  <div className="collection-progress-overall-value">{parseInt((@state.group.stats?.completeness ? 0) * 100)}%</div>
                 </div>
 
                 <div className="collection-progress-box-container">
                   <div className="collection-progress-box">
-                    <div className="collection-progress-top">444</div>
+                    <div className="collection-progress-top">{@state.group.stats?.total_pending ? 0}</div>
                     <div className="collection-progress-bottom">In-Progress</div>
                   </div>
 
                   <div className="collection-progress-box collection-progress-box-right">
-                    <div className="collection-completed-top">88</div>
+                    <div className="collection-completed-top">{@state.group.stats?.total_finished ? 0}</div>
                     <div className="collection-completed-bottom">Completed</div>
                   </div>
                 </div>
