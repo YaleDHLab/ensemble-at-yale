@@ -10,6 +10,13 @@ GroupPage = React.createClass
     group: null
 
   componentDidMount: ->
+    # make a request to http://localhost:3000/subject_set_first_pages?group_id=578b885e3dfe9ecf50896966
+    # using the incoming query param, and use the results of that query to populate and update the view
+
+    API.type("subject_set_first_pages").get(group_id: @props.params.group_id).then (first_pages_json) =>
+      @setState
+        first_pages_json: first_pages_json
+
     API.type("groups").get(@props.params.group_id).then (group) =>
       @setState
         group: group
