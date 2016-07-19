@@ -23,6 +23,12 @@ GroupBrowser = React.createClass
     @forceUpdate() # trigger re-render to update buttons
 
   renderGroup: (group) ->
+    isEven = 0
+    if @state.groups.indexOf(group) + 2 %% 2 == 0
+      isEven = 0
+    else 
+      isEven = 1
+
     buttonContainerClasses = []
     groupNameClasses = []
     if group.showButtons
@@ -30,21 +36,17 @@ GroupBrowser = React.createClass
     else
       groupNameClasses.push "active"
 
-    <div
-      onMouseOver={@showButtonsForGroup.bind this, group}
-      onMouseOut={@hideButtonsForGroup.bind this, group}
-      className='group'
-      style={backgroundImage: "url(#{group.cover_image_url})"}
-      key={group.id}
-      >
-      <div className="button-container #{buttonContainerClasses.join ' '}">
-        { for workflow in @props.project.workflows
-            if (group.stats.workflow_counts?[workflow.id]?.active_subjects ? 0) > 0
-              <a href={"/#/#{workflow.name}?group_id=#{group.id}"} className="button small-button" key={workflow.id} >{workflow.name.capitalize()}</a>
-        }
-        <a href="/#/groups/#{group.id}" className="button small-button ghost">More info</a>
-      </div>
-      <p className="group-name #{groupNameClasses.join ' '}">{group.name}</p>
+    <div className="drama-era-image-wrapper center-xs">
+      <a href="/#/groups/#{group.id}" className="drama-era-group-link">
+        <div
+          className='drama-era-image-container'
+          style={backgroundImage: "url(#{group.cover_image_url})"}
+          key={group.id}>
+            <div className="drama-era-image-overlay">
+              {group.meta_data.start_year} &#8210; {group.meta_data.end_year} &#8231; {group.name}
+            </div>
+        </div>
+      </a>
     </div>
 
   render: ->
@@ -52,18 +54,11 @@ GroupBrowser = React.createClass
     return null if @state.groups.length <= 1
 
     groups = [@renderGroup(group) for group in @state.groups]
-    <div className="group-browser">
-      <h3 className="groups-header">
-        {
-          if @props.title?
-            <span>{@props.title}</span>
-          else
-            <span>Select a {@props.project.term('group')}</span>
-        }
-      </h3>
-      <div className="groups">
+    <div className="flexbox-wrapper-groups">
+      <div className="row">
         {groups}
       </div>
     </div>
+    
 
 module.exports = GroupBrowser

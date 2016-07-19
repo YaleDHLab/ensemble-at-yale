@@ -145,7 +145,7 @@ def build_master_spreadsheet():
   last_year = ""
 
   with codecs.open("DRA37Boxes1-11.tsv", "r", "latin1") as f:
-    rows = f.read().split("\n")
+    rows = f.read().replace('"','').split("\n")
 
     # Skip the last row
     for c, row in enumerate(rows[:-1]):
@@ -181,13 +181,13 @@ def build_master_spreadsheet():
           height_and_width = height_width_mappings[playbill_identifier]
           playbill_height = height_and_width["height"]
           playbill_width = height_and_width["width"]
+          set_key = playbill_identifier
 
         except KeyError:
           print playbill_identifier, "has no height and width information, so skipping"
           continue
 
         # add the current row information to the master spreadsheet
-        #print play_era, playbill_height, playbill_width, split_row
         add_row_to_master_spreadsheet(split_row, play_era, playbill_height, playbill_width)
 
 
@@ -216,33 +216,38 @@ def build_group_spreadsheets():
         width          = row[16]
         height         = row[15]
         page_number    = row[3].split("-")[-1].replace("p","").replace("0","")
-        set_key        = row[14].replace('"','')
+        set_key        = "-".join(row[3].split("-")[:-1])
         year           = row[6].replace('"','')
         written_by     = row[7].replace('"','')
         director       = row[8].replace('"','')
         location       = " ".join( row[9].replace('"','').split() )
+        group_key      = row[14]
 
-        d[set_key].append([
+        # The group key is the reference to the group of subject sets
+        # And the set key is the reference to the playbill identifier
+        group_key      = row[14].replace('"','')
+
+        d[group_key].append([
           file_path, thumbnail_path, width, height, 
           page_number, set_key, year, written_by, 
-          director, location
+          director, location, group_key
         ])
 
-  for playbill_era in d.iterkeys():
+  for group_key in d.iterkeys():
 
-    with open("group_" + playbill_era + ".csv", "w") as group_out:
+    with open("../subjects/group_" + group_key + ".csv", "w") as group_out:
       csv_writer = csv.writer(group_out, delimiter=',')
       
       group_headers = [
         "file_path", "thumbnail", "width", "height",
         "page_no", "set_key", "year", "written_by", 
-        "director", "location"
+        "director", "location", "group_key"
       ]
 
       # write the headers identified above
       csv_writer.writerow(group_headers)
 
-      for r in d[playbill_era]:
+      for r in d[group_key]:
         csv_writer.writerow(r)
 
 
@@ -256,87 +261,98 @@ def build_overview_group_spreadsheet():
   # additional metadata fields may be added as desired
 
   # define each group's data in d
-  d = {
-    "department_of_drama": {
+  d = [
+    
+    {
       "key": "department_of_drama",
       "name": "Department of Drama",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/department_of_drama_1.jpg",
       "external_url": "NA",
       "start_year": "1925",
-      "end_year": "1955"
+      "end_year": "1955",
+      "order": "0"
     },
 
-    "founding_era": {
+    {
       "key": "founding_era",
       "name": "Founding Era",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/founding_era_1.jpg",
       "external_url": "NA",
       "start_year": "1955",
-      "end_year": "1966"
+      "end_year": "1966",
+      "order": "1"
     },
 
-    "robert_brustein": {
+    {
       "key": "robert_brustein",
       "name": "Robert Brustein",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/robert_brustein_1.jpg",
       "external_url": "NA",
       "start_year": "1966",
-      "end_year": "1979"
+      "end_year": "1979",
+      "order": "2"
     },
 
-    "lloyd_richards": {
+    {
       "key": "lloyd_richards",
       "name": "Lloyd Richards",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/lloyd_richards_1.jpg",
       "external_url": "NA",
       "start_year": "1979",
-      "end_year": "1991"
+      "end_year": "1991",
+      "order": "3"
     },
 
-    "stan_wojewodski": {
+    {
       "key": "stan_wojewodski",
-      "name": "Stan Wojewodski",
+      "name": "Stanley Wojewodski Jr.",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/stan_wojewodski_1.jpg",
       "external_url": "NA",
-      "start_year": "1925",
-      "end_year": "1955"
+      "start_year": "1991",
+      "end_year": "2002",
+      "order": "4"
     },
 
-    "james_bundy": {
+    {
       "key": "james_bundy",
       "name": "James Bundy",
       "description": "Lorem ipsum dolor sit amet, cu eam utamur legimus mnesarchum. Te eum autem sensibus. Graeci putent per an, pertinax complectitur interpretaris at vis. Te errem oporteat mel, mel iudico quodsi ei, est aliquid maiestatis conclusionemque ex. Dolorem admodum ad his.",
       "cover_image_url": "https://s3-us-west-2.amazonaws.com/ensemble-at-yale/drama-era-images/james_bundy_1.jpg",
       "external_url": "NA",
       "start_year": "2002",
-      "end_year": "2016"
+      "end_year": "2016", 
+      "order": "5"
     }
-  }
+  ]
 
   # write the csv headers
-  with open("groups.csv", "w") as groups_csv_out:
+  with open("../subjects/groups.csv", "w") as groups_csv_out:
     csv_writer = csv.writer(groups_csv_out, delimiter=',')
 
-    groups_csv_headers = [k for k in d["department_of_drama"]]
+    groups_csv_headers = [k for k in d[0]]
 
     # write the headers identified above
     csv_writer.writerow(groups_csv_headers)
   
     # iterate over keys in d and build groups.csv
-    for group in d.iterkeys():
-      group_vals = [d[group][k] for k in d[group]]
+    for group in d:
+      group_vals = [group[k] for k in group.iterkeys()]
       csv_writer.writerow(group_vals)
 
 
 if __name__ == "__main__":
 
+  # Delete the legacy csv data in pwd and ../subjects
+  os.popen("rm ../subjects/*.csv")
+  os.popen("rm *.csv")
+
   # Specify a path to the subject csv's within the Ensemble at Yale app
-  path_to_group_csvs = glob.glob("../yale/web_apps/ensemble-at-yale/project/ensemble-at-yale/subjects/*.csv") 
+  path_to_group_csvs = glob.glob("group_csvs_organized_by_box_folder/group_*.csv") 
 
   # assign a name to the master spreadsheet of playbill metadata
   master_playbill_spreadsheet = "master_ensemble_playbill_spreadsheet.csv"

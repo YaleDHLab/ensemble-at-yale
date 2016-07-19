@@ -3,12 +3,10 @@ App         = require './app'
 Router      = require 'react-router'
 {Handler, Root, RouteHandler, Route, DefaultRoute, Redirect, Navigation, Link} = Router
 
-HomePage                      = require './home-page'
+HomePage                      = require './yale-home-page'
 Mark                          = require './mark'
 Transcribe                    = require './transcribe'
 Verify                        = require './verify'
-
-# TODO Group routes currently not implemented
 GroupPage                     = require './group-page'
 GroupBrowser                  = require './group-browser'
 
