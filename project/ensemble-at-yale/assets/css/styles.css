@@ -466,15 +466,18 @@ a.drama-era-group-link {
 .slider {
   width: 100%;
   max-width: 500px;
-  height: 50px;
-  border: 1px solid grey;
+  height: 14px;
 }
 
 .slider .handle {
   top: 1px;
-  width: 50px;
-  height: 48px;
+  width: 10px;
+  height: 22px;
   line-height: 48px;
+  border-radius: 3px;
+  background: #fff;
+  border: 1px solid #9f9f9f;
+  margin-top: -6px;
 }
 
 .handle {
@@ -486,8 +489,22 @@ a.drama-era-group-link {
 }
 
 .handle.active {
-  background-color: grey;
+  background-color: lightgray;
 }
+
+.bar {
+  height: 100%;
+}
+
+.bar-0, .bar-2 {
+  background: #e6e6e6;
+}
+
+.bar-1 {
+  height: 100%;
+  background: #679db8;
+}
+
 
 /**************************
 * Mark Transcribe Buttons *
