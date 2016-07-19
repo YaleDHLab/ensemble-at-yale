@@ -12,7 +12,8 @@ GroupPage = React.createClass
   getInitialState: ->
     all_institutions: []
     all_playwrights: []
-    all_years: []
+    min_year: 1920
+    max_year: 1940
 
   componentDidMount: ->
     # make a request to http://localhost:3000/subject_set_first_pages?group_id={{requested group id}}
@@ -46,9 +47,6 @@ GroupPage = React.createClass
           if year_int > max_year
             max_year = year_int
 
-      min_max_year_array = [min_year, max_year]
-      console.log(min_max_year_array)
-
       @setState
         all_first_pages: first_pages_json
         all_institutions: all_institutions
@@ -75,11 +73,10 @@ GroupPage = React.createClass
     @setState
       first_page_array: first_pages_view
 
-
   updateFirstPageArray: ->
-    console.log("updating first page array")
     selected_institution = $(".collection-institution select").val()
     selected_playwright  = $(".collection-playwright select").val() 
+    start_and_end_years  = @refs.ReactYearSlider.state.value
 
     # define the selection criteria to be used to filter first page objects
     selection_criteria_options = [
@@ -102,18 +99,23 @@ GroupPage = React.createClass
       if selection_criterion.value?
         selection_criteria.push(selection_criterion)
 
-    console.log(selection_criteria)
-
     # iterate over the first page array and retain only those elements that match
     # the user-specified selection criteria
     first_pages_to_display = []
     for first_page in @state.all_first_pages
       keep_page = 1
+
+      # ensure year falls within user-selected range
+      page_year = parseInt(first_page.meta_data.year)
+      if page_year < start_and_end_years[0]
+        keep_page = 0
+      if page_year > start_and_end_years[1]
+        keep_page = 0
+
+      # iterate over the selection criteria and continue filtering
       for selection_criterion in selection_criteria
-        console.log(first_page.meta_data[selection_criterion.key_in_first_page_json], selection_criterion.value)
         if first_page.meta_data[selection_criterion.key_in_first_page_json] != selection_criterion.value
           keep_page = 0
-          console.log("not keeping page")
       if keep_page == 1
         first_pages_to_display.push(first_page)
 
@@ -123,7 +125,6 @@ GroupPage = React.createClass
       first_pages_view.push <FirstPageThumbnail page_json={page_json} key={index} />
     @setState
       first_page_array: first_pages_view
-
 
   render: ->
     if ! @state.group?
@@ -155,9 +156,12 @@ GroupPage = React.createClass
 
                 <div className="collection-range-slider">
 
-                  <ReactSlider min={@state.min_year} 
-                      max={@state.max_year} 
-                      defaultValue={[@state.min_year, @state.max_year]} withBars />
+                  <ReactSlider 
+                    onAfterChange={@updateFirstPageArray}
+                    ref="ReactYearSlider"
+                    min={@state.min_year} 
+                    max={@state.max_year} 
+                    defaultValue={[@state.min_year, @state.max_year]} withBars />
 
                 </div>
                 
