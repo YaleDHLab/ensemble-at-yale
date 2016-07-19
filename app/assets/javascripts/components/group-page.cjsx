@@ -9,11 +9,18 @@ API                = require('../lib/api')
 GroupPage = React.createClass
   displayName: "GroupPage"
 
+
   getInitialState: ->
     all_institutions: []
     all_playwrights: []
+
+    # min, max year will indicate the range of years from which the user can select
+    # while start and end years will indicate the actual years the user has selected
     min_year: 1920
     max_year: 1940
+    start_year: 1920
+    end_year: 1940
+
 
   componentDidMount: ->
     # make a request to http://localhost:3000/subject_set_first_pages?group_id={{requested group id}}
@@ -53,6 +60,8 @@ GroupPage = React.createClass
         all_playwrights: all_playwrights
         min_year: min_year
         max_year: max_year
+        start_year: min_year
+        end_year: max_year
 
       @initializeFirstPageArray()
 
@@ -73,10 +82,10 @@ GroupPage = React.createClass
     @setState
       first_page_array: first_pages_view
 
+
   updateFirstPageArray: ->
     selected_institution = $(".collection-institution select").val()
     selected_playwright  = $(".collection-playwright select").val() 
-    start_and_end_years  = @refs.ReactYearSlider.state.value
 
     # define the selection criteria to be used to filter first page objects
     selection_criteria_options = [
@@ -106,10 +115,11 @@ GroupPage = React.createClass
       keep_page = 1
 
       # ensure year falls within user-selected range
-      page_year = parseInt(first_page.meta_data.year)
-      if page_year < start_and_end_years[0]
+      page_year = first_page.meta_data.year
+      page_year_as_int = parseInt(page_year)
+      if page_year_as_int < @state.start_year
         keep_page = 0
-      if page_year > start_and_end_years[1]
+      if page_year_as_int > @state.end_year
         keep_page = 0
 
       # iterate over the selection criteria and continue filtering
@@ -125,6 +135,14 @@ GroupPage = React.createClass
       first_pages_view.push <FirstPageThumbnail page_json={page_json} key={index} />
     @setState
       first_page_array: first_pages_view
+
+
+  updateYearSliderState: (start_end_year_array) ->
+    @setState
+      start_year: start_end_year_array[0]
+      end_year: start_end_year_array[1]
+      @updateFirstPageArray
+
 
   render: ->
     if ! @state.group?
@@ -155,14 +173,12 @@ GroupPage = React.createClass
                 </div>
 
                 <div className="collection-range-slider">
-
                   <ReactSlider 
-                    onAfterChange={@updateFirstPageArray}
+                    onAfterChange={@updateYearSliderState}
                     ref="ReactYearSlider"
                     min={@state.min_year} 
                     max={@state.max_year} 
-                    defaultValue={[@state.min_year, @state.max_year]} withBars />
-
+                    value={[@state.start_year, @state.end_year]} withBars />
                 </div>
                 
                 <div className="custom-select collection-institution">
