@@ -1,9 +1,10 @@
-React         = require("react")
-GroupBrowser  = require('./group-browser')
-GenericButton   = require('components/buttons/generic-button')
+React              = require("react")
+GroupBrowser       = require('./group-browser')
+GenericButton      = require('components/buttons/generic-button')
 FirstPageThumbnail = require('./first-page-thumbnail')
-SelectDropdown = require('./select-dropdown')
-API           = require('../lib/api')
+SelectDropdown     = require('./select-dropdown')
+ReactSlider        = require('react-slider')
+API                = require('../lib/api')
 
 GroupPage = React.createClass
   displayName: "GroupPage"
@@ -131,7 +132,10 @@ GroupPage = React.createClass
                 <div className="collection-question-mark-outer">
                   <div className="collection-question-mark-inner">?</div>
                 </div>
-                <div className="collection-range-slider">Range slider goes here</div>
+                <div className="collection-range-slider">
+                  <ReactSlider defaultValue={[0, 100]} withBars />
+
+                </div>
                 
                 <div className="custom-select collection-institution">
                   <SelectDropdown options_array={@state.all_institutions} 
@@ -148,10 +152,10 @@ GroupPage = React.createClass
             </div>
 
             <div className="collection-mark-transcribe-container">
-              <a href="#Mark">
+              <a href="/#/Mark">
                 <div className="collection-button mark-button">MARK</div>
               </a>
-              <a href="#Transcribe">
+              <a href="/#/Transcribe">
                 <div className="collection-button transcribe-button">TRANSCRIBE</div>
               </a>
             </div>
