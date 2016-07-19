@@ -12,6 +12,7 @@ GroupPage = React.createClass
   getInitialState: ->
     all_institutions: []
     all_playwrights: []
+    all_years: []
 
   componentDidMount: ->
     # make a request to http://localhost:3000/subject_set_first_pages?group_id={{requested group id}}
@@ -20,11 +21,15 @@ GroupPage = React.createClass
     API.type("subject_set_first_pages").get(group_id: @props.params.group_id).then (first_pages_json) =>
       all_institutions = []
       all_playwrights = []
+      min_year = 9999
+      max_year = 0
+      min_max_year_array = []
 
       # iterate through the first pages and update the available institutions and playwright options
       for first_page_json in first_pages_json
         institution = first_page_json.meta_data.location
         playwright = first_page_json.meta_data.written_by
+        year = first_page_json.meta_data.year
 
         if institution
           if institution not in all_institutions
@@ -34,11 +39,22 @@ GroupPage = React.createClass
           if playwright not in all_playwrights
             all_playwrights.push(playwright)
 
+        if year
+          year_int = parseInt(year)
+          if year_int < min_year
+            min_year = year_int
+          if year_int > max_year
+            max_year = year_int
+
+      min_max_year_array = [min_year, max_year]
+      console.log(min_max_year_array)
+
       @setState
         all_first_pages: first_pages_json
         all_institutions: all_institutions
         all_playwrights: all_playwrights
-        first_pages_initialized: 0
+        min_year: min_year
+        max_year: max_year
 
       @initializeFirstPageArray()
 
@@ -58,7 +74,6 @@ GroupPage = React.createClass
       first_pages_view.push <FirstPageThumbnail page_json={page_json} key={index} />
     @setState
       first_page_array: first_pages_view
-      first_pages_initialized: 1
 
 
   updateFirstPageArray: ->
@@ -132,8 +147,17 @@ GroupPage = React.createClass
                 <div className="collection-question-mark-outer">
                   <div className="collection-question-mark-inner">?</div>
                 </div>
+
+                <div className="min-max-dates-container">
+                  <div className="min-date min-max-date">{@state.min_year}</div>
+                  <div className="max-date min-max-date">{@state.max_year}</div>
+                </div>
+
                 <div className="collection-range-slider">
-                  <ReactSlider defaultValue={[0, 100]} withBars />
+
+                  <ReactSlider min={@state.min_year} 
+                      max={@state.max_year} 
+                      defaultValue={[@state.min_year, @state.max_year]} withBars />
 
                 </div>
                 
