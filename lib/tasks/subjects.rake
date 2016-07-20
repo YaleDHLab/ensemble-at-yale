@@ -157,8 +157,11 @@ namespace :subjects do
             name: name,
             thumbnail: thumbnail,
             meta_data: meta_data,
-            group_key_id: group_key_id
+            group_key_id: group_key_id,
+            subject_set_id: subject_set._id
           })
+
+          puts "      - saved subject_set_first_page #{subject_set._id}"
         end
 
 
