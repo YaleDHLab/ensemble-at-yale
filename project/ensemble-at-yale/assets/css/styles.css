@@ -81,6 +81,10 @@ body {
   text-align: center;
 }
 
+.brand-title-container a {
+  text-decoration: none;
+}
+
 .brand-title {
   color: #fff;
   letter-spacing: .1em;
