@@ -1,16 +1,26 @@
-React         = require("react")
-GroupBrowser  = require('./group-browser')
-GenericButton   = require('components/buttons/generic-button')
+React              = require("react")
+GroupBrowser       = require('./group-browser')
+GenericButton      = require('components/buttons/generic-button')
 FirstPageThumbnail = require('./first-page-thumbnail')
-SelectDropdown = require('./select-dropdown')
-API           = require('../lib/api')
+SelectDropdown     = require('./select-dropdown')
+ReactSlider        = require('react-slider')
+API                = require('../lib/api')
 
 GroupPage = React.createClass
   displayName: "GroupPage"
 
+
   getInitialState: ->
     all_institutions: []
     all_playwrights: []
+
+    # min, max year will indicate the range of years from which the user can select
+    # while start and end years will indicate the actual years the user has selected
+    min_year: 1920
+    max_year: 1940
+    start_year: 1920
+    end_year: 1940
+
 
   componentDidMount: ->
     # make a request to http://localhost:3000/subject_set_first_pages?group_id={{requested group id}}
@@ -19,11 +29,15 @@ GroupPage = React.createClass
     API.type("subject_set_first_pages").get(group_id: @props.params.group_id).then (first_pages_json) =>
       all_institutions = []
       all_playwrights = []
+      min_year = 9999
+      max_year = 0
+      min_max_year_array = []
 
       # iterate through the first pages and update the available institutions and playwright options
       for first_page_json in first_pages_json
         institution = first_page_json.meta_data.location
         playwright = first_page_json.meta_data.written_by
+        year = first_page_json.meta_data.year
 
         if institution
           if institution not in all_institutions
@@ -33,11 +47,21 @@ GroupPage = React.createClass
           if playwright not in all_playwrights
             all_playwrights.push(playwright)
 
+        if year
+          year_int = parseInt(year)
+          if year_int < min_year
+            min_year = year_int
+          if year_int > max_year
+            max_year = year_int
+
       @setState
         all_first_pages: first_pages_json
         all_institutions: all_institutions
         all_playwrights: all_playwrights
-        first_pages_initialized: 0
+        min_year: min_year
+        max_year: max_year
+        start_year: min_year
+        end_year: max_year
 
       @initializeFirstPageArray()
 
@@ -57,11 +81,9 @@ GroupPage = React.createClass
       first_pages_view.push <FirstPageThumbnail page_json={page_json} key={index} />
     @setState
       first_page_array: first_pages_view
-      first_pages_initialized: 1
 
 
   updateFirstPageArray: ->
-    console.log("updating first page array")
     selected_institution = $(".collection-institution select").val()
     selected_playwright  = $(".collection-playwright select").val() 
 
@@ -86,18 +108,24 @@ GroupPage = React.createClass
       if selection_criterion.value?
         selection_criteria.push(selection_criterion)
 
-    console.log(selection_criteria)
-
     # iterate over the first page array and retain only those elements that match
     # the user-specified selection criteria
     first_pages_to_display = []
     for first_page in @state.all_first_pages
       keep_page = 1
+
+      # ensure year falls within user-selected range
+      page_year = first_page.meta_data.year
+      page_year_as_int = parseInt(page_year)
+      if page_year_as_int < @state.start_year
+        keep_page = 0
+      if page_year_as_int > @state.end_year
+        keep_page = 0
+
+      # iterate over the selection criteria and continue filtering
       for selection_criterion in selection_criteria
-        console.log(first_page.meta_data[selection_criterion.key_in_first_page_json], selection_criterion.value)
         if first_page.meta_data[selection_criterion.key_in_first_page_json] != selection_criterion.value
           keep_page = 0
-          console.log("not keeping page")
       if keep_page == 1
         first_pages_to_display.push(first_page)
 
@@ -107,6 +135,13 @@ GroupPage = React.createClass
       first_pages_view.push <FirstPageThumbnail page_json={page_json} key={index} />
     @setState
       first_page_array: first_pages_view
+
+
+  updateYearSliderState: (start_end_year_array) ->
+    @setState
+      start_year: start_end_year_array[0]
+      end_year: start_end_year_array[1]
+      @updateFirstPageArray
 
 
   render: ->
@@ -131,7 +166,20 @@ GroupPage = React.createClass
                 <div className="collection-question-mark-outer">
                   <div className="collection-question-mark-inner">?</div>
                 </div>
-                <div className="collection-range-slider">Range slider goes here</div>
+
+                <div className="min-max-dates-container">
+                  <div className="min-date min-max-date">{@state.min_year}</div>
+                  <div className="max-date min-max-date">{@state.max_year}</div>
+                </div>
+
+                <div className="collection-range-slider">
+                  <ReactSlider 
+                    onAfterChange={@updateYearSliderState}
+                    ref="ReactYearSlider"
+                    min={@state.min_year} 
+                    max={@state.max_year} 
+                    value={[@state.start_year, @state.end_year]} withBars />
+                </div>
                 
                 <div className="custom-select collection-institution">
                   <SelectDropdown options_array={@state.all_institutions} 
@@ -148,10 +196,10 @@ GroupPage = React.createClass
             </div>
 
             <div className="collection-mark-transcribe-container">
-              <a href="#Mark">
+              <a href="/#/Mark">
                 <div className="collection-button mark-button">MARK</div>
               </a>
-              <a href="#Transcribe">
+              <a href="/#/Transcribe">
                 <div className="collection-button transcribe-button">TRANSCRIBE</div>
               </a>
             </div>
