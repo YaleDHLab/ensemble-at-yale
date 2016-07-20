@@ -36,7 +36,7 @@ GroupBrowser = React.createClass
     else
       groupNameClasses.push "active"
 
-    <div className="drama-era-image-wrapper center-xs">
+    <div className="drama-era-image-wrapper">
       <a href="/#/groups/#{group.id}" className="drama-era-group-link">
         <div
           className='drama-era-image-container'
@@ -54,11 +54,10 @@ GroupBrowser = React.createClass
     return null if @state.groups.length <= 1
 
     groups = [@renderGroup(group) for group in @state.groups]
-    <div className="flexbox-wrapper-groups">
-      <div className="row">
-        {groups}
-      </div>
+    <div className="group-area-wrapper">
+      {groups}
     </div>
+
     
 
 module.exports = GroupBrowser
