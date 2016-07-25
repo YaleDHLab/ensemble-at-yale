@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/YaleDHLab/ensemble-at-yale.png?label=ready&title=Ready)](https://waffle.io/YaleDHLab/ensemble-at-yale)
 ### Gather Source Code
 <pre><code># pull down source repository and build placeholder project 
 git clone https://github.com/zooniverse/scribeAPI.git  
