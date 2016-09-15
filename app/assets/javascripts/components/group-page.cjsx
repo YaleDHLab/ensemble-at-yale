@@ -35,24 +35,28 @@ GroupPage = React.createClass
 
       # iterate through the first pages and update the available institutions and playwright options
       for first_page_json in first_pages_json
-        institution = first_page_json.meta_data.location
-        playwright = first_page_json.meta_data.written_by
-        year = first_page_json.meta_data.year
 
-        if institution
-          if institution not in all_institutions
-            all_institutions.push(institution)
+        try
+          institution = first_page_json.meta_data.location
+          playwright = first_page_json.meta_data.written_by
+          year = first_page_json.meta_data.year
 
-        if playwright
-          if playwright not in all_playwrights
-            all_playwrights.push(playwright)
+          if institution
+            if institution not in all_institutions
+              all_institutions.push(institution)
 
-        if year
-          year_int = parseInt(year)
-          if year_int < min_year
-            min_year = year_int
-          if year_int > max_year
-            max_year = year_int
+          if playwright
+            if playwright not in all_playwrights
+              all_playwrights.push(playwright)
+
+          if year
+            year_int = parseInt(year)
+            if year_int < min_year
+              min_year = year_int
+            if year_int > max_year
+              max_year = year_int
+
+        catch e
 
       @setState
         all_first_pages: first_pages_json
