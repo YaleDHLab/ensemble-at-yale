@@ -23,10 +23,14 @@ rails s {{-e production}}</code></pre>
 
 ### Compile new assets
 To compile new assets for production, one can run:
+```
 rvmsudo rake assets:precompile RAILS_ENV=production
+```
 
 To serve those assets in production mode, one can run:
+```
 rvmsudo rails s -p 80 -e production
+```
 
 ### Configure MongoDB
 <pre><code># access admin db  
