@@ -119,19 +119,21 @@ GroupPage = React.createClass
       keep_page = 1
 
       # ensure year falls within user-selected range
-      page_year = first_page.meta_data.year
-      page_year_as_int = parseInt(page_year)
-      if page_year_as_int < @state.start_year
-        keep_page = 0
-      if page_year_as_int > @state.end_year
-        keep_page = 0
-
-      # iterate over the selection criteria and continue filtering
-      for selection_criterion in selection_criteria
-        if first_page.meta_data[selection_criterion.key_in_first_page_json] != selection_criterion.value
+      try
+        page_year = first_page.meta_data.year
+        page_year_as_int = parseInt(page_year)
+        if page_year_as_int < @state.start_year
           keep_page = 0
-      if keep_page == 1
-        first_pages_to_display.push(first_page)
+        if page_year_as_int > @state.end_year
+          keep_page = 0
+
+        # iterate over the selection criteria and continue filtering
+        for selection_criterion in selection_criteria
+          if first_page.meta_data[selection_criterion.key_in_first_page_json] != selection_criterion.value
+            keep_page = 0
+        if keep_page == 1
+          first_pages_to_display.push(first_page)
+      catch e
 
     # iterate over the first pages to display and build the view
     first_pages_view = []
