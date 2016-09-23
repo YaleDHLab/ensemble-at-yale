@@ -28,12 +28,11 @@ HomePage = React.createClass
             
               <div className="hero-overlay-container">
                 <div className="hero-overlay-title">
-                  Help build a database of Yale theater history in New Haven
+                  Help create a database of Yale theater history
                 </div>
 
                 <div className="hero-overlay-text">
-                  Onboarding instructions for user. Cras imperdiet auctor convallis. 
-                  Nulla fermentum vitae leo venenatis interdum.
+                  Identify and transcribe important roles, dates, titles and more from 90 years of digitized performance programs in the Yale University Library. Get started with one of these two tasks:
                 </div>
 
                 <a href="/#/mark">
