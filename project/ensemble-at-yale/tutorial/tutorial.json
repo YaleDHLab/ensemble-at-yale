@@ -1,14 +1,1 @@
-{
-    "name": "Tutorial",
-    "first_task": "welcome",
-    "tasks": {
-        "welcome": {
-            "next_task": null,
-            "help": {
-                "title": "Welcome to Ensemble @ Yale!",
-                "file": "one_slide_tutorial"
-            }
-        }
 
-    }
-}
