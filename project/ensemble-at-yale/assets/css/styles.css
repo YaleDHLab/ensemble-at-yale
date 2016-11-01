@@ -771,6 +771,7 @@ div#about-page {
 
 #about-page h2 {
   font-size: 1.5em;
+  color: #00356B;
 }
 
 .about-page-container {
@@ -788,7 +789,7 @@ div#about-page {
   width: 50%;
   float: left;
   display: inline-block;
-  color: #000;;
+  color: #000;
 }
 
 .about-left-container h2,
@@ -803,6 +804,7 @@ div#about-page {
 .about-right-container {
   width: 50%;
   float: right;
+  color: #000;
 }
 
 .about-right {
