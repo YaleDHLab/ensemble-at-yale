@@ -25,7 +25,7 @@ AboutPage = React.createClass
               </p>
 
               <h2 className="contact-us">Contact Us</h2>
-              <p> 
+              <p>
                 Questions about Ensemble@Yale? Contact the DHLab: dhlab@yale.edu.
                 Questions about theater history at Yale? Start with an <a href="http://guides.library.yale.edu/c.php?g=296165&p=1975017">introductory research guide</a> or contact the Arts librarian for theater and drama: lindsay.king@yale.edu.
               </p>
@@ -34,7 +34,7 @@ AboutPage = React.createClass
 
           <div className="about-right-container">
             <div className="about-page-image hass-art-library"></div>
-            
+
             <div className="about-page-right-text">
               <h2>Sponsors</h2>
               <p>
