@@ -9,6 +9,7 @@ Transcribe                    = require './transcribe'
 Verify                        = require './verify'
 GroupPage                     = require './group-page'
 GroupBrowser                  = require './group-browser'
+AboutPage                     = require './yale-about-page'
 
 Project                       = require 'models/project.coffee'
 
@@ -73,13 +74,13 @@ class AppRouter
             />
         }
         { # Project-configured pages:
-          project.pages?.map (page, key) =>
-            <Route
-              key={key}
-              path={page.name}
-              handler={@controllerForPage(page)}
-              name={page.name}
-            />
+          (w for w, i in project.pages when w.name in ['About']).map (page, key) =>
+              <Route
+                key={key}
+                path={page.name}
+                handler={AboutPage}
+                name={page.name}
+              />
         }
 
         <Route
