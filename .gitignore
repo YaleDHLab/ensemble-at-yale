@@ -88,6 +88,9 @@ node_modules
 #dump
 dump
 
+# pems
+*.pem
+
 #Avoid pushing images to github
 /project/ensemble-at-yale/assets/images/
 /project/ensemble-at-yale/assets/thumbs/
