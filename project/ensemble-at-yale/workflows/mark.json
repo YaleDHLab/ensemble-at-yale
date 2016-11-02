@@ -12,7 +12,7 @@
    "tasks":{  
       "core_metadata":{  
          "tool":"pickOneMarkOne",
-         "instruction":"Draw one rectangle around all of the text comprising the field you are selecting. Click the **DONE** box when you’re finished, and then select another field to mark, or click the X to delete your selection and re-mark the same field.",
+         "instruction":"Start by finding the program page that lists all or most of this information. Draw one rectangle around all of the text comprising the field you are selecting. Click the **DONE** box when you’re finished, and then select another field to mark, or click the X to delete your selection and re-mark the same field.",
          "generates_subjects":true,
          "tool_config":{  
             "displays_transcribe_button":true,

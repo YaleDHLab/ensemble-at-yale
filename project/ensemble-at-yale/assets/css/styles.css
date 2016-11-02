@@ -107,6 +107,15 @@ body {
   max-height: 100%;
 }
 
+.main-header-item:hover {
+  background: rgba(120, 154, 180, 0.5)
+}
+
+.main-header-item.selected {
+  border-bottom: none;
+  background: #789ab4;
+}
+
 /**********************
 * Main Page Overrides *
 **********************/
@@ -296,7 +305,7 @@ a.drama-era-group-link {
 
 .collection-thumbnail:hover .collection-thumbnail-mark,
 .collection-thumbnail:hover .collection-thumbnail-transcribe {
-  display: block;
+  opacity: 1;
 }
 
 .drama-era-image-container:hover .drama-era-image-overlay {
@@ -716,7 +725,8 @@ select::-ms-expand {
   font-size: .9em;
   font-family: Arial;
   cursor: pointer;
-  display: none;
+  opacity : 0;
+  transition: opacity .3s;
 }
 
 .collection-thumbnail:hover .collection-thumbnail-mark,
@@ -730,4 +740,104 @@ select::-ms-expand {
 
 .collection-thumbnail-transcribe {
   margin-top: 100px;
+}
+
+/*************
+* About Page *
+*************/
+
+#About h1 {
+  display: none;
+}
+
+#About h2 {
+  margin: 20px 0;
+}
+
+#About .updated-at {
+  display: none;
+}
+
+#About .about-page {
+  background-color: #1A1A1A !important;
+}
+
+/* About page */
+div#about-page {
+  padding: 50px;
+  background: #1B282B;
+  height: 100%;
+}
+
+#about-page h2 {
+  font-size: 1.5em;
+  color: #00356B;
+}
+
+.about-page-container {
+  background: #fff;
+}
+
+#about-page h2.about-the-archive {
+  color: #fff;
+  font-weight: 100;
+  margin-bottom: 20px;
+  font-size: 1.85em;
+}
+
+.about-left-container {
+  width: 50%;
+  float: left;
+  display: inline-block;
+  color: #000;
+}
+
+.about-left-container h2,
+.about-left-container p {
+  margin-bottom: 15px;
+}
+
+.about-left {
+  margin: 40px 30px;
+}
+
+.about-right-container {
+  width: 50%;
+  float: right;
+  color: #000;
+}
+
+.about-right {
+  padding: 0 30px;
+}
+
+.about-page-image {
+  height: 200px;
+  background: url(http://placehold.it/640x200) no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;;
+}
+
+.about-page-right-text {
+  background: #DDDDDD;
+  min-height: 498px;
+}
+
+.about-page-right-text h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.about-page-right-text p {
+  margin-bottom: 0;
+}
+
+.about-page-right-text {
+  padding: 30px;
+}
+
+.contact-us {
+  margin-top: 50px;
 }
