@@ -8,6 +8,9 @@ module.exports = React.createClass
   propTypes:
     text: React.PropTypes.object.isRequired
 
+  getInitialState: ->
+    currentPage: 0
+
   handleDone:->
     console.log("done")
 
@@ -20,7 +23,11 @@ module.exports = React.createClass
                 onDone={@handleDone} 
                 width={800} 
                 classes={"help-modal"}> 
-              <div className="help"></div>
+              <div className="help">
+                <div className="help-text">
+                  {@props.pages[@state.currentPage]}
+                </div>
+              </div>
             </DraggableModal>
           else
             <div />
