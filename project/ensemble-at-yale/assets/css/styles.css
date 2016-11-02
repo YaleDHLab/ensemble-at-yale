@@ -54,7 +54,7 @@ body {
 
 .main-header-group {
   background-image: none;
-  background-color: #0f4e70;
+  background-color: #000630;
 }
 
 .main-header-group .logo {
@@ -77,7 +77,7 @@ body {
   width: 330px;
   min-width: 330px;
   height: 100%;
-  background: #789ab4;
+  background: #00356B;
   text-align: center;
   overflow: hidden;
 }
@@ -87,12 +87,8 @@ body {
 }
 
 .brand-title {
-  color: #fff;
-  letter-spacing: .1em;
-  font-size: 2.6em;
-  text-align: center;
-  font-family: Times;
   height: 46px;
+  margin-top: 22px;
 }
 
 .brand-subtitle {
@@ -196,6 +192,10 @@ body {
   font-family: Arial;
   letter-spacing: .03em;
   font-size: .8em;
+}
+
+.home-page .hero-overlay-button:hover {
+  background: #6085a0;
 }
 
 .home-page .hero-overlay-container a {
