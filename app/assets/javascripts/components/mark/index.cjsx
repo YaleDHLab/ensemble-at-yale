@@ -15,6 +15,8 @@ HideOtherMarksButton    = require 'components/buttons/hide-other-marks-button'
 DraggableModal          = require 'components/draggable-modal'
 Draggable               = require 'lib/draggable'
 {Link}                  = require 'react-router'
+YaleTutorial            = require '../yale-tutorial'
+YaleMarkTutorialText    = require '../tutorial-text/yale-mark-tutorial-text'
 
 module.exports = React.createClass # rename to Classifier
   displayName: 'Mark'
@@ -193,7 +195,7 @@ module.exports = React.createClass # rename to Classifier
       waitingForAnswer = not currentAnswer
 
     <div className="classifier">
-
+      <YaleTutorial displayed={1} pages={YaleMarkTutorialText.pages} />
       <div className="subject-area">
         { if @state.noMoreSubjectSets
             style = marginTop: "50px"
