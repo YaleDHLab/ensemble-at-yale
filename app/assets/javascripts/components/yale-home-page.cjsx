@@ -1,4 +1,3 @@
-
 React         = require("react")
 GroupBrowser  = require('./group-browser')
 NameSearch    = require('./name-search')
