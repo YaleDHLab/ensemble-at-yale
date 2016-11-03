@@ -202,6 +202,7 @@ module.exports = React.createClass # rename to Classifier
 
     <div className="classifier">
       <YaleTutorial displayed={@state.yaleTutorial}
+        header={YaleMarkTutorialText.header}
         pages={YaleMarkTutorialText.pages}
         toggleYaleTutorial={@toggleYaleTutorial} />
       <div className="subject-area">

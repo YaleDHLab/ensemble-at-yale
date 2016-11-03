@@ -10,12 +10,14 @@
   "terms_map": {
     "group": "collection",
     "subject set": "program",
-    "subject": "page",
+    "subject": "playbill",
     "mark": "region"
   },
   "team_emails": [
     "peter.leonard@yale.edu",
-    "lindsay.king@yale.edu"
+    "lindsay.king@yale.edu",
+    "douglas.duhaime@gmail.com",
+    "douglas.duhaime@yale.edu"
   ],
   "team": [
     {
