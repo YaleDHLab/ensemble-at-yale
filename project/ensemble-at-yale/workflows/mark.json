@@ -60,13 +60,7 @@
                   "label":"Yale Repertory Theatre"
                },
                "school_drama":{  
-                  "label":"School of Drama"
-               },
-               "dept_drama":{  
-                  "label":"Department of Drama"
-               },
-               "dept_other":{  
-                  "label":"Other / Unknown"
+                  "label":"Yale School of Drama"
                }
             }
          },
