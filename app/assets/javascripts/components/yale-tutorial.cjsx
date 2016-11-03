@@ -5,9 +5,6 @@ DraggableModal  = require 'components/draggable-modal'
 module.exports = React.createClass
   displayName: 'YaleTutorial'
 
-  propTypes:
-    text: React.PropTypes.object.isRequired
-
   getInitialState: ->
     currentPage: 0
 
@@ -25,7 +22,7 @@ module.exports = React.createClass
     return <div className="yale-tutorial-modal">
         { if @props.displayed == 1
             <DraggableModal ref="tutorialModal"
-                header={'Help Mark Fields'}
+                header={@props.header}
                 doneButtonLabel={"Next"}
                 onDone={@getNextPage}
                 width={800}
@@ -47,7 +44,8 @@ module.exports = React.createClass
                       else
                         "help-modal-page"
                       }
-                      onClick={@updateCurrentPage.bind(this, page.pageNumber)} /> for page in @props.pages)}
+                      onClick={@updateCurrentPage.bind(this, page.pageNumber)}
+                      key={idx} /> for page, idx in @props.pages)}
                   </div>
                 </div>
               </div>

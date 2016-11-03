@@ -8,7 +8,6 @@ HelpButton        = require 'components/buttons/help-button'
 BadSubjectButton  = require 'components/buttons/bad-subject-button'
 IllegibleSubjectButton = require 'components/buttons/illegible-subject-button'
 
-
 CompositeTool = React.createClass
   displayName: 'CompositeTool'
   mixins: [Navigation]
@@ -120,8 +119,8 @@ CompositeTool = React.createClass
       y={y*@props.scale.vertical + @props.scale.offsetY}
       buttons={buttons}
       classes="transcribe-tool composite"
+      toggleYaleTutorial={@props.toggleYaleTutorial}
       >
-
       <label>{@props.task.instruction}</label>
 
       {

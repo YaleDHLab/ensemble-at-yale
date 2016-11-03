@@ -59,17 +59,8 @@
                "yalerep":{  
                   "label":"Yale Repertory Theatre"
                },
-               "dramat":{  
-                  "label":"Dramatic Association (Dramat)"
-               },
                "school_drama":{  
-                  "label":"School of Drama"
-               },
-               "dept_drama":{  
-                  "label":"Department of Drama"
-               },
-               "dept_other":{  
-                  "label":"Other / Unknown"
+                  "label":"Yale School of Drama"
                }
             }
          },

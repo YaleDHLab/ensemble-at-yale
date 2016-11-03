@@ -37,36 +37,36 @@ module.exports = React.createClass
           workflows = workflows.sort (w1, w2) -> if w1.order > w2.order then 1 else -1
           workflows.map (workflow, key) =>
             title = workflow.name.charAt(0).toUpperCase() + workflow.name.slice(1)
-            <Link key={key} to="/#{workflow.name}" activeClassName="selected" className="main-header-item">{title}</Link>
+            <Link key={key} to="/#{workflow.name}" activeClassName="selected" className="main-header-item main-header-button">{title}</Link>
         }
         { # Page tabs, check for main menu
           if @props.menus? && @props.menus.main?
             for item, i in @props.menus.main
               if item.page?
-                <Link key={item.page} to="/#{item.page}" activeClassName="selected" className="main-header-item">{item.label}</Link>
+                <Link key={item.page} to="/#{item.page}" activeClassName="selected" className="main-header-item main-header-button">{item.label}</Link>
               else if item.url?
-                <a href="#{item.url}" className="main-header-item">{item.label}</a>
+                <a href="#{item.url}" className="main-header-item main-header-button">{item.label}</a>
               else
-                <a className="main-header-item">{item.label}</a>
+                <a className="main-header-item main-header-button">{item.label}</a>
           # Otherwise, just list all the pages in default order
           else
             @props.pages?.map (page, key) =>
               formatted_name = page.name.replace("_", " ")
-              <Link key={key} to="/#{page.name.toLowerCase()}" activeClassName="selected" className="main-header-item">{formatted_name}</Link>
+              <Link key={key} to="/#{page.name.toLowerCase()}" activeClassName="selected" className="main-header-item main-header-button">{formatted_name}</Link>
         }
 
         { # include feedback tab if defined
           showFeedbackTab = false
           if @props.feedbackFormUrl? and showFeedbackTab
-            <a className="main-header-item" href={@props.feedbackFormUrl}>Feedback</a>
+            <a className="main-header-item main-header-button" href={@props.feedbackFormUrl}>Feedback</a>
         }
         { # include blog tab if defined
           if @props.blogUrl?
-            <a target={"_blank"} className="main-header-item" href={@props.blogUrl}>Blog</a>
+            <a target={"_blank"} className="main-header-item main-header-button" href={@props.blogUrl}>Blog</a>
         }
         { # include blog tab if defined
           if @props.discussUrl?
-            <a target={"_blank"} className="main-header-item" href={@props.discussUrl}>Discuss</a>
+            <a target={"_blank"} className="main-header-item main-header-button" href={@props.discussUrl}>Discuss</a>
         }
         <Login user={@props.user} loginProviders={@props.loginProviders} onLogout={@props.onLogout} />
 

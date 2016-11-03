@@ -95,6 +95,7 @@ module.exports = React.createClass
         currentSubtool={@props.currentSubtool}
         viewBox={@state.zoomPanViewBox}
         interimMarks={@props.interimMarks}
+        toggleYaleTutorial={@props.toggleYaleTutorial}
       />
 
     </div>
