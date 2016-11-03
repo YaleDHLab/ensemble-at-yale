@@ -23,9 +23,10 @@ module.exports = React.createClass
         <div className="brand-title-container">
           <div className="brand-title-text-container">
             <a href="/#/">
-              <div className="brand-title">ENSEMBLE</div>
+              <div className="brand-title">
+                  <img src="assets/ensemble-logo.png" />
+              </div>
             </a>
-            <div className="brand-subtitle">YALE THEATRE HISTORY TRANSCRIBED</div>
           </div>
         </div>
 
