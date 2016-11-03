@@ -22,7 +22,7 @@ module.exports = React.createClass
     return <div className="yale-tutorial-modal">
         { if @props.displayed == 1
             <DraggableModal ref="tutorialModal"
-                header={'Help Mark Fields'}
+                header={@props.header}
                 doneButtonLabel={"Next"}
                 onDone={@getNextPage}
                 width={800}

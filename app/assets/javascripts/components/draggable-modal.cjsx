@@ -49,6 +49,12 @@ module.exports = React.createClass
           </div>
         }
 
+        {if @props.toggleYaleTutorial
+          <div className="transcribe-help-icon-container" onClick={@props.toggleYaleTutorial}>
+            <img src="assets/help-icon.png" />
+          </div>
+        }
+
         { if @props.closeButton?
           <a className="modal-close-button" onClick={@closeModal}></a>
         }

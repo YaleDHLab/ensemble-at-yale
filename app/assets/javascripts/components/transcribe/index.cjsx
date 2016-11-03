@@ -23,6 +23,9 @@ Tutorial                = require 'components/tutorial'
 DraggableModal          = require 'components/draggable-modal'
 GenericButton           = require 'components/buttons/generic-button'
 
+YaleTranscribeTutorialText = require '../tutorial-text/yale-transcribe-tutorial-text'
+YaleTutorial            = require '../yale-tutorial'
+
 module.exports = React.createClass # rename to Classifier
   displayName: 'Transcribe'
   mixins: [FetchSubjectsMixin, BaseWorkflowMethods, Navigation] # load subjects and set state variables: subjects,  classification
@@ -35,6 +38,7 @@ module.exports = React.createClass # rename to Classifier
     helping:                      false
     last_mark_task_key:           @props.query.mark_key
     showingTutorial:              false
+    yaleTutorial:                 1
 
   getDefaultProps: ->
     workflowName: 'transcribe'
@@ -86,6 +90,12 @@ module.exports = React.createClass # rename to Classifier
   hideTutorial: ->
     @setState showingTutorial: false
 
+  toggleYaleTutorial: ->
+    if @state.yaleTutorial == 0
+      @setState({yaleTutorial: 1})
+    else
+      @setState({yaleTutorial: 0})
+
   componentWillUnmount:->
     # PB: What's intended here? Docs state `void componentWillUnmount()`, so not sure what this serves:
     not @state.badSubject
@@ -117,6 +127,11 @@ module.exports = React.createClass # rename to Classifier
     onFirstAnnotation = currentAnnotation?.task is @getActiveWorkflow().first_task
 
     <div className="classifier">
+      <YaleTutorial displayed={@state.yaleTutorial}
+        header={YaleTranscribeTutorialText.header}
+        pages={YaleTranscribeTutorialText.pages}
+        toggleYaleTutorial={@toggleYaleTutorial} />
+
       <div className="subject-area">
         {
           unless @getCurrentSubject() || @state.noMoreSubjects
@@ -142,6 +157,7 @@ module.exports = React.createClass # rename to Classifier
               workflow={@getActiveWorkflow()}
               classification={@props.classification}
               annotation={currentAnnotation}
+              toggleYaleTutorial={@toggleYaleTutorial}
             >
               <TranscribeComponent
                 viewerSize={@state.viewerSize}

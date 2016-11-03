@@ -379,6 +379,7 @@ module.exports = React.createClass
             onDrag  = {@handleInitDrag}
             onEnd   = {@handleInitRelease}
             inst    = "marking surface">
+
             <SVGImage
               src = {@props.subject.location.standard}
               width = {@props.subject.width}
@@ -386,7 +387,7 @@ module.exports = React.createClass
           </MouseHandler>
 
           { # HIGHLIGHT SUBJECT FOR TRANSCRIPTION
-            # TODO: Makr sure x, y, w, h are scaled properly
+            # TODO: Make sure x, y, w, h are scaled properly
             if @props.workflow.name in ['transcribe', 'verify']
               toolName = @props.subject.region.toolName
 
@@ -409,6 +410,7 @@ module.exports = React.createClass
                     getEventOffset={@getEventOffset}
                     ref={@refs.sizeRect}
                     onSelect={@selectMark.bind this, @props.subject, mark}
+
                   />
                 </g>
           }
@@ -428,6 +430,7 @@ module.exports = React.createClass
               React.cloneElement @props.children,
                 loading: @state.loading       # pass loading state to current transcribe tool
                 scale: scale                  # pass scale down to children (for transcribe tools)
+                toggleYaleTutorial: @props.toggleYaleTutorial
           }
         </div>
       </div>
