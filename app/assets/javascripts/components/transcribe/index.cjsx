@@ -38,7 +38,7 @@ module.exports = React.createClass # rename to Classifier
     helping:                      false
     last_mark_task_key:           @props.query.mark_key
     showingTutorial:              false
-    yaleTutorial:                 1
+    yaleTutorial:                 0
 
   getDefaultProps: ->
     workflowName: 'transcribe'
