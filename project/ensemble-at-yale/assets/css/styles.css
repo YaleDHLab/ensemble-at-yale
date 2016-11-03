@@ -1087,7 +1087,7 @@ span.help {
 ***/
 
 .transcribe-tool .small-button {
-  padding: 0.6em 1em;
+  padding: 0.45em 1em;
   margin: 0 4px;
 }
 
@@ -1103,4 +1103,21 @@ span.help {
 .transcribe-tool .small-button {
   background: #69A7C7;
 }
-    
+
+.transcribe-tool .minor-botton, .transcribe-tool .small-button {
+  background: #69A7C7;
+  text-transform: uppercase;
+  font-size: .9em;
+  font-weight: 400;
+}
+
+.yale-tutorial-modal .draggable-modal.help-modal.draggable {
+  z-index: 12;
+}
+
+.transcribe-help-icon-container {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  cursor: pointer;
+}
