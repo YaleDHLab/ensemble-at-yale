@@ -55,6 +55,7 @@ body {
 .main-header-group {
   background-image: none;
   background-color: #000630;
+  overflow: hidden;
 }
 
 .main-header-group .logo {
@@ -63,23 +64,25 @@ body {
   -webkit-transform: none;
   -ms-transform: none;
   padding: 0;
-  width: 70px;
-  max-width: 70px;
+  width: 80px;
+  max-width: 80px;
+  height: 80px;
 }
 
 .main-header-item.logo img {
-  width: 45px;
+  width: 50px;
   height: auto;
-  margin: 17px -3px 0 -6px;
+  margin: 20px -3px 0 -6px;
 }
 
 .brand-title-container {
-  width: 330px;
-  min-width: 330px;
+  width: 344px;
+  min-width: 344px;
   height: 100%;
   background: #00356B;
   text-align: center;
   overflow: hidden;
+  margin-right: 100px;
 }
 
 .brand-title-container a {
@@ -88,7 +91,7 @@ body {
 
 .brand-title {
   height: 46px;
-  margin-top: 22px;
+  margin-top: 27px;
 }
 
 .brand-subtitle {
@@ -103,6 +106,14 @@ body {
   max-height: 100%;
 }
 
+.main-header-item {
+  line-height: 80px;
+}
+
+.main-header-button {
+  margin-right: 80px;
+}
+
 .main-header-item:hover {
   background: rgba(120, 154, 180, 0.5)
 }
@@ -112,12 +123,24 @@ body {
   background: #789ab4;
 }
 
+.login .login-container {
+  padding-right: 2%;
+  float: right;
+  height: 100%;
+  line-height: 80px;
+}
+
+.login,
+.logout {
+  color: #789BB6;
+}
+
 /**********************
 * Main Page Overrides *
 **********************/
 
 .main-content {
-  margin-top: 72px;
+  margin-top: 80px;
   margin-bottom: 0px;
 }
 
@@ -127,6 +150,10 @@ body {
 
 .page-content {
   padding: 0;
+}
+
+.main-header-group {
+  height: 80px;
 }
 
 /*******
@@ -157,8 +184,8 @@ body {
   position: absolute;
   color: #fff;
   background: rgba(31, 31, 60, 0.8);
-  width: 260px;
-  margin: 50px 70px;
+  width: 274px;
+  margin: 40px 80px;
   padding: 35px;
   font-size: .7em;
   line-height: 1em;
@@ -213,7 +240,7 @@ body {
 }
 
 .group-area-wrapper {
-  margin: 30px 0;
+  margin: 40px 0;
 }
 
 .drama-era-image-wrapper {
@@ -1041,6 +1068,18 @@ span.help {
 .right-column .small-button.ghost {
   border: 2px solid #69A7C7;
   color: #69A7C7;
+}
+
+.subject-set-toolbar {
+  margin-top: 8px;
+}
+
+.subject-set-viewer {
+  margin-left: 70px;
+}
+
+.subject-set-toolbar-links {
+  padding-left: 7px;
 }
 
 /***
