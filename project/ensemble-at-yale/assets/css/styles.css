@@ -1033,4 +1033,35 @@ span.help {
 .toggle-help-button img {
   margin-left: 214px;
 }
+
+.task-area.transcribe {
+  display: none;
+}
+
+.right-column .small-button.ghost {
+  border: 2px solid #69A7C7;
+  color: #69A7C7;
+}
+
+/***
+* Transcribe
+***/
+
+.transcribe-tool .small-button {
+  padding: 0.6em 1em;
+  margin: 0 4px;
+}
+
+.transcribe-tool .minor-button.ghost, .small-button.ghost {
+  padding: 0.3em 1em 0.4em 1em;
+  margin: 0 4px;
+  color: #31627E;
+  background: #EBEBEB;
+  border: 2px solid #EBEBEB;
+}
+
+.transcribe-tool .minor-botton,
+.transcribe-tool .small-button {
+  background: #69A7C7;
+}
     
