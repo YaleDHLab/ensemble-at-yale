@@ -841,3 +841,87 @@ div#about-page {
 .contact-us {
   margin-top: 50px;
 }
+
+/***
+* Mark page
+***/
+
+.classifier .right-column .task-area.mark {
+  border-radius: 0px;
+}
+
+.help-modal, .draggable-modal {
+  z-index: 11;
+}
+
+.major-button {
+  background: #69A7C7;
+}
+
+.major-button:hover {
+  background: #3a83a9;
+}
+
+.draggable-modal {
+  background: #fff;
+  border-radius: 0px;
+}
+
+.draggable-modal .modal-buttons {
+  text-align: center;
+  padding-bottom: 54px;
+}
+
+.draggable-modal .modal-header {
+  text-align: center;
+  background: #fff;
+  color: #00356B;
+  padding-top: 30px;
+  padding-bottom: 0px;
+  font-family: YaleNew;;
+}
+
+.help-modal .modal-body {
+  padding: 15px 35px;
+  font-size: 1em;
+  line-height: 1.4em;
+  overflow: visible;
+}
+
+.close-modal {
+  display: inline-block;
+  float: right;
+  position: relative;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.help-modal-pagination {
+  background: #EBEBEB;
+  width: 100%;
+  height: 25px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.help-modal-page {
+  height: 10px;
+  width: 10px;
+  border-radius: 7px;
+  display: inline-block;
+  margin: 0 5px;
+  background: darkgray;
+  cursor: pointer;
+}
+
+.help-modal-page.active {
+  background: #696969;
+}
+
+.help-pages-container {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+}
