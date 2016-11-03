@@ -22,7 +22,7 @@ module.exports = React.createClass
     @setState({currentPage: newPage})
 
   render:->
-    return <div>
+    return <div className="yale-tutorial-modal">
         { if @props.displayed == 1
             <DraggableModal ref="tutorialModal"
                 header={'Help Mark Fields'}
@@ -37,6 +37,7 @@ module.exports = React.createClass
                 <div className="help-text">
                   {@props.pages[@state.currentPage].text}
                 </div>
+                <div className="help-modal-pagination-spacer" />
                 <div className="help-modal-pagination">
                   <div className="help-pages-container"
                     style={{marginLeft: (0 - 10*@props.pages.length) + "px"}}>
