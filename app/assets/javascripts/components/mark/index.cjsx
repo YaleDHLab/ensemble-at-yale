@@ -15,6 +15,8 @@ HideOtherMarksButton    = require 'components/buttons/hide-other-marks-button'
 DraggableModal          = require 'components/draggable-modal'
 Draggable               = require 'lib/draggable'
 {Link}                  = require 'react-router'
+YaleTutorial            = require '../yale-tutorial'
+YaleMarkTutorialText    = require '../tutorial-text/yale-mark-tutorial-text'
 
 module.exports = React.createClass # rename to Classifier
   displayName: 'Mark'
@@ -42,6 +44,7 @@ module.exports = React.createClass # rename to Classifier
     lightboxHelp:        false
     activeSubjectHelper: null
     subjectCurrentPage:  1
+    yaleTutorial:        1
 
   componentWillReceiveProps: (new_props) ->
     @setState showingTutorial: @showTutorialBasedOnUser(new_props.user)
@@ -93,6 +96,11 @@ module.exports = React.createClass # rename to Classifier
     @handleDataFromTool(annotation)
     @createAndCommitClassification(annotation)
 
+  toggleYaleTutorial: ->
+    if @state.yaleTutorial == 0
+      @setState({yaleTutorial: 1})
+    else
+      @setState({yaleTutorial: 0})
 
   # Handle user selecting a pick/drawing tool:
   handleDataFromTool: (d) ->
@@ -193,7 +201,9 @@ module.exports = React.createClass # rename to Classifier
       waitingForAnswer = not currentAnswer
 
     <div className="classifier">
-
+      <YaleTutorial displayed={@state.yaleTutorial}
+        pages={YaleMarkTutorialText.pages}
+        toggleYaleTutorial={@toggleYaleTutorial} />
       <div className="subject-area">
         { if @state.noMoreSubjectSets
             style = marginTop: "50px"
@@ -229,6 +239,10 @@ module.exports = React.createClass # rename to Classifier
       </div>
       <div className="right-column">
         <div className={"task-area " + @getActiveWorkflow().name}>
+          <div onClick={@toggleYaleTutorial}
+            className="toggle-help-button">
+            <img src={'assets/help-icon.png'} />
+          </div>
           { if @getCurrentTask()? && @getCurrentSubject()?
               <div className="task-container">
                 <TaskComponent
@@ -240,33 +254,35 @@ module.exports = React.createClass # rename to Classifier
                   subject={@getCurrentSubject()}
                 />
 
-                <nav className="task-nav">
-                  { if false
-                    <button type="button" className="back minor-button" disabled={onFirstAnnotation} onClick={@destroyCurrentAnnotation}>Back</button>
-                  }
-                  { if @getNextTask() and not @state.badSubject?
-                      <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@advanceToNextTask}>Next</button>
-                    else
-                      if @state.taskKey == "completion_assessment_task"
-                        if @getCurrentSubject() == @getCurrentSubjectSet().subjects[@getCurrentSubjectSet().subjects.length-1]
-                          <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectAssessment}>Next</button>
-                        else
-                          <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectAssessment}>Next Page</button>
+                <div className="task-button-container">
+                  <nav className="task-nav">
+                    { if false
+                      <button type="button" className="back minor-button" disabled={onFirstAnnotation} onClick={@destroyCurrentAnnotation}>Back</button>
+                    }
+                    { if @getNextTask() and not @state.badSubject?
+                        <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@advanceToNextTask}>Next</button>
                       else
-                        <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectSet}>Done</button>
-                  }
-                </nav>
+                        if @state.taskKey == "completion_assessment_task"
+                          if @getCurrentSubject() == @getCurrentSubjectSet().subjects[@getCurrentSubjectSet().subjects.length-1]
+                            <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectAssessment}>Next</button>
+                          else
+                            <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectAssessment}>Next Page</button>
+                        else
+                          <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectSet}>Done</button>
+                    }
+                  </nav>
 
-                <div className="help-bad-subject-holder">
-                  { if @getCurrentTask().help?
-                    <HelpButton onClick={@toggleHelp} label="" className="task-help-button" />
-                  }
-                  { if onFirstAnnotation
-                    <BadSubjectButton class="bad-subject-button" label={"Bad " + @props.project.term('subject')} active={@state.badSubject} onClick={@toggleBadSubject} />
-                  }
-                  { if @state.badSubject
-                    <p>You&#39;ve marked this {@props.project.term('subject')} as BAD. Thanks for flagging the issue! <strong>Press DONE to continue.</strong></p>
-                  }
+                  <div className="help-bad-subject-holder">
+                    { if @getCurrentTask().help?
+                      <HelpButton onClick={@toggleHelp} label="" className="task-help-button" />
+                    }
+                    { if onFirstAnnotation
+                      <BadSubjectButton class="bad-subject-button" label={"Bad " + @props.project.term('subject')} active={@state.badSubject} onClick={@toggleBadSubject} />
+                    }
+                    { if @state.badSubject
+                      <p>You&#39;ve marked this {@props.project.term('subject')} as BAD. Thanks for flagging the issue! <strong>Press DONE to continue.</strong></p>
+                    }
+                  </div>
                 </div>
               </div>
           }

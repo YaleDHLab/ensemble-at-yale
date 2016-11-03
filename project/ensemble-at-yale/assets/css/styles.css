@@ -54,7 +54,7 @@ body {
 
 .main-header-group {
   background-image: none;
-  background-color: #0f4e70;
+  background-color: #000630;
 }
 
 .main-header-group .logo {
@@ -77,7 +77,7 @@ body {
   width: 330px;
   min-width: 330px;
   height: 100%;
-  background: #789ab4;
+  background: #00356B;
   text-align: center;
   overflow: hidden;
 }
@@ -87,12 +87,8 @@ body {
 }
 
 .brand-title {
-  color: #fff;
-  letter-spacing: .1em;
-  font-size: 2.6em;
-  text-align: center;
-  font-family: Times;
   height: 46px;
+  margin-top: 22px;
 }
 
 .brand-subtitle {
@@ -196,6 +192,10 @@ body {
   font-family: Arial;
   letter-spacing: .03em;
   font-size: .8em;
+}
+
+.home-page .hero-overlay-button:hover {
+  background: #6085a0;
 }
 
 .home-page .hero-overlay-container a {
@@ -841,3 +841,196 @@ div#about-page {
 .contact-us {
   margin-top: 50px;
 }
+
+/***
+* Mark page
+***/
+
+.classifier .right-column .task-area.mark {
+  border-radius: 0px;
+}
+
+.help-modal, .draggable-modal {
+  z-index: 11;
+}
+
+.major-button {
+  background: #69A7C7;
+  font-weight: 400;
+}
+
+.major-button:hover {
+  background: #3a83a9;
+}
+
+.draggable-modal {
+  background: #fff;
+  border-radius: 0px;
+}
+
+.draggable-modal .modal-buttons {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.yale-tutorial-modal .draggable-modal .modal-buttons {
+  padding-bottom: 54px;
+}
+
+.draggable-modal .modal-header {
+  text-align: center;
+  background: #fff;
+  color: #00356B;
+  padding-top: 30px;
+  padding-bottom: 0px;
+  font-family: YaleNew;;
+}
+
+.help-modal .modal-body {
+  padding: 15px 35px;
+  font-size: 1em;
+  line-height: 1.4em;
+  overflow: visible;
+}
+
+.close-modal {
+  display: inline-block;
+  float: right;
+  position: relative;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.help-modal-pagination {
+  background: #EBEBEB;
+  width: 100%;
+  height: 25px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.help-modal-page {
+  height: 10px;
+  width: 10px;
+  border-radius: 7px;
+  display: inline-block;
+  margin: 0 5px;
+  background: darkgray;
+  cursor: pointer;
+}
+
+.help-modal-page.active {
+  background: #696969;
+}
+
+.help-pages-container {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+}
+
+.classifier .right-column .task-area .task-secondary-area {
+  display: none;
+}
+
+.minor-button.ghost, .small-button.ghost {
+  border: 2px solid #69A7C7;
+  color: #69A7C7;
+  padding: 0.4em 1.4em;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: .9em;
+  font-weight: 400;
+}
+
+.classifier .right-column .task-area .help-bad-subject-holder {
+  margin: 0px 0 15px 0;
+}
+
+.classifier .right-column .task-area .help-bad-subject-holder button {
+  margin-top: 8px;
+}
+
+rect.shape {
+  fill: none;
+}
+
+.workflow-task .drawing-tool-icon > svg {
+  height: 1.9em;
+}
+
+.classifier .right-column .task-area .workflow-task .answer {
+  background: #EBEBEB;
+  font-weight: 400;
+}
+
+.classifier .right-column .task-area .workflow-task .answer.active {
+  background: #D4E0E6;
+  color: #000;
+}
+
+.classifier .right-column .task-area.mark {
+  padding: 20px 0;
+  width: 100%;
+}
+
+.classifier .right-column .task-area .task-container {
+  width: 260px;
+}
+
+.workflow-task {
+  padding: 0 20px;
+}
+
+.answers {
+  margin-top: 25px;
+}
+
+.classifier .right-column .task-area .task-nav {
+  margin: 0 20px;
+}
+
+.task-button-container {
+  padding: 20px 0px;
+  background: #EBEBEB;
+}
+
+.classifier .right-column .task-area .help-bad-subject-holder {
+  margin: 0px 20px;
+}
+
+.classifier .right-column .task-area .workflow-task {
+  margin-bottom: 30px;
+}
+
+.classifier .right-column .task-area .workflow-task .answer .help {
+  height: 16px;
+  width: 0px;
+  background: #fff;
+  border-radius: 16px;
+  color: #000;
+}
+
+span.help {
+  margin: 5px;
+}
+
+.answer .fa {
+  margin-left: -4px;
+  margin-top: 0px;
+}
+
+.classifier .right-column .task-area .workflow-task .answer:hover {
+  background: #afcad8;
+}
+
+.toggle-help-button {
+  cursor: pointer;
+}
+
+.toggle-help-button img {
+  margin-left: 214px;
+}
+    

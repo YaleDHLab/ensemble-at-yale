@@ -42,6 +42,13 @@ module.exports = React.createClass
     <Draggable x={x} y={y}>
 
       <div className="draggable-modal #{@props.classes}">
+        {if @props.showCloseModal == 1
+          <div className="close-modal"
+            onClick={@props.closeTutorialClickHandler}>
+            <img src={'assets/close-modal.png'} />
+          </div>
+        }
+
         { if @props.closeButton?
           <a className="modal-close-button" onClick={@closeModal}></a>
         }
