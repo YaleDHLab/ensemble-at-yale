@@ -44,6 +44,7 @@ module.exports = React.createClass # rename to Classifier
     lightboxHelp:        false
     activeSubjectHelper: null
     subjectCurrentPage:  1
+    yaleTutorial:        1
 
   componentWillReceiveProps: (new_props) ->
     @setState showingTutorial: @showTutorialBasedOnUser(new_props.user)
@@ -95,6 +96,11 @@ module.exports = React.createClass # rename to Classifier
     @handleDataFromTool(annotation)
     @createAndCommitClassification(annotation)
 
+  toggleYaleTutorial: ->
+    if @state.yaleTutorial == 0
+      @setState({yaleTutorial: 1})
+    else
+      @setState({yaleTutorial: 0})
 
   # Handle user selecting a pick/drawing tool:
   handleDataFromTool: (d) ->
@@ -195,7 +201,9 @@ module.exports = React.createClass # rename to Classifier
       waitingForAnswer = not currentAnswer
 
     <div className="classifier">
-      <YaleTutorial displayed={1} pages={YaleMarkTutorialText.pages} />
+      <YaleTutorial displayed={@state.yaleTutorial}
+        pages={YaleMarkTutorialText.pages}
+        toggleYaleTutorial={@toggleYaleTutorial} />
       <div className="subject-area">
         { if @state.noMoreSubjectSets
             style = marginTop: "50px"
