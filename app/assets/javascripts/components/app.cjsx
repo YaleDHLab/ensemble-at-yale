@@ -15,10 +15,25 @@ App = React.createClass
     routerRunning:        false
     user:                 null
     loginProviders:       []
+    showFooter:           0
+    routeHash:            ""
+
+  componentWillMount: ->
+    @checkFooter()
+    @updateHash()
 
   componentDidMount: ->
     @fetchUser()
 
+  componentWillUpdate: ->
+    hash = window.location.hash
+    if hash != @state.routeHash
+      @setState({routeHash: hash})
+      @checkFooter()
+
+  updateHash: ->
+    hash = window.location.hash
+    @setState({routeHash: hash})
 
   fetchUser:->
     @setState
@@ -48,6 +63,13 @@ App = React.createClass
     request.fail (error)=>
       console.log "failed to set tutorial value for user"
 
+  checkFooter: ->
+    hash = window.location.hash
+    location = hash.search(/mark/gi)
+    if location == -1
+      @setState({showFooter: 1})
+    else
+      @setState({showFooter: 0})
 
   render: ->
     project = window.project
@@ -80,7 +102,7 @@ App = React.createClass
           </div>
         </div>
       </div>
-      <Footer privacyPolicy={ project.privacy_policy } menus={project.menus} partials={project.partials} />
+      <Footer display={@state.showFooter} privacyPolicy={ project.privacy_policy } menus={project.menus} partials={project.partials} />
     </div>
 
 module.exports = App
