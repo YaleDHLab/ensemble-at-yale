@@ -13,13 +13,17 @@ class SubjectSet
   field :meta_data,              type: Hash
   field :counts,                 type: Hash
 
+  # add field in which to store the number of times a user has
+  # indicated there's nothing left to mark in this subject set
+  field :nothing_left_to_mark,   type: Integer, default: 0
+  field :retired,                type: Integer, default: 0
+
   field :complete_secondary_subject_count,    type: Integer, default: 0
   field :active_secondary_subject_count,      type: Integer, default: 0
 
   belongs_to :group
   belongs_to :project
   has_many :subjects, dependent: :destroy, :order => [:order, :asc]
-
 
   def activate!
     state = "active"
