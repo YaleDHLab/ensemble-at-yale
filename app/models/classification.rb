@@ -20,7 +20,8 @@ class Classification
   after_create  :generate_new_subjects
   after_create  :generate_terms
   # removing this after create until we have a use case for the information
-  # after_create  :increment_subject_set_classification_count, 
+  after_create  :increment_subject_set_classification_count
+  after_create :update_subject_set_mark_transcribe_counts
 
   scope :by_child_subject, -> (id) { where(child_subject_id: id) }
   scope :having_child_subjects, -> { where(:child_subject_id.nin => ['', nil]) }
@@ -28,6 +29,46 @@ class Classification
 
   index({child_subject_id: 1}, {background: true})
   index({created_at: 1}, {background: true})
+
+  """
+  After saving an annotation, check if the annotation was the final stage of the Mark
+  workflow. If so, fetch the subject set to which the annotated subject belongs,
+  increment the number of times users have completed the Mark stage for this subject set,
+  and then check to see if this subject set should be retired.
+  """
+
+  def update_subject_set_mark_transcribe_counts
+
+    if self.task_key == "complete_subject"
+
+      # if the user indicated this subject is complete, increment
+      # the number of times users have indicated there's nothing
+      # left to mark
+      subject_id = self.subject_id
+      subject = Subject.where('_id' => subject_id).entries.first
+      subject_set_id = subject.subject_set_id
+      subject_set = SubjectSet.where('_id' => subject_set_id).entries.first
+      subject_set.inc(nothing_left_to_mark: 1)
+
+      # then check to see if this subject set should be retired
+      self.check_if_subject_set_should_be_retired(subject_set_id)
+    end
+  end
+
+  """
+  Check to see if the current subject set should be retired. To do so,
+  check to see if the minimum number of users have indicated that there
+  is nothing left to mark.
+  """
+
+  def check_if_subject_set_should_be_retired(subject_set_id)
+    minimum_votes_to_retire = 3
+    subject_set = SubjectSet.where('_id' => subject_set_id).entries.first
+    votes_to_retire = subject_set.nothing_left_to_mark
+    if votes_to_retire >= minimum_votes_to_retire
+      subject_set.update_attributes(:retired => 1)
+    end
+  end
 
   def generate_new_subjects
     if workflow.generates_subjects
@@ -73,7 +114,6 @@ class Classification
     end
   end
 
-  # removing this from the after_create hook in interest of speed. 10/22/15
   def increment_subject_set_classification_count
     subject.subject_set.inc classification_count: 1
   end
