@@ -26,8 +26,8 @@ def build_group_spreadsheets():
 
           # gather fields required for group csv: file_path,thumbnail,width,height,page_no,set_key,year
           file_name      = row[3] + ".jpg"
-          file_path      = "https://s3-us-west-2.amazonaws.com/lab-apps/ensemble-at-yale/page-images/" + file_name
-          thumbnail_path = "https://s3-us-west-2.amazonaws.com/lab-apps/ensemble-at-yale/page-thumbs/" + file_name
+          file_path      = "https://s3-us-west-2.amazonaws.com/lab-apps/ensemble-at-yale/page-images-revised/" + file_name
+          thumbnail_path = "https://s3-us-west-2.amazonaws.com/lab-apps/ensemble-at-yale/page-thumbs-revised/" + file_name
           page_number    = row[3].split("-")[-1].replace("p","").replace("0","")
           set_key        = "-".join(row[3].split("-")[:-1])
           year           = row[6].replace('"','')
@@ -37,12 +37,12 @@ def build_group_spreadsheets():
           group_key      = row[-1]
 
           # The group key is the reference to the group of subject sets
-          # And the set key is the unique identifier for all pages of a 
+          # And the set key is the unique identifier for all pages of a
           # playbill
 
           d[group_key].append([
             file_path, thumbnail_path,
-            page_number, set_key, year, written_by, 
+            page_number, set_key, year, written_by,
             director, location, group_key
           ])
 
@@ -52,7 +52,7 @@ def build_group_spreadsheets():
       csv_writer = csv.writer(group_out, delimiter=',')
       
       group_headers = [
-        "file_path", "thumbnail", "page_no", "set_key", 
+        "file_path", "thumbnail", "page_no", "set_key",
         "year", "written_by", "director", "location", 
         "group_key"
       ]
