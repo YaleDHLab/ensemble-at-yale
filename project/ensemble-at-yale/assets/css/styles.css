@@ -1121,3 +1121,11 @@ span.help {
   top: 25px;
   cursor: pointer;
 }
+
+/***
+* Thumbnail browser
+***/
+
+.subject-set-toolbar-panes .pane.active {
+  left: 80px;
+}

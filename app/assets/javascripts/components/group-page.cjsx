@@ -14,6 +14,12 @@ GroupPage = React.createClass
     all_institutions: []
     all_playwrights: []
 
+    placeholder_institution: "All Institutions"
+    selected_institution:    "All Institutions"
+
+    placeholder_playwright: "All Playwrights"
+    selected_playwright:    "All Playwrights"
+
     # min, max year will indicate the range of years from which the user can select
     # while start and end years will indicate the actual years the user has selected
     min_year: 1920
@@ -86,31 +92,33 @@ GroupPage = React.createClass
     @setState
       first_page_array: first_pages_view
 
+  updateSelectedInstitution: (e)->
+    @setState({selected_institution: e.target.value}, @updateFirstPageArray)
+
+  updateSelectedPlaywright: (e)->
+    @setState({selected_playwright: e.target.value}, @updateFirstPageArray)
 
   updateFirstPageArray: ->
-    selected_institution = $(".collection-institution select").val()
-    selected_playwright  = $(".collection-playwright select").val() 
-
     # define the selection criteria to be used to filter first page objects
-    selection_criteria_options = [
-      {
-        "label": "selected_institution", 
-        "value": selected_institution, 
-        "key_in_first_page_json": "location"
-      }, 
-      {
-        "label": "selected_playwright", 
-        "value": selected_playwright,
-        "key_in_first_page_json": "written_by"
-      }
-    ]
-
-    # if either selected_institution or selected_playwright are == "",
-    # don't use them as selection criteria
     selection_criteria = []
-    for selection_criterion in selection_criteria_options
-      if selection_criterion.value?
-        selection_criteria.push(selection_criterion)
+
+    if @state.selected_institution != @state.placeholder_institution
+      selection_criteria.push(
+        {
+          "label": "selected_institution",
+          "value": @state.selected_institution,
+          "key_in_first_page_json": "location"
+        }
+      )
+
+    if @state.selected_playwright != @state.placeholder_playwright
+      selection_criteria.push(
+        {
+          "label": "selected_playwright",
+          "value": @state.selected_playwright,
+          "key_in_first_page_json": "written_by"
+        }
+      )
 
     # iterate over the first page array and retain only those elements that match
     # the user-specified selection criteria
@@ -189,14 +197,16 @@ GroupPage = React.createClass
                 
                 <div className="custom-select collection-institution">
                   <SelectDropdown options_array={@state.all_institutions} 
-                                  placeholder_text={"Select Institution"} 
-                                  onSelect={@updateFirstPageArray} />
+                                  placeholder={@state.placeholder_institution}
+                                  value={@state.selected_institution}
+                                  onSelect={@updateSelectedInstitution} />
                 </div>
 
                 <div className="custom-select collection-playwright">
                   <SelectDropdown options_array={@state.all_playwrights} 
-                                  placeholder_text={"Select Playwright"}
-                                  onSelect={@updateFirstPageArray} />
+                                  placeholder={@state.placeholder_playwright}
+                                  value={@state.selected_playwright}
+                                  onSelect={@updateSelectedPlaywright} />
                 </div>
               </div>
             </div>
