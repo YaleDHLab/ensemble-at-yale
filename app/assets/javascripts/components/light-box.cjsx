@@ -17,6 +17,7 @@ module.exports = React.createClass
 
   getInitialState:->
     first: @props.subject_set.subjects[0]
+    pageIndex: 0
     folded: false
 
   handleFoldClick: (e)->
@@ -28,6 +29,7 @@ module.exports = React.createClass
       text = "Show Lightbox"
     else
       text = "Hide Lightbox"
+
 
   render: ->
     # window.subjects = @props.subject_set.subjects # pb ?
@@ -69,47 +71,22 @@ module.exports = React.createClass
 
         <div id="image-list" className={classes} style={carouselStyle} >
           <ul>
-            <li onClick={@shineSelected.bind(this, @findSubjectIndex(@state.first))} className={"active" if @props.subject_index == @findSubjectIndex(@state.first) }>
-              <span className="page-number">{@state.first.order}</span>
-
-              <svg className="light-box-subject" width={125} height={125} viewBox={viewBox} >
-                  <SVGImage
-                    src = {if @state.first.location.thumbnail? then @state.first.location.thumbnail else @state.first.location.standard}
-                    width = {100}
-                    height = {100}
-                  />
-              </svg>
-            </li>
-            {if second
-              <li onClick={@shineSelected.bind(this, @findSubjectIndex(second))} className={"active" if @props.subject_index == @findSubjectIndex(second)} >
-                <span className="page-number">{second.order}</span>
-                <svg className="light-box-subject" width={125} height={125} viewBox={viewBox} >
-                    <SVGImage
-                      src = {if second.location.thumbnail? then second.location.thumbnail else second.location.standard}
-                      width = {100}
-                      height = {100}
-                    />
-                </svg>
-              </li>
-            }
-
-            {if third
-              <li onClick={@shineSelected.bind(this, @findSubjectIndex(third))} className={"active" if @props.subject_index == @findSubjectIndex(third)} >
-                <span className="page-number">{third.order}</span>
-                <svg className="light-box-subject" width={125} height={125} viewBox={viewBox} >
-                    <SVGImage
-                      src = {if third.location.thumbnail? then third.location.thumbnail else third.location.standard}
-                      width = {100}
-                      height = {100}
-                    />
-                </svg>
-              </li>
+            {
+              for subject, subject_index in @props.subject_set.subjects
+                (
+                  <li key={subject_index} onClick={@shineSelected.bind(this, subject_index)} className={if subject_index == @state.pageIndex then 'active' else ''} >
+                    <span className="page-number">{subject_index}</span>
+                    <svg className="light-box-subject" width={125} height={125} viewBox={viewBox} >
+                      <SVGImage
+                        src = {if subject.location.thumbnail then subject.location.thumbnail else @state.first.location.standard}
+                        width = {100}
+                        height = {100}
+                      />
+                    </svg>
+                  </li>
+                )
             }
           </ul>
-
-          <ActionButton type={"back"} text="BACK" onClick={@moveBack.bind(this, indexOfFirst)} classes={@backButtonDisable(indexOfFirst)} />
-          <ActionButton type={"next"} text="NEXT" onClick={@moveForward.bind(this, indexOfFirst, third, second)} classes={@forwardButtonDisable(third if third?)} />
-
         </div>
 
       </div>
@@ -117,8 +94,11 @@ module.exports = React.createClass
 
   # allows user to click on a subject in the lightbox to load that subject into the subject-viewer.
   # This method ultimately sets the state.subject_index in mark/index. See subject-set-viewer#specificSelection() and mark/index#handleViewSubject().
+  # YaleDHLab: This method also updates the pageIndex stored in state, which sets the active class on the currently
+  # active page
   shineSelected: (index)->
     @props.onSubject(index)
+    @setState({pageIndex: index})
 
   # determines the back button css
   backButtonDisable:(indexOfFirst) ->
