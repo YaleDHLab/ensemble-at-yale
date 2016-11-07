@@ -9,7 +9,6 @@ API                = require('../lib/api')
 GroupPage = React.createClass
   displayName: "GroupPage"
 
-
   getInitialState: ->
     all_institutions: []
     all_playwrights: []
@@ -26,9 +25,20 @@ GroupPage = React.createClass
     max_year: 1940
     start_year: 1920
     end_year: 1940
+    group_name: ""
+    group_description: ""
 
 
   componentDidMount: ->
+    # make a request to http://localhost:3000/groups/{{requested group id}},
+    # fetch metadata that describes the group name and description, and pass those values into
+    # the application state
+    API.type("groups").get(@props.params.group_id).then (group_json) =>
+      this.setState({
+        group_name: group_json.name,
+        group_description: group_json.description
+      })
+
     # make a request to http://localhost:3000/subject_set_first_pages?group_id={{requested group id}}
     # using the incoming query param, and use the results of that query to define the first page array
     # as well as the available institutions and playwrights that users can select
@@ -184,14 +194,14 @@ GroupPage = React.createClass
     else
       <div className="collection-page-content">
         <div className="collection-title-container">
-          <div className="collection-title">James Bundy Era</div>
+          <div className="collection-title">{@state.group_name}</div>
         </div>
 
         <div className="collection-container">
           <div className="collection-thumbnails">{ @state.first_page_array }</div>
           <div className="collection-browse-controls-container">
             <div className="collection-browse-controls-content">
-              <div className="collection-description">Praesent vitae lobortis, tempor vitae magna sed interdum nascetur. Eu eget facilisi urna laoreet, risus numquam bibendum, pellentesque odio dictum. Risus quam qui amet pellentesque nonummy, feugiat sodales lacus luctus.</div>
+              <div className="collection-description">{@state.group_description}</div>
 
               <div className="collection-performance-dates-container">
                 <div className="collection-performance-dates-label">Performance Dates</div>
