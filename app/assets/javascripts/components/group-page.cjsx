@@ -35,6 +35,7 @@ GroupPage = React.createClass
     API.type("subject_set_first_pages").get(group_id: @props.params.group_id).then (first_pages_json) =>
       all_institutions = []
       all_playwrights = []
+      author_surnames = {}
       min_year = 9999
       max_year = 0
       min_max_year_array = []
@@ -52,8 +53,19 @@ GroupPage = React.createClass
               all_institutions.push(institution)
 
           if playwright
-            if playwright not in all_playwrights
-              all_playwrights.push(playwright)
+            split_playwright = playwright.split(',')
+            playwright_name = {
+              last: split_playwright[0],
+              first: split_playwright[1],
+              raw: playwright
+            }
+
+            try
+              if playwright not in author_surnames[playwright_name.last]
+                author_surnames[playwright_name.last].push(playwright)
+
+            catch e
+              author_surnames[playwright_name.last] = [playwright]
 
           if year
             year_int = parseInt(year)
@@ -64,10 +76,16 @@ GroupPage = React.createClass
 
         catch e
 
+      # create an array of sorted playwright names
+      sorted_playwright_names = []
+      for surname in Object.keys(author_surnames).sort()
+        for author in author_surnames[surname]
+          sorted_playwright_names.push(author)
+
       @setState
         all_first_pages: first_pages_json
         all_institutions: all_institutions
-        all_playwrights: all_playwrights
+        all_playwrights: sorted_playwright_names
         min_year: min_year
         max_year: max_year
         start_year: min_year
