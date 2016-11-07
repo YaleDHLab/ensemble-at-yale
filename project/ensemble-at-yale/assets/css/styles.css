@@ -1083,6 +1083,15 @@ span.help {
 }
 
 /***
+* Mark page scrolling thumbnail browser
+***/
+
+.subject-set-toolbar-panes .pane {
+  height: 100vh;
+  overflow: scroll;
+}
+
+/***
 * Transcribe
 ***/
 
