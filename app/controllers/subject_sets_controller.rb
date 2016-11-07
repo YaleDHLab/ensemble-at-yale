@@ -14,6 +14,9 @@ class SubjectSetsController < ApplicationController
     subjects_page               = get_int :subjects_page, 1
 
     query = {}
+
+    # Filter out subject sets that have been retired
+    query["retired"] = {"$ne"=>1}
     
     # Filter out sets not apprpriate for workflow?
     query["counts.#{workflow_id}.active_subjects"] = {"$gt"=>0} if ! workflow_id.nil?
