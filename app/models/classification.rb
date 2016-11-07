@@ -38,20 +38,24 @@ class Classification
   """
 
   def update_subject_set_mark_transcribe_counts
+    if self["task_key"] == "completion_assessment_task"
+      annotation_value = self["annotation"]["value"]
 
-    if self.task_key == "complete_subject"
+      # annotation is either "complete_subject" or "incomplete_subject"
+      if annotation_value == "complete_subject"
 
-      # if the user indicated this subject is complete, increment
-      # the number of times users have indicated there's nothing
-      # left to mark
-      subject_id = self.subject_id
-      subject = Subject.where('_id' => subject_id).entries.first
-      subject_set_id = subject.subject_set_id
-      subject_set = SubjectSet.where('_id' => subject_set_id).entries.first
-      subject_set.inc(nothing_left_to_mark: 1)
+        # if the user indicated this subject is complete, increment
+        # the number of times users have indicated there's nothing
+        # left to mark
+        subject_id = self.subject_id
+        subject = Subject.where('_id' => subject_id).entries.first
+        subject_set_id = subject.subject_set_id
+        subject_set = SubjectSet.where('_id' => subject_set_id).entries.first
+        subject_set.inc(nothing_left_to_mark: 1)
 
-      # then check to see if this subject set should be retired
-      self.check_if_subject_set_should_be_retired(subject_set_id)
+        # then check to see if this subject set should be retired
+        self.check_if_subject_set_should_be_retired(subject_set_id)
+      end
     end
   end
 
