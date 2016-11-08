@@ -1072,6 +1072,11 @@ span.help {
 
 .subject-set-toolbar {
   margin-top: 8px;
+  width: 72px;
+}
+
+.subject-set-toolbar-links a {
+  width: 73px;
 }
 
 .subject-set-viewer {
@@ -1089,6 +1094,10 @@ span.help {
 .subject-set-toolbar-panes .pane {
   height: 100vh;
   overflow: scroll;
+}
+
+.light-box-area .carousel {
+  padding-bottom: 90px;
 }
 
 /***
@@ -1137,4 +1146,33 @@ span.help {
 
 .subject-set-toolbar-panes .pane.active {
   left: 80px;
+  width: 158px;
+}
+
+.light-box-area .carousel {
+  box-shadow: none;
+}
+
+/***
+* Login links
+***/
+
+.login .login-container {
+  width: 130px;
+}
+
+.login .options {
+  display: none;
+}
+
+.login:hover .options {
+  display: inline-block;
+}
+
+.login:hover .label {
+  display: none;
+}
+
+.options a:hover {
+  cursor: pointer;
 }
