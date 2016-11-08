@@ -47,7 +47,7 @@ module.exports = React.createClass # rename to Classifier
     yaleTutorial:        1
 
   componentWillReceiveProps: (new_props) ->
-    @setState showingTutorial: @showTutorialBasedOnUser(new_props.user)
+    @setState yaleTutorial: @showTutorialBasedOnUser(new_props.user)
 
   showTutorialBasedOnUser: (user) ->
     # Show tutorial by default
@@ -57,14 +57,14 @@ module.exports = React.createClass # rename to Classifier
       show = ! user.tutorial_complete
     show
 
+  componentWillMount: ->
+    @setState taskKey: @getActiveWorkflow().first_task
+    @beginClassification()
+
   componentDidMount: ->
     @getCompletionAssessmentTask()
     @fetchSubjectSetsBasedOnProps()
     @fetchGroups()
-
-  componentWillMount: ->
-    @setState taskKey: @getActiveWorkflow().first_task
-    @beginClassification()
 
   componentDidUpdate: (prev_props) ->
     # If visitor nav'd from, for example, /mark/[some id] to /mark, this component won't re-mount, so detect transition here:
@@ -100,6 +100,8 @@ module.exports = React.createClass # rename to Classifier
     if @state.yaleTutorial == 0
       @setState({yaleTutorial: 1})
     else
+      # store the fact that this user has completed the tutorial
+      @props.onCloseTutorial()
       @setState({yaleTutorial: 0})
 
   # Handle user selecting a pick/drawing tool:

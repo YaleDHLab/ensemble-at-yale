@@ -87,6 +87,7 @@ body {
 
 .brand-title-container a {
   text-decoration: none;
+  color: #789BB6;
 }
 
 .brand-title {
@@ -108,6 +109,8 @@ body {
 
 .main-header-item {
   line-height: 80px;
+  font-family: Mallory;
+  letter-spacing: 2px;
 }
 
 .main-header-button {
@@ -192,37 +195,44 @@ body {
 }
 
 .home-page .hero-overlay-title {
+  font-family: YaleNew;
   font-size: 1.35em;
   font-weight: 300;
   font-family: serif;
-  line-height: 1.1em;
+  line-height: 1.25em;
 }
 
 .home-page .hero-overlay-text {
+  font-family: Mallory;
   margin: 20px 0;
   font-weight: 100;
   font-family: Arial;
   letter-spacing: .02em;
   font-family: Arial;
-  font-size: .9em;
-  line-height: 1.1em;
+  font-size: .75em;
+  line-height: 1.25em;
 }
 
 .home-page .hero-overlay-button {
-  background: #85acc9;
+  background: #69A7C7;
   width: 180px;
   height: 16px;
   border-radius: 3px;
   margin-top: 7px;
   text-align: center;
   padding: 10px;
-  font-family: Arial;
+  font-family: Mallory;
   letter-spacing: .03em;
   font-size: .8em;
+  font-weight: 800;
 }
 
 .home-page .hero-overlay-button:hover {
   background: #6085a0;
+}
+
+.home-page .hero-overlay-container {
+  background: rgba(26,26,26,.8);
 }
 
 .home-page .hero-overlay-container a {
@@ -240,7 +250,7 @@ body {
 }
 
 .group-area-wrapper {
-  margin: 40px 0;
+  margin: 60px 0;
 }
 
 .drama-era-image-wrapper {
@@ -260,11 +270,12 @@ a.drama-era-group-link {
 }
 
 .drama-era-image-container {
-  width: 98%;
+  width: 90%;
   height: 0;
-  margin: 1% .5%;
+  margin: 20px .5%;
   background-size: cover;
   padding-top: 45%;
+  border: 1px solid #555555;
 }
 
 .flexbox-wrapper-groups {
@@ -320,14 +331,15 @@ a.drama-era-group-link {
 .drama-era-image-container .drama-era-image-overlay {
   background: rgba(34, 34, 34, 0.75);
   width: 100%;
-  color: #fff;
+  color: #DDDDDD;
   padding: 7px 0;
   text-align: center;
   font-size: .55em;
   letter-spacing: .03em;
   line-height: 1em;
-  font-family: Times;
+  font-family: YaleNew;
   margin-top: -30px;
+  text-transform: uppercase;
 }
 
 .collection-thumbnail:hover .collection-thumbnail-mark,
@@ -336,7 +348,8 @@ a.drama-era-group-link {
 }
 
 .drama-era-image-container:hover .drama-era-image-overlay {
-  background: rgba(35, 77, 145, 0.75);
+  background: rgba(0, 0, 0, 0.75);
+  height: 50px;
 }
 
 /*********
@@ -403,6 +416,24 @@ a.drama-era-group-link {
   font-style: italic;
   font-size: .7em;
   margin-left: 15px;
+}
+
+.scribe-logo .cls-1 {
+  fill: #989595;
+}
+
+.scribe-logo .cls-2,
+.scribe-logo .cls-4 {
+  fill: none;
+}
+
+.scribe-logo .cls-3 {
+  fill: #cccfcf;
+}
+
+.scribe-logo .cls-4 {
+  stroke: #cccfcf;
+  stroke-width: 2px;
 }
 
 @media (max-width: 600px) {
@@ -790,10 +821,16 @@ select::-ms-expand {
 }
 
 /* About page */
-div#about-page {
-  padding: 50px;
-  background: #1B282B;
+#about-page {
+  padding: 60px 80px;
+  background: #1A1A1A;
   height: 100%;
+}
+
+#about-page a {
+  color: #037FE8;
+  font-family: Mallory;
+  text-decoration: none;
 }
 
 #about-page h2 {
@@ -840,11 +877,18 @@ div#about-page {
 
 .about-page-image {
   height: 200px;
-  background: url(http://placehold.it/640x200) no-repeat center center; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;;
+  background-size: cover;
+}
+
+.haas-art-library {
+  background: url("/assets/haas-arts-library.jpg") no-repeat center center;
+}
+
+.yale-repertory-theatre {
+  background: url("/assets/yalerep.jpg") no-repeat center center;
 }
 
 .about-page-right-text {
@@ -875,6 +919,8 @@ div#about-page {
 
 .classifier .right-column .task-area.mark {
   border-radius: 0px;
+  font-family: Mallory;
+  font-size: .95em;
 }
 
 .help-modal, .draggable-modal {
@@ -884,6 +930,9 @@ div#about-page {
 .major-button {
   background: #69A7C7;
   font-weight: 400;
+  letter-spacing: 1px;
+  font-family: Mallory;
+  font-weight: 800;
 }
 
 .major-button:hover {
@@ -908,9 +957,9 @@ div#about-page {
   text-align: center;
   background: #fff;
   color: #00356B;
-  padding-top: 30px;
+  padding-top: 40px;
   padding-bottom: 0px;
-  font-family: YaleNew;;
+  font-family: YaleNew;
 }
 
 .help-modal .modal-body {
@@ -918,6 +967,7 @@ div#about-page {
   font-size: 1em;
   line-height: 1.4em;
   overflow: visible;
+  font-family: Mallory;
 }
 
 .close-modal {
@@ -939,8 +989,8 @@ div#about-page {
 }
 
 .help-modal-page {
-  height: 10px;
-  width: 10px;
+  height: 8px;
+  width: 8px;
   border-radius: 7px;
   display: inline-block;
   margin: 0 5px;
@@ -978,10 +1028,15 @@ div#about-page {
 
 .classifier .right-column .task-area .help-bad-subject-holder button {
   margin-top: 8px;
+  padding-top: 6px;
 }
 
 rect.shape {
   fill: none;
+}
+
+.workflow-task .drawing-tool-icon {
+  margin-right: 12px;
 }
 
 .workflow-task .drawing-tool-icon > svg {
@@ -991,6 +1046,7 @@ rect.shape {
 .classifier .right-column .task-area .workflow-task .answer {
   background: #EBEBEB;
   font-weight: 400;
+  font-family: Mallory;
 }
 
 .classifier .right-column .task-area .workflow-task .answer.active {
@@ -1072,6 +1128,11 @@ span.help {
 
 .subject-set-toolbar {
   margin-top: 8px;
+  width: 72px;
+}
+
+.subject-set-toolbar-links a {
+  width: 73px;
 }
 
 .subject-set-viewer {
@@ -1089,6 +1150,10 @@ span.help {
 .subject-set-toolbar-panes .pane {
   height: 100vh;
   overflow: scroll;
+}
+
+.light-box-area .carousel {
+  padding-bottom: 90px;
 }
 
 /***
@@ -1137,19 +1202,34 @@ span.help {
 
 .subject-set-toolbar-panes .pane.active {
   left: 80px;
+  width: 158px;
 }
-
-
 
 .light-box-area .carousel {
-   padding-bottom: 90px;
+  box-shadow: none;
 }
 
-.subject-set-toolbar {
-   margin-top: 8px;
-   width: 72px;
+/***
+* Login links
+***/
+
+.login .login-container {
+  width: 130px;
 }
 
-.subject-set-toolbar-links a {
-  width: 73px;
+.login .options {
+  display: none;
+}
+
+.login:hover .options {
+  display: inline-block;
+}
+
+.login:hover .label {
+  display: none;
+}
+
+.options a:hover {
+  cursor: pointer;
+>>>>>>> 87780809ea70931051e463d7487f7a787b465d2b
 }

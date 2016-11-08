@@ -20,19 +20,19 @@
                {  
                   "type":"rectangleTool",
                   "label":"Title (and Subtitle)",
-                  "color":"red",
+                  "color":"#FD953A",
                   "generates_subject_type":"ey_title"
                },
                {  
                   "type":"rectangleTool",
                   "label":"Playwright",
-                  "color":"green",
+                  "color":"#98BA01",
                   "generates_subject_type":"ey_playwright"
                },
                {  
                   "type":"rectangleTool",
                   "label":"Director",
-                  "color":"blue",
+                  "color":"#1D7F9D",
                   "generates_subject_type":"ey_director",
                   "help":{  
                      "file":"ey_director"
@@ -41,7 +41,7 @@
                {  
                   "type":"rectangleTool",
                   "label":"Dates",
-                  "color":"orange",
+                  "color":"#2EC6EA",
                   "generates_subject_type":"ey_dates",
                   "help":{  
                      "file":"ey_dates"

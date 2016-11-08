@@ -1,6 +1,5 @@
 React = require 'react'
 
-
 Login = React.createClass
   displayName : "Login"
 
@@ -54,7 +53,7 @@ Login = React.createClass
       <a key="login-link-#{link.id}" href={link.path} title="Log in using #{link.name}"><i className="fa fa-#{icon_id} fa-2" /></a>
 
     <span className={classNames}>
-      <span className="label">{ label || "Log In:" }</span>
+      <span className="label">{ "Log In" }</span>
       <div className='options'>
         { links }
       </div>

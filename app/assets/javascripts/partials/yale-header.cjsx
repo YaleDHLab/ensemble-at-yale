@@ -5,7 +5,7 @@ Router = require 'react-router'
 Login = require '../components/login'
 
 module.exports = React.createClass
-  displayName: 'MainHeader'
+  displayName: 'YaleHeader'
 
   getDefaultProps: ->
     user: null
