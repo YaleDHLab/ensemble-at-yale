@@ -16,7 +16,6 @@ HomePage = React.createClass
   transcribeClick: ->
     @transitionTo 'transcribe', {}
 
-
   render:->
     <div className="home-page">
       <div className="page-content">
@@ -30,7 +29,7 @@ HomePage = React.createClass
                 </div>
 
                 <div className="hero-overlay-text">
-                  Identify and transcribe important roles, dates, titles and more from 90 years of digitized performance programs in the Yale University Library. Get started with one of these two tasks:
+                  Transcribe over 90 years of drama programs in the Yale University Library. Let's get started:
                 </div>
 
                 <a href="/#/mark">

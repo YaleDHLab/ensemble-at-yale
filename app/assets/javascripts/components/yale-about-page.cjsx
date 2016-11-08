@@ -33,7 +33,7 @@ AboutPage = React.createClass
           </div>
 
           <div className="about-right-container">
-            <div className="about-page-image hass-art-library"></div>
+            <div className="about-page-image haas-art-library"></div>
 
             <div className="about-page-right-text">
               <h2>Sponsors</h2>
