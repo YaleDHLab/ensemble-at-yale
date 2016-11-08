@@ -1138,3 +1138,18 @@ span.help {
 .subject-set-toolbar-panes .pane.active {
   left: 80px;
 }
+
+
+
+.light-box-area .carousel {
+   padding-bottom: 90px;
+}
+
+.subject-set-toolbar {
+   margin-top: 8px;
+   width: 72px;
+}
+
+.subject-set-toolbar-links a {
+  width: 73px;
+}
