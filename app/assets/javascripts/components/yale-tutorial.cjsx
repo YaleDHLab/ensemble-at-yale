@@ -20,7 +20,7 @@ module.exports = React.createClass
 
   render:->
     return <div className="yale-tutorial-modal">
-        { if @props.displayed == 1
+        { if @props.displayed == true
             <DraggableModal ref="tutorialModal"
                 header={@props.header}
                 doneButtonLabel={"Next"}
