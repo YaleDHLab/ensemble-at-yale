@@ -1072,6 +1072,11 @@ span.help {
 
 .subject-set-toolbar {
   margin-top: 8px;
+  width: 72px;
+}
+
+.subject-set-toolbar-links a {
+  width: 73px;
 }
 
 .subject-set-viewer {
@@ -1089,6 +1094,10 @@ span.help {
 .subject-set-toolbar-panes .pane {
   height: 100vh;
   overflow: scroll;
+}
+
+.light-box-area .carousel {
+  padding-bottom: 90px;
 }
 
 /***
