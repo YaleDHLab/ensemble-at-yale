@@ -300,11 +300,9 @@ a.drama-era-group-link {
 .drama-era-image-container {
   width: 540px;
   height: 270px;
-  background-size: cover;
-  background-position: center center;
   border: 1px solid #555555;
   position: relative;
-  transition: opacity 2s;
+  transition: opacity .3s;
   opacity: 1;
 }
 
@@ -313,45 +311,61 @@ a.drama-era-group-link {
 }
 
 .drama-era-image {
-  border: 1px solid #767676;
-  position: relative;
-  cursor: pointer;
-}
-
-.drama-era-image-1 {
-  background-image: url("hamlet2_th.jpg");
+  position: absolute;
+  z-index: 1;
+  width: 540px;
+  height: 270px;
   background-size: cover;
-  height: 100%;
+  background-position: center center;
+  transition: opacity .5s;
 }
 
-.drama-era-image-2 {
-  background-image: url("america_th.jpg");
-  background-size: cover;
-  height: 100%;
-}
-
-.drama-era-image-3 {
-  background-image: url("fences_th.jpg");
-  background-size: cover;
-  height: 100%;
-}
-
-.drama-era-image-4 {
-  background-image: url("streep_th.jpg");
-  background-size: cover;
-  height: 100%;
-}
-
-.drama-era-image-5 {
-  background-image: url("viet-rock_th.jpg");
-  background-size: cover;
-  height: 100%;
-}
-
-.drama-era-image-6 {
+.drama-era-image-0:hover {
   background-image: url("yellow-jacket_th.jpg");
   background-size: cover;
   height: 100%;
+}
+
+.drama-era-hover-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-size: cover;
+}
+
+.drama-era-image-wrapper:hover .drama-era-image {
+  opacity: 0;
+}
+
+.drama-era-hover-image-0 {
+  background-image: url("/assets/1-eclipsed.jpg");
+  background-position: 50% 65%;
+}
+
+.drama-era-hover-image-1 {
+  background-image: url("/assets/2-Baltimore.jpg");
+  background-position: 50% 35%;
+}
+
+.drama-era-hover-image-2 {
+  background-image: url("/assets/3-piano.jpg");
+  background-position: 50% 15%;
+}
+
+.drama-era-hover-image-3 {
+  background-image: url("/assets/4-bacchae.jpg");
+  background-position: 50% 35%;
+}
+
+.drama-era-hover-image-4 {
+  background-image: url("/assets/5-booth.jpg");
+  background-position: 50% 35%;
+}
+
+.drama-era-hover-image-5 {
+  background-image: url("/assets/6-YaleDrama.jpg");
+  background-position: 50% 35%;
 }
 
 .drama-era-group-link {

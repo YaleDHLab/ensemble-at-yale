@@ -22,7 +22,7 @@ GroupBrowser = React.createClass
     group.showButtons = false
     @forceUpdate() # trigger re-render to update buttons
 
-  renderGroup: (group) ->
+  renderGroup: (group, index) ->
     isEven = 0
     if @state.groups.indexOf(group) + 2 %% 2 == 0
       isEven = 0
@@ -39,12 +39,12 @@ GroupBrowser = React.createClass
     <div className="drama-era-image-wrapper">
       <a href="/#/groups/#{group.id}" className="drama-era-group-link">
         <div
-          className='drama-era-image-container'
-          style={backgroundImage: "url(#{group['cover_image_url']})"}
-          key={group.id}>
+          className={'drama-era-image-container'} key={group.id}>
+            <div className="drama-era-image" style={backgroundImage: "url(#{group['cover_image_url']})"}></div>
             <div className="drama-era-image-overlay">
               {group.meta_data.start_year} &#8210; {group.meta_data.end_year} &#8231; {group.name}
             </div>
+            <div className={"drama-era-hover-image drama-era-hover-image-" + index}></div>
         </div>
       </a>
     </div>
@@ -53,7 +53,7 @@ GroupBrowser = React.createClass
     # Only display GroupBrowser if more than one group defined:
     return null if @state.groups.length <= 1
 
-    groups = [@renderGroup(group) for group in @state.groups]
+    groups = [@renderGroup(group, index) for group, index in @state.groups]
     <div className="group-area-wrapper">
       {groups}
     </div>
