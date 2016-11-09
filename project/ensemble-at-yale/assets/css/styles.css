@@ -174,6 +174,7 @@ body {
   width: 100%;
   margin-top: -5px;
   overflow: hidden;
+  position: relative;
 }
 
 .home-page .hero-container .image-container {
@@ -181,9 +182,25 @@ body {
 }
 
 .home-page .hero-image {
-  background-image: url("/assets/winter-tale-flip.jpg");
-  background-size: cover;
   height: 100%;
+  opacity: 1;
+  transition: opacity 2s;
+  background-size: cover;
+  background-position: 50% 40%;
+}
+
+.home-page .next-hero-image-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.home-page .next-hero-image {
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 2s;
+  background-size: cover;
   background-position: 50% 40%;
 }
 
@@ -196,6 +213,7 @@ body {
   padding: 35px;
   font-size: .7em;
   line-height: 1em;
+  z-index: 2;
 }
 
 .home-page .hero-overlay-title {
@@ -288,17 +306,6 @@ a.drama-era-group-link {
   position: relative;
   transition: opacity 2s;
   opacity: 1;
-}
-
-.drama-era-next-image {
-  position: absolute;
-  width: 100%;
-  z-index: 1;
-  height: 100%;
-  background-size: cover;
-  background-position: center center;
-  opacity: 0;
-  transition: opacity 2s;
 }
 
 .flexbox-wrapper-groups {
