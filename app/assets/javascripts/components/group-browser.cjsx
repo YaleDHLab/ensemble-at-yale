@@ -8,15 +8,11 @@ GroupBrowser = React.createClass
 
   getInitialState:->
     groups:[]
-    foregroundImageIndex: 0
-    backgroundImageIndex: 0
-    backgroundImageOpacity: 0
 
   componentDidMount:->
     API.type("groups").get(project_id: @props.project.id).then (groups)=>
       group.showButtons = false for group in groups  # hide buttons by default
       @setState groups: groups
-    @requestImageUpdate()
 
   showButtonsForGroup: (group, e) ->
     group.showButtons = true
@@ -25,46 +21,6 @@ GroupBrowser = React.createClass
   hideButtonsForGroup: (group, e) ->
     group.showButtons = false
     @forceUpdate() # trigger re-render to update buttons
-
-  requestImageUpdate: ->
-    self = this
-    setTimeout ( ->
-      self.updateImages()
-    ), 6000
-
-  updateImages: ->
-    # first make the foreground and the background the same
-    self = this
-    currentBackgroundIndex = @state.backgroundImageIndex
-
-    @setState({
-      foregroundImageIndex: currentBackgroundIndex,
-      backgroundImageIndex: currentBackgroundIndex
-    })
-
-    # then remove opacity from the background image
-    setTimeout ( ->
-      self.setState({
-        backgroundImageOpacity: 0
-      })
-    ), 500
-
-    # next set the background image to the next image to display
-    setTimeout ( ->
-      self.setState({
-        backgroundImageIndex: (currentBackgroundIndex+1) % 2
-      })
-    ), 2000
-
-    # then fade the new background into view
-    setTimeout ( ->
-      self.setState({
-        backgroundImageOpacity: 1
-      })
-    ), 4000
-
-    # then place the next update cycle on the call stack
-    @requestImageUpdate()
 
   renderGroup: (group) ->
     isEven = 0
@@ -84,11 +40,8 @@ GroupBrowser = React.createClass
       <a href="/#/groups/#{group.id}" className="drama-era-group-link">
         <div
           className='drama-era-image-container'
-          style={backgroundImage: "url(http://placehold.it/35" + @state.foregroundImageIndex + "x150)"}
+          style={backgroundImage: "url(#{group['cover_image_url']})"}
           key={group.id}>
-            <div className="drama-era-next-image"
-              style={backgroundImage: "url(http://placehold.it/35" + @state.backgroundImageIndex + "x150)", opacity: @state.backgroundImageOpacity}>
-            </div>
             <div className="drama-era-image-overlay">
               {group.meta_data.start_year} &#8210; {group.meta_data.end_year} &#8231; {group.name}
             </div>
