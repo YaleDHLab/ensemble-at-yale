@@ -45,7 +45,7 @@ body {
 }
 
 .panoptes-main {
-  background-color: #1B282B;;
+  background-color: #1A1A1A;
 }
 
 /*********
@@ -115,15 +115,18 @@ body {
 
 .main-header-button {
   margin-right: 80px;
+  color: #789BB6;
 }
 
 .main-header-item:hover {
-  background: rgba(120, 154, 180, 0.5)
+  background: none;
 }
 
 .main-header-item.selected {
   border-bottom: none;
-  background: #789ab4;
+  background: none;
+  color: #fff;
+  font-weight: 800;
 }
 
 .login .login-container {
@@ -131,6 +134,7 @@ body {
   float: right;
   height: 100%;
   line-height: 80px;
+  font-family: Mallory;
 }
 
 .login,
@@ -215,7 +219,9 @@ body {
 
 .home-page .hero-overlay-button {
   background: #69A7C7;
-  width: 180px;
+  width: 76%;
+  position: relative;
+  left: 8%;
   height: 16px;
   border-radius: 3px;
   margin-top: 7px;
@@ -250,14 +256,18 @@ body {
 }
 
 .group-area-wrapper {
-  margin: 60px 0;
+  margin: 80px 0 60px 40px;
+  width: 1200px;
+  display: inline-block;
 }
 
 .drama-era-image-wrapper {
-  height: 33%;
-  width: 35%;
   display: inline-block;
-  min-width: 400px;
+  margin-bottom: 30px;
+}
+
+.drama-era-image-wrapper:nth-child(1n) {
+  margin-right: 40px;
 }
 
 .col-sm-6 {
@@ -270,12 +280,25 @@ a.drama-era-group-link {
 }
 
 .drama-era-image-container {
-  width: 90%;
-  height: 0;
-  margin: 20px .5%;
+  width: 540px;
+  height: 270px;
   background-size: cover;
-  padding-top: 45%;
+  background-position: center center;
   border: 1px solid #555555;
+  position: relative;
+  transition: opacity 2s;
+  opacity: 1;
+}
+
+.drama-era-next-image {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  opacity: 0;
+  transition: opacity 2s;
 }
 
 .flexbox-wrapper-groups {
@@ -332,14 +355,17 @@ a.drama-era-group-link {
   background: rgba(34, 34, 34, 0.75);
   width: 100%;
   color: #DDDDDD;
-  padding: 7px 0;
+  padding: 16px 0;
   text-align: center;
   font-size: .55em;
   letter-spacing: .03em;
   line-height: 1em;
   font-family: YaleNew;
-  margin-top: -30px;
+  margin-top: -48px;
   text-transform: uppercase;
+  position: absolute;
+  top: 100%;
+  z-index: 2;
 }
 
 .collection-thumbnail:hover .collection-thumbnail-mark,
@@ -349,7 +375,10 @@ a.drama-era-group-link {
 
 .drama-era-image-container:hover .drama-era-image-overlay {
   background: rgba(0, 0, 0, 0.75);
-  height: 50px;
+}
+
+.drama-era-image-overlay:hover {
+  background: #00356B;
 }
 
 /*********
@@ -369,7 +398,7 @@ a.drama-era-group-link {
 .footer-container {
   position: relative;
   width: 100%;
-  background-color: #1B282B;
+  background-color: #1A1A1A;
 }
 
 .footer-left {
