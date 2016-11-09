@@ -332,13 +332,13 @@ a.drama-era-group-link {
   background: rgba(34, 34, 34, 0.75);
   width: 100%;
   color: #DDDDDD;
-  padding: 7px 0;
+  padding: 16px 0;
   text-align: center;
   font-size: .55em;
   letter-spacing: .03em;
   line-height: 1em;
   font-family: YaleNew;
-  margin-top: -30px;
+  margin-top: -48px;
   text-transform: uppercase;
 }
 
@@ -349,7 +349,6 @@ a.drama-era-group-link {
 
 .drama-era-image-container:hover .drama-era-image-overlay {
   background: rgba(0, 0, 0, 0.75);
-  height: 50px;
 }
 
 /*********
