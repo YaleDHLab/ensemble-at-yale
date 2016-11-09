@@ -45,7 +45,7 @@ body {
 }
 
 .panoptes-main {
-  background-color: #1B282B;;
+  background-color: #1A1A1A;
 }
 
 /*********
@@ -115,15 +115,18 @@ body {
 
 .main-header-button {
   margin-right: 80px;
+  color: #789BB6;
 }
 
 .main-header-item:hover {
-  background: rgba(120, 154, 180, 0.5)
+  background: none;
 }
 
 .main-header-item.selected {
   border-bottom: none;
-  background: #789ab4;
+  background: none;
+  color: #fff;
+  font-weight: 800;
 }
 
 .login .login-container {
@@ -131,6 +134,7 @@ body {
   float: right;
   height: 100%;
   line-height: 80px;
+  font-family: Mallory;
 }
 
 .login,
@@ -170,6 +174,7 @@ body {
   width: 100%;
   margin-top: -5px;
   overflow: hidden;
+  position: relative;
 }
 
 .home-page .hero-container .image-container {
@@ -177,9 +182,25 @@ body {
 }
 
 .home-page .hero-image {
-  background-image: url("/assets/winter-tale-flip.jpg");
-  background-size: cover;
   height: 100%;
+  opacity: 1;
+  transition: opacity 2s;
+  background-size: cover;
+  background-position: 50% 40%;
+}
+
+.home-page .next-hero-image-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.home-page .next-hero-image {
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 2s;
+  background-size: cover;
   background-position: 50% 40%;
 }
 
@@ -192,6 +213,7 @@ body {
   padding: 35px;
   font-size: .7em;
   line-height: 1em;
+  z-index: 2;
 }
 
 .home-page .hero-overlay-title {
@@ -215,7 +237,9 @@ body {
 
 .home-page .hero-overlay-button {
   background: #69A7C7;
-  width: 180px;
+  width: 76%;
+  position: relative;
+  left: 8%;
   height: 16px;
   border-radius: 3px;
   margin-top: 7px;
@@ -250,14 +274,18 @@ body {
 }
 
 .group-area-wrapper {
-  margin: 60px 0;
+  margin: 80px 0 60px 40px;
+  width: 1200px;
+  display: inline-block;
 }
 
 .drama-era-image-wrapper {
-  height: 33%;
-  width: 35%;
   display: inline-block;
-  min-width: 400px;
+  margin-bottom: 30px;
+}
+
+.drama-era-image-wrapper:nth-child(1n) {
+  margin-right: 40px;
 }
 
 .col-sm-6 {
@@ -270,12 +298,12 @@ a.drama-era-group-link {
 }
 
 .drama-era-image-container {
-  width: 90%;
-  height: 0;
-  margin: 20px .5%;
-  background-size: cover;
-  padding-top: 45%;
+  width: 540px;
+  height: 270px;
   border: 1px solid #555555;
+  position: relative;
+  transition: opacity .3s;
+  opacity: 1;
 }
 
 .flexbox-wrapper-groups {
@@ -283,45 +311,61 @@ a.drama-era-group-link {
 }
 
 .drama-era-image {
-  border: 1px solid #767676;
-  position: relative;
-  cursor: pointer;
-}
-
-.drama-era-image-1 {
-  background-image: url("hamlet2_th.jpg");
+  position: absolute;
+  z-index: 1;
+  width: 540px;
+  height: 270px;
   background-size: cover;
-  height: 100%;
+  background-position: center center;
+  transition: opacity .5s;
 }
 
-.drama-era-image-2 {
-  background-image: url("america_th.jpg");
-  background-size: cover;
-  height: 100%;
-}
-
-.drama-era-image-3 {
-  background-image: url("fences_th.jpg");
-  background-size: cover;
-  height: 100%;
-}
-
-.drama-era-image-4 {
-  background-image: url("streep_th.jpg");
-  background-size: cover;
-  height: 100%;
-}
-
-.drama-era-image-5 {
-  background-image: url("viet-rock_th.jpg");
-  background-size: cover;
-  height: 100%;
-}
-
-.drama-era-image-6 {
+.drama-era-image-0:hover {
   background-image: url("yellow-jacket_th.jpg");
   background-size: cover;
   height: 100%;
+}
+
+.drama-era-hover-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-size: cover;
+}
+
+.drama-era-image-wrapper:hover .drama-era-image {
+  opacity: 0;
+}
+
+.drama-era-hover-image-0 {
+  background-image: url("/assets/1-eclipsed.jpg");
+  background-position: 50% 65%;
+}
+
+.drama-era-hover-image-1 {
+  background-image: url("/assets/2-Baltimore.jpg");
+  background-position: 50% 35%;
+}
+
+.drama-era-hover-image-2 {
+  background-image: url("/assets/3-piano.jpg");
+  background-position: 50% 15%;
+}
+
+.drama-era-hover-image-3 {
+  background-image: url("/assets/4-bacchae.jpg");
+  background-position: 50% 35%;
+}
+
+.drama-era-hover-image-4 {
+  background-image: url("/assets/5-booth.jpg");
+  background-position: 50% 35%;
+}
+
+.drama-era-hover-image-5 {
+  background-image: url("/assets/6-YaleDrama.jpg");
+  background-position: 50% 35%;
 }
 
 .drama-era-group-link {
@@ -340,6 +384,9 @@ a.drama-era-group-link {
   font-family: YaleNew;
   margin-top: -48px;
   text-transform: uppercase;
+  position: absolute;
+  top: 100%;
+  z-index: 2;
 }
 
 .collection-thumbnail:hover .collection-thumbnail-mark,
@@ -348,7 +395,7 @@ a.drama-era-group-link {
 }
 
 .drama-era-image-container:hover .drama-era-image-overlay {
-  background: rgba(0, 0, 0, 0.75);
+  background: #00356B;
 }
 
 /*********
@@ -368,7 +415,7 @@ a.drama-era-group-link {
 .footer-container {
   position: relative;
   width: 100%;
-  background-color: #1B282B;
+  background-color: #1A1A1A;
 }
 
 .footer-left {
@@ -1230,5 +1277,4 @@ span.help {
 
 .options a:hover {
   cursor: pointer;
->>>>>>> 87780809ea70931051e463d7487f7a787b465d2b
 }
