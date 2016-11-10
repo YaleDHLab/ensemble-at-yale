@@ -42,7 +42,7 @@ GroupBrowser = React.createClass
 
       display_groups.push(
 
-        <div className="drama-era-image-wrapper">
+        <div className="drama-era-image-wrapper" key={i}>
           <a href="/#/groups/#{group.id}" className="drama-era-group-link">
             <div
               className={'drama-era-image-container'} key={group.id}>
