@@ -427,9 +427,7 @@ a.drama-era-group-link {
   height: 85px;
   margin-top: 14px;
   display: inline-block;
-  position: relative;
-  left: 50%;
-  margin-left: -563px;
+  margin-left: 80px;
 }
 
 .footer-left img {
@@ -440,9 +438,7 @@ a.drama-era-group-link {
   width: 235px;
   height: 90px;  
   float: right;
-  position: relative;
-  right: 50%;
-  margin-right: -558px;
+  margin-right: 87px;
 }
 
 .footer-right-top {
