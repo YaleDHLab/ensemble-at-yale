@@ -26,24 +26,6 @@ module.exports = React.createClass
     y: 0
     rotate: 0
 
-  # componentWillReceiveProps: ->
-  #
-  #
-  # foo: ->
-  #   return {
-  #     __html: '
-  #     <filter id="dropShadow">
-  #       <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-  #       <feOffset dx="2" dy="4" />
-  #       <feMerge>
-  #         <feMergeNode />
-  #         <feMergeNode in="SourceGraphic" />
-  #       </feMerge>
-  #     </filter>
-  #     <circle cx="60"  cy="60" r="50" fill="transparent" filter="url(#dropShadow)" />
-  #     '
-  #   }
-  #
   render: ->
     transform = "
       translate(#{@props.position.x-BUTTON_WID}, #{@props.position.y-2*BUTTON_HEI*@props.tool.props.yScale})
@@ -88,6 +70,16 @@ module.exports = React.createClass
           else
 
             <g className="checkbox">
+              <rect
+                transform="translate(#{-0.5*20},#{-0.5*20})"
+                fill="rgba(255,255,255,1)"
+                width="54"
+                height="23"
+                x="-2"
+                y="-2"
+                rx="3"
+              />
+
               <rect
                 transform="translate(#{-0.5*20},#{-0.5*20})"
                 fill="rgba(255,255,255,0)"
