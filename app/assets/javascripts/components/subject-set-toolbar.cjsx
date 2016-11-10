@@ -17,11 +17,11 @@ module.exports = React.createClass
     active_pane: ''
     hideMarks: true
 
-  componentWillReceiveProps: (props) ->
+  componentWillMount: ->
     try
-      if props.subject_set.subjects
-        if props.subject_set.subjects.length > 1
-          @setState({active_pane: 'multi-page'})
+      if @props.subject_set.subjects
+        if @props.subject_set.subjects.length > 1
+          @togglePane 'multi-page'
 
     catch e
 
