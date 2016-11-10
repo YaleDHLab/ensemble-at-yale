@@ -25,6 +25,11 @@ module.exports = React.createClass
     tool: @props.tool
     toolbar_expanded: false
 
+  componentWillReceiveProps: (props)->
+    if props.subject_set.subjects
+      if props.subject_set.subjects.length > 1
+        @setState({toolbar_expanded: true})
+
   advancePrevious: ->
     @advance -1
 
