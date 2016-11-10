@@ -31,6 +31,10 @@ HomePage = React.createClass
   componentWillMount: ->
     @requestImageUpdate()
 
+  componentWillUnmount: ->
+    this.requestImageUpdate = null
+    this.updateImage = null
+
   componentWillReceiveProps: (new_props) ->
     @setState project: new_props.project
 
@@ -43,48 +47,52 @@ HomePage = React.createClass
   requestImageUpdate: ->
     self = this
     setTimeout ( ->
-      self.updateImage()
+      try
+        self.updateImage()
+      catch e
     ), 6000
 
   updateImage: ->
     # first make the foreground and the background the same
-    self = this
-    currentBackgroundIndex = @state.backgroundImageIndex
-    currentBackgroundPosition = @state.backgroundImagePosition
-    nextIndexPosition = (currentBackgroundIndex+1) % 5
-    nextBackgroundPosition = @state.backgroundPositions[nextIndexPosition]
+    try
+      self = this
+      currentBackgroundIndex = @state.backgroundImageIndex
+      currentBackgroundPosition = @state.backgroundImagePosition
+      nextIndexPosition = (currentBackgroundIndex+1) % 5
+      nextBackgroundPosition = @state.backgroundPositions[nextIndexPosition]
 
-    @setState({
-      foregroundImageIndex: currentBackgroundIndex,
-      backgroundImageIndex: currentBackgroundIndex,
-      foregroundImagePosition: currentBackgroundPosition,
-      backgroundImagePosition: currentBackgroundPosition
-    })
-
-    # then remove opacity from the background image
-    setTimeout ( ->
-      self.setState({
-        backgroundImageOpacity: 0
+      @setState({
+        foregroundImageIndex: currentBackgroundIndex,
+        backgroundImageIndex: currentBackgroundIndex,
+        foregroundImagePosition: currentBackgroundPosition,
+        backgroundImagePosition: currentBackgroundPosition
       })
-    ), 500
 
-    # next set the background image to the next image to display
-    setTimeout ( ->
-      self.setState({
-        backgroundImageIndex: nextIndexPosition,
-        backgroundImagePosition: nextBackgroundPosition
-      })
-    ), 2000
+      # then remove opacity from the background image
+      setTimeout ( ->
+        self.setState({
+          backgroundImageOpacity: 0
+        })
+      ), 500
 
-    # then fade the new background into view
-    setTimeout ( ->
-      self.setState({
-        backgroundImageOpacity: 1
-      })
-    ), 4000
+      # next set the background image to the next image to display
+      setTimeout ( ->
+        self.setState({
+          backgroundImageIndex: nextIndexPosition,
+          backgroundImagePosition: nextBackgroundPosition
+        })
+      ), 2000
 
-    # then place the next update cycle on the call stack
-    self.requestImageUpdate()
+      # then fade the new background into view
+      setTimeout ( ->
+        self.setState({
+          backgroundImageOpacity: 1
+        })
+      ), 4000
+
+      # then place the next update cycle on the call stack
+      self.requestImageUpdate()
+    catch e
 
 
   render:->
