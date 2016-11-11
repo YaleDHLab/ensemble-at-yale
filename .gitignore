@@ -91,6 +91,9 @@ dump
 # pems
 *.pem
 
+# fonts
+/app/assets/fonts
+
 #Avoid pushing images to github
 /project/ensemble-at-yale/assets/images/
 /project/ensemble-at-yale/assets/thumbs/
