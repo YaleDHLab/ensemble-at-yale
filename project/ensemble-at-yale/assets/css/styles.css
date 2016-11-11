@@ -141,7 +141,7 @@ body {
 
 .login .login-container {
   padding-right: 2%;
-  float: right;
+  float: left;
   height: 100%;
   line-height: 80px;
   font-family: Mallory;
@@ -1207,6 +1207,12 @@ span.help {
   fill: #ffffff;
 }
 
+.light-box-area ul li,
+.light-box-area ul li.active,
+.light-box-area ul li:hover {
+  border-width: 2px;
+}
+
 /***
 * Mark page scrolling thumbnail browser
 ***/
@@ -1303,7 +1309,6 @@ span.help {
 
 .login .login-container {
   width: 130px;
-  text-transform: none;
 }
 
 .login .options {
