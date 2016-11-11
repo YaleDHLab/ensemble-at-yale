@@ -36,6 +36,16 @@ body {
   display: inline-block;
 }
 
+@font-face {
+  font-family: Mallory;
+  src: url("/assets/Mallory-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: YaleNew;
+  src: url("/assets/YaleNew-Roman.otf") format("opentype");
+}
+
 /*************
 * Background *
 *************/
@@ -131,7 +141,7 @@ body {
 
 .login .login-container {
   padding-right: 2%;
-  float: right;
+  float: left;
   height: 100%;
   line-height: 80px;
   font-family: Mallory;
@@ -220,26 +230,22 @@ body {
   font-family: YaleNew;
   font-size: 1.35em;
   font-weight: 300;
-  font-family: serif;
   line-height: 1.25em;
 }
 
 .home-page .hero-overlay-text {
-  font-family: Mallory;
   margin: 20px 0;
   font-weight: 100;
-  font-family: Arial;
   letter-spacing: .02em;
-  font-family: Arial;
+  font-family: Mallory;
   font-size: .75em;
-  line-height: 1.25em;
+  line-height: 1.4em;
 }
 
 .home-page .hero-overlay-button {
   background: #69A7C7;
   width: 76%;
   position: relative;
-  left: 8%;
   height: 16px;
   border-radius: 3px;
   margin-top: 7px;
@@ -365,7 +371,7 @@ a.drama-era-group-link {
 
 .drama-era-hover-image-5 {
   background-image: url("/assets/6-YaleDrama.jpg");
-  background-position: 50% 35%;
+  background-position: 50% 20%;
 }
 
 .drama-era-group-link {
@@ -425,9 +431,9 @@ a.drama-era-group-link {
 .footer-left {
   width: 250px;
   height: 85px;
-  margin-left: 60px;
   margin-top: 14px;
   display: inline-block;
+  margin-left: 80px;
 }
 
 .footer-left img {
@@ -438,7 +444,7 @@ a.drama-era-group-link {
   width: 235px;
   height: 90px;  
   float: right;
-  margin-right: 52px;
+  margin-right: 87px;
 }
 
 .footer-right-top {
@@ -486,7 +492,7 @@ a.drama-era-group-link {
   stroke-width: 2px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1250px) {
   .footer-container {
     display: none;
   }
@@ -664,11 +670,13 @@ a.drama-era-group-link {
 
 .mark-button {
   background: #2f5a6f;
+  font-family: Mallory;
 }
 
 .transcribe-button {
   margin-top: 8px;
   background: #679db8;
+  font-family: Mallory;
 }
 
 /**************************
@@ -970,7 +978,7 @@ select::-ms-expand {
 .classifier .right-column .task-area.mark {
   border-radius: 0px;
   font-family: Mallory;
-  font-size: .95em;
+  font-size: .9em;
 }
 
 .help-modal, .draggable-modal {
@@ -979,10 +987,10 @@ select::-ms-expand {
 
 .major-button {
   background: #69A7C7;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 1px;
   font-family: Mallory;
-  font-weight: 800;
+  padding-top: 8px;
 }
 
 .major-button:hover {
@@ -1078,7 +1086,7 @@ select::-ms-expand {
 
 .classifier .right-column .task-area .help-bad-subject-holder button {
   margin-top: 8px;
-  padding-top: 6px;
+  padding-top: 8px;
 }
 
 rect.shape {
@@ -1096,12 +1104,14 @@ rect.shape {
 .classifier .right-column .task-area .workflow-task .answer {
   background: #EBEBEB;
   font-weight: 400;
+  font-size: 13px;
   font-family: Mallory;
+  color: #746F73;
 }
 
 .classifier .right-column .task-area .workflow-task .answer.active {
   background: #D4E0E6;
-  color: #000;
+  color: #273D61;
 }
 
 .classifier .right-column .task-area.mark {
@@ -1193,6 +1203,16 @@ span.help {
   padding-left: 7px;
 }
 
+.light-box-area #visibility-button svg path {
+  fill: #ffffff;
+}
+
+.light-box-area ul li,
+.light-box-area ul li.active,
+.light-box-area ul li:hover {
+  border-width: 2px;
+}
+
 /***
 * Mark page scrolling thumbnail browser
 ***/
@@ -1204,6 +1224,25 @@ span.help {
 
 .light-box-area .carousel {
   padding-bottom: 90px;
+}
+
+/***
+* Mark page zooms
+***/
+
+.subject-zoom-pan {
+  margin-left: 9px;
+}
+
+.subject-set-toolbar-panes .pane.active {
+  left: 80px;
+  width: 147px;
+}
+
+.subject-set-toolbar-panes .pane.pan-zoom {
+  height: 145px;
+  padding: 3px;
+  overflow: hidden;
 }
 
 /***
@@ -1244,6 +1283,11 @@ span.help {
   right: 25px;
   top: 25px;
   cursor: pointer;
+}
+
+.draggable-modal .modal-body {
+  overflow: hidden;
+  margin-right: 40px;
 }
 
 /***
