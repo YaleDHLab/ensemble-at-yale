@@ -1246,6 +1246,14 @@ span.help {
 }
 
 /***
+* Mark page tool icons
+***/
+
+.subject-set-toolbar-links a.active:after {
+  display: none;
+}
+
+/***
 * Transcribe
 ***/
 
