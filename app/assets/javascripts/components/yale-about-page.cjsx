@@ -26,8 +26,8 @@ AboutPage = React.createClass
 
               <h2 className="contact-us">Contact Us</h2>
               <p>
-                Questions about Ensemble@Yale? Contact the DHLab: dhlab@yale.edu.
-                Questions about theater history at Yale? Start with an <a href="http://guides.library.yale.edu/c.php?g=296165&p=1975017">introductory research guide</a> or contact the Arts librarian for theater and drama: lindsay.king@yale.edu.
+                Questions about Ensemble@Yale? Contact the DHLab.
+                Questions about theater history at Yale? See <a href="http://guides.library.yale.edu/c.php?g=296165&p=1975017">this guide</a> or contact the Arts Library.
               </p>
             </div>
           </div>
