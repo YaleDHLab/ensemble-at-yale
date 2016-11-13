@@ -116,7 +116,7 @@
                }
             }
          },
-         "instruction":"Type the name of the person and responsibility they have. For roles with multiple people and only one description, draw a box around each person."
+         "instruction":"Type the name of the person and responsibility they have."
       }
    }
 }
