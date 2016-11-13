@@ -283,7 +283,7 @@ module.exports = React.createClass # rename to Classifier
                       <BadSubjectButton class="bad-subject-button" label={"Bad " + @props.project.term('subject')} active={@state.badSubject} onClick={@toggleBadSubject} />
                     }
                     { if @state.badSubject
-                      <p>You&#39;ve marked this {@props.project.term('subject')} as BAD. Thanks for flagging the issue! <strong>Press DONE to continue.</strong></p>
+                      <p>Thanks for letting us know about the problem! <strong>Press DONE to continue.</strong></p>
                     }
                   </div>
                 </div>
