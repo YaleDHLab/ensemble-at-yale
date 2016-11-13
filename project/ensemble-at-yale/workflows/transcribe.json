@@ -11,6 +11,9 @@
    "tasks":{  
       "ey_title":{  
          "tool":"compositeTool",
+	 "help": {
+           "file": "transcribe_help"
+     	 },
          "tool_config":{  
             "tools":{  
                "ey_transcribed_title":{  
@@ -27,6 +30,9 @@
       },
       "ey_playwright":{  
          "tool":"textTool",
+	 "help": {
+           "file": "transcribe_help"
+     	 },
          "tool_config":{  
 
          },
@@ -35,6 +41,9 @@
       },
       "ey_director":{  
          "tool":"textTool",
+	 "help": {
+           "file": "transcribe_help"
+     	 },
          "tool_config":{  
 
          },
@@ -69,6 +78,9 @@
       },
       "ey_actor_character":{  
          "tool":"compositeTool",
+	 "help": {
+           "file": "transcribe_help"
+     	 },
          "tool_config":{  
             "tools":{  
                "ey_ac_charactername":{  
@@ -98,6 +110,9 @@
       },
       "ey_prod_staff":{  
          "tool":"compositeTool",
+	 "help": {
+           "file": "transcribe_help"
+     	 },
          "tool_config":{  
             "tools":{  
                "ey_ps_responsibility":{  
