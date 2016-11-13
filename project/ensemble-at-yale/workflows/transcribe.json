@@ -42,7 +42,7 @@
       "ey_director":{  
          "tool":"textTool",
 	 "help": {
-           "file": "transcribe_help"
+           "file": "ey_director"
      	 },
          "tool_config":{  
 
@@ -52,6 +52,9 @@
       },
       "ey_dates":{  
          "tool":"compositeTool",
+	 "help": {
+           "file": "ey_dates"
+     	 },
          "tool_config":{  
             "tools":{  
                "ey_transcribed_date_start":{  
