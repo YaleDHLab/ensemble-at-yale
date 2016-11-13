@@ -12,7 +12,7 @@
    "tasks":{  
       "core_metadata":{  
          "tool":"pickOneMarkOne",
-         "instruction":"Start by finding the program page that lists all or most of this information. Draw one rectangle around all of the text comprising the field you are selecting. Click the **DONE** box when you’re finished, and then select another field to mark, or click the X to delete your selection and re-mark the same field.",
+         "instruction":"Draw one rectangle around the text that represents the title. Click the **DONE** box, then select another field to mark, until you have completed as many of these four fields as you can.",
          "generates_subjects":true,
          "tool_config":{  
             "displays_transcribe_button":true,
@@ -68,14 +68,14 @@
       },
       "actors_roles":{  
          "tool":"pickOneMarkOne",
-         "instruction":"Draw a box around each pairing of character and actor.",
+         "instruction":"Locate the cast listing for this play. Draw a box around each pairing of actor and role.",
          "generates_subjects":true,
          "tool_config":{  
             "displays_transcribe_button":true,
             "options":[  
                {  
                   "type":"rectangleTool",
-                  "label":"Actor & Role",
+                  "label":"Actor and Role",
                   "color":"orange",
                   "generates_subject_type":"ey_actor_character"
                }
@@ -85,14 +85,14 @@
       },
       "prod_staff":{  
          "tool":"pickOneMarkOne",
-         "instruction":"Finally, we want to capture production staff roles, such as set design, costume design, or translation. Draw a box around each pairing of person and responsibility.",
+         "instruction":"Draw a box around each pairing of production staff role (ex. &#x201C;sets by,&#x201D; &#x201C;costume design,&#x201D; &#x201C;fight director,&#x201D; &#x201C;translation by&#x201D;) and person with that responsibility.",
          "generates_subjects":true,
          "tool_config":{  
             "displays_transcribe_button":true,
             "options":[  
                {  
                   "type":"rectangleTool",
-                  "label":"Role and Person",
+                  "label":"Staff and Role",
                   "color":"purple",
                   "generates_subject_type":"ey_prod_staff"
                }
