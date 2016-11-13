@@ -68,7 +68,7 @@
       },
       "actors_roles":{  
          "tool":"pickOneMarkOne",
-         "instruction":"Locate the cast listing for this play. Draw a box around each pairing of actor and role.",
+         "instruction":"Locate the cast listing for this play. Draw a box around each pairing of actor and role.  For roles with multiple actors and only one character name, draw a box around each actor.",
          "generates_subjects":true,
          "tool_config":{  
             "displays_transcribe_button":true,
