@@ -5,7 +5,7 @@ module.exports = React.createClass
   displayName: 'BadSubjectButton'
 
   render: ->
-    label = @props.label ? ( if @props.active then 'Bad Playbill' else 'Bad Playbill?' )
+    label = @props.label ? ( if @props.active then 'Report Problem' else 'Report Problem?' )
 
     additional_classes = []
     additional_classes.push 'toggled' if @props.active
