@@ -16,9 +16,9 @@ module.exports = React.createClass
     <header classNameim="main-header">
 
       <nav className="main-nav main-header-group">
-        <Link to="/" activeClassName="selected" className="main-header-item logo">
+        <a href="http://web.library.yale.edu/dhlab" className="main-header-item logo">
           <img src={'assets/dh-mark.png'} />
-        </Link>
+        </a>
 
         <div className="brand-title-container">
           <div className="brand-title-text-container">
