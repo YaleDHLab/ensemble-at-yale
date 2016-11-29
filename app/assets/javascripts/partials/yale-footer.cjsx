@@ -8,7 +8,9 @@ Footer = React.createClass
     { if @props.display == 1
         <div className="footer-container">
           <div className="footer-left">
-            <img src={'/assets/dh-wordmark-white.png'} />
+            <a href="http://web.library.yale.edu/">
+              <img src={'/assets/dh-wordmark-white.png'} />
+            </a>
           </div>
 
           <div className="footer-right-container">
