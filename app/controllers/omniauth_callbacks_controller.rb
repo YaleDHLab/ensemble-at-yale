@@ -1,10 +1,14 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
    def facebook
-    @user = User.find_for_oauth(request.env["omniauth.auth"], current_user)
+    omniauth_hash = request.env["omniauth.auth"]
+    facebook_email = omniauth_hash[:extra][:raw_info][:email]
+
+    @user = User.find_for_oauth(omniauth_hash, current_user, facebook_email)
 
     if @user
       sign_in(@user, :bypass => true)
+      @user.update_attribute(:sign_in_count, @user.sign_in_count + 1)
     end
     success_redirect
   end
