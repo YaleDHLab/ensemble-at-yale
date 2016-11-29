@@ -27,17 +27,13 @@
       },
       "ey_playwright":{  
          "tool":"textTool",
-         "tool_config":{  
-
-         },
+         "tool_config":{},
          "instruction":"Type the author of the play.",
          "generates_subject_type":"ey_transcribed_playwright"
       },
       "ey_director":{  
          "tool":"textTool",
-         "tool_config":{  
-
-         },
+         "tool_config":{},
          "instruction":"Type the director of the play.",
          "generates_subject_type":"ey_transcribed_director"
       },
@@ -52,15 +48,12 @@
 	                  "maximum" : "2013-01-01",
 	                  "range" : true,
 	                  "allow_approximate": true 
-
                   },
                   "label":"Opening Date"
                },
                "ey_transcribed_date_stop":{  
                   "tool":"dateTool",
-                  "tool_config":{  
-
-                  },
+                  "tool_config":{},
                   "label":"Closing Date"
                }
             }
