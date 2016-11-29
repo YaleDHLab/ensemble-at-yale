@@ -46,6 +46,11 @@ body {
   src: url("/assets/YaleNew-Roman.otf") format("opentype");
 }
 
+@font-face {
+  font-family: "Mallory Light";
+  src: url("/assets/Mallory-Light.otf") format("opentype");
+}
+
 /*************
 * Background *
 *************/
@@ -136,7 +141,7 @@ body {
   border-bottom: none;
   background: none;
   color: #fff;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .login .login-container {
@@ -237,8 +242,8 @@ body {
   margin: 20px 0;
   font-weight: 100;
   letter-spacing: .02em;
-  font-family: Mallory;
-  font-size: .75em;
+  font-size: .7em;
+  font-family: "Mallory Light";
   line-height: 1.4em;
 }
 
@@ -254,7 +259,7 @@ body {
   font-family: Mallory;
   letter-spacing: .03em;
   font-size: .8em;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .home-page .hero-overlay-button:hover {
@@ -370,8 +375,8 @@ a.drama-era-group-link {
 }
 
 .drama-era-hover-image-5 {
-  background-image: url("/assets/6-YaleDrama.jpg");
-  background-position: 50% 20%;
+  background-image: url("/assets/7-DivineComedy.jpg");
+  background-position: 50% 55%;
 }
 
 .drama-era-group-link {
@@ -516,6 +521,8 @@ a.drama-era-group-link {
   font-size: 1.6em;
   font-weight: 300;
   letter-spacing: .04em;
+  font-family: YaleNew;
+  margin-left: 20px;
 }
 
 .collection-browse-container {
@@ -538,14 +545,16 @@ a.drama-era-group-link {
   position: absolute;
   left: 60px;
   background: #fff;
-  font-family: Arial;
+  font-family: "Mallory Light";
+  color: #333333;
+  font-size: .825em;
 }
 
 .collection-browse-controls-content {
   font-size: .85em;
   font-family: Arial;
   color: #787878;
-  margin: 20px;
+  margin: 28px;
 }
 
 .collection-performance-dates-container {
@@ -766,7 +775,7 @@ select::-ms-expand {
 .collection-progress-box {
   display:inline-block;
   background: #e3e1e1;
-  padding: 12px 14px;
+  padding: 12px 12px;
   border-radius: 5px;
   width: 83px;
   height: 40px;
@@ -797,6 +806,7 @@ select::-ms-expand {
   min-width: 100%;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  margin-bottom: 40px;
 }
 
 .collection-thumbnail {
@@ -905,6 +915,8 @@ select::-ms-expand {
   font-weight: 100;
   margin-bottom: 20px;
   font-size: 1.85em;
+  margin-left: 40px;
+  font-family: YaleNew;
 }
 
 .about-left-container {
@@ -920,13 +932,22 @@ select::-ms-expand {
 }
 
 .about-left {
-  margin: 40px 30px;
+  margin: 40px;
+  font-family: "Mallory Light";
+  color: #333333;
+  font-size: .825em;
+}
+
+.about-left h2 {
+  font-size: 1.25em;
+  color: #00356B;
 }
 
 .about-right-container {
   width: 50%;
   float: right;
   color: #000;
+  max-width: 550px;
 }
 
 .about-right {
@@ -934,7 +955,7 @@ select::-ms-expand {
 }
 
 .about-page-image {
-  height: 200px;
+  height: 300px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -951,7 +972,7 @@ select::-ms-expand {
 
 .about-page-right-text {
   background: #DDDDDD;
-  min-height: 498px;
+  min-height: 140px;
 }
 
 .about-page-right-text h2 {
@@ -977,8 +998,8 @@ select::-ms-expand {
 
 .classifier .right-column .task-area.mark {
   border-radius: 0px;
-  font-family: Mallory;
-  font-size: .9em;
+  font-family: "Mallory Light";
+  font-size: .825em;
 }
 
 .help-modal, .draggable-modal {
@@ -1073,11 +1094,13 @@ select::-ms-expand {
 .minor-button.ghost, .small-button.ghost {
   border: 2px solid #69A7C7;
   color: #69A7C7;
-  padding: 0.4em 1.4em;
   margin: 0;
   text-transform: uppercase;
   font-size: .9em;
   font-weight: 400;
+  font-family: Mallory;
+  letter-spacing: 0.25px;
+  padding: .5em 1em 0.3em 1em;
 }
 
 .classifier .right-column .task-area .help-bad-subject-holder {
@@ -1319,8 +1342,22 @@ span.help {
   width: 130px;
 }
 
+.login object {
+  pointer-events: none;
+}
+
 .login .options {
   display: none;
+  max-height: 100%;
+  width: 150px;
+}
+
+.login .options a {
+  background: none;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  margin-top: 25px;
 }
 
 .login:hover .options {
