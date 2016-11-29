@@ -91,6 +91,9 @@ dump
 # pems
 *.pem
 
+# notes
+server-notes.txt
+
 # fonts
 /app/assets/fonts
 
