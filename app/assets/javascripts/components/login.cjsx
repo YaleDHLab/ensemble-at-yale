@@ -47,10 +47,19 @@ Login = React.createClass
     </span>
 
 
+  getIcon:(icon_id)->
+    <object data="/assets/login-icons/#{icon_id}-login.svg" type="image/svg+xml">
+      <img src="/assets/login-icons/#{icon_id}-login.png" />
+    </object>
+
   renderLoginOptions: (label,classNames) ->
+    self = this
     links = @props.loginProviders.map (link) ->
-      icon_id = if link.id == 'zooniverse' then 'dot-circle-o' else if link.id == 'cas' then 'graduation-cap' else link.id
-      <a key="login-link-#{link.id}" href={link.path} title="Log in using #{link.name}"><i className="fa fa-#{icon_id} fa-2" /></a>
+      <a key="login-link-#{link.id}"
+          href={link.path}
+          title="Log in using #{link.name}">
+          {self.getIcon(link.id)}
+      </a>
 
     <span className={classNames}>
       <span className="label">{ "Log In" }</span>
