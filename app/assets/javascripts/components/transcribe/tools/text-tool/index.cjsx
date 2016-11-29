@@ -290,6 +290,7 @@ TextTool = React.createClass
         y={y*@props.scale.vertical + @props.scale.offsetY}
         buttons={buttons}
         classes="transcribe-tool"
+        toggleYaleTutorial={@props.toggleYaleTutorial}
         >
 
           {tool_content}
