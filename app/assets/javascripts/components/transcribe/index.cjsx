@@ -38,7 +38,7 @@ module.exports = React.createClass # rename to Classifier
     helping:                      false
     last_mark_task_key:           @props.query.mark_key
     showingTutorial:              false
-    yaleTutorial:                 0
+    yaleTutorial:                 false
 
   getDefaultProps: ->
     workflowName: 'transcribe'
@@ -91,10 +91,10 @@ module.exports = React.createClass # rename to Classifier
     @setState showingTutorial: false
 
   toggleYaleTutorial: ->
-    if @state.yaleTutorial == 0
-      @setState({yaleTutorial: 1})
+    if @state.yaleTutorial == false
+      @setState({yaleTutorial: true})
     else
-      @setState({yaleTutorial: 0})
+      @setState({yaleTutorial: false})
 
   componentWillUnmount:->
     # PB: What's intended here? Docs state `void componentWillUnmount()`, so not sure what this serves:
