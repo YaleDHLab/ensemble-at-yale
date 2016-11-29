@@ -44,7 +44,7 @@ module.exports = React.createClass # rename to Classifier
     lightboxHelp:        false
     activeSubjectHelper: null
     subjectCurrentPage:  1
-    yaleTutorial:        1
+    yaleTutorial:        true
 
   componentWillReceiveProps: (new_props) ->
     @setState yaleTutorial: @showTutorialBasedOnUser(new_props.user)
@@ -97,12 +97,13 @@ module.exports = React.createClass # rename to Classifier
     @createAndCommitClassification(annotation)
 
   toggleYaleTutorial: ->
-    if @state.yaleTutorial == 0
-      @setState({yaleTutorial: 1})
+    if @state.yaleTutorial == false
+      @setState({yaleTutorial: true})
     else
       # store the fact that this user has completed the tutorial
       @props.onCloseTutorial()
-      @setState({yaleTutorial: 0})
+      @setState({yaleTutorial: false})
+    console.log(@state.yaleTutorial)
 
   # Handle user selecting a pick/drawing tool:
   handleDataFromTool: (d) ->
