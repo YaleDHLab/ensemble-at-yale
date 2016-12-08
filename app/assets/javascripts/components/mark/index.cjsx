@@ -270,7 +270,7 @@ module.exports = React.createClass # rename to Classifier
                           if @getCurrentSubject() == @getCurrentSubjectSet().subjects[@getCurrentSubjectSet().subjects.length-1]
                             <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectAssessment}>Next</button>
                           else
-                            <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectAssessment}>Next Playbill</button>
+                            <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectAssessment}>Next Program</button>
                         else
                           <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectSet}>Done</button>
                     }
@@ -284,7 +284,7 @@ module.exports = React.createClass # rename to Classifier
                       <BadSubjectButton class="bad-subject-button" label={"Bad " + @props.project.term('subject')} active={@state.badSubject} onClick={@toggleBadSubject} />
                     }
                     { if @state.badSubject
-                      <p>You&#39;ve marked this {@props.project.term('subject')} as BAD. Thanks for flagging the issue! <strong>Press DONE to continue.</strong></p>
+                      <p>Thanks for letting us know about the problem! <strong>Press DONE to continue.</strong></p>
                     }
                   </div>
                 </div>
