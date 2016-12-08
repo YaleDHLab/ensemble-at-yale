@@ -684,6 +684,10 @@ a.drama-era-group-link {
   font-family: Mallory;
 }
 
+.hide-buttons button {
+  display: none;
+}
+
 /**************************
 * Collection Select Boxes *
 **************************/
