@@ -406,10 +406,6 @@ a.drama-era-group-link {
 }
 
 .drama-era-image-container:hover .drama-era-image-overlay {
-  background: rgba(0, 0, 0, 0.75);
-}
-
-.drama-era-image-overlay:hover {
   background: #00356B;
 }
 
@@ -686,6 +682,10 @@ a.drama-era-group-link {
   margin-top: 8px;
   background: #679db8;
   font-family: Mallory;
+}
+
+.hide-buttons button {
+  display: none;
 }
 
 /**************************

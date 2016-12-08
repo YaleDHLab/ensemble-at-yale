@@ -1,6 +1,6 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-   def facebook
+  def facebook
     omniauth_hash = request.env["omniauth.auth"]
     facebook_email = omniauth_hash[:extra][:raw_info][:email]
 
