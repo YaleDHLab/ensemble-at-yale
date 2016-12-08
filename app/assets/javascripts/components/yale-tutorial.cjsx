@@ -18,8 +18,35 @@ module.exports = React.createClass
   updateCurrentPage: (newPage)->
     @setState({currentPage: newPage})
 
+  createHtml: (htmlString)->
+    return {__html: htmlString}
+
+  getPagination: ->
+    if @props.pages.length > 1
+      return (
+        <div className="help-modal-pagination">
+          <div className="help-pages-container"
+            style={{marginLeft: (0 - 10*@props.pages.length) + "px"}}>
+            {(<div className={
+              if page.pageNumber == @state.currentPage
+                "help-modal-page active"
+              else
+                "help-modal-page"
+              }
+              onClick={@updateCurrentPage.bind(this, page.pageNumber)}
+              key={idx} /> for page, idx in @props.pages)}
+          </div>
+        </div>
+      )
+
+  getClass: ->
+    if @props.pages.length > 1
+      return ""
+    else
+      return " hide-buttons"
+
   render:->
-    return <div className="yale-tutorial-modal">
+    return <div className={"yale-tutorial-modal" + @getClass()}>
         { if @props.displayed == true
             <DraggableModal ref="tutorialModal"
                 header={@props.header}
@@ -31,26 +58,14 @@ module.exports = React.createClass
                 closeTutorialClickHandler={@props.toggleYaleTutorial}
                 >
               <div className="help">
-                <div className="help-text">
-                  {@props.pages[@state.currentPage].text}
-                </div>
+                <div className="help-text"
+                   dangerouslySetInnerHTML={@createHtml(@props.pages[@state.currentPage].text)} />
                 <div className="help-modal-pagination-spacer" />
-                <div className="help-modal-pagination">
-                  <div className="help-pages-container"
-                    style={{marginLeft: (0 - 10*@props.pages.length) + "px"}}>
-                    {(<div className={
-                      if page.pageNumber == @state.currentPage
-                        "help-modal-page active"
-                      else
-                        "help-modal-page"
-                      }
-                      onClick={@updateCurrentPage.bind(this, page.pageNumber)}
-                      key={idx} /> for page, idx in @props.pages)}
-                  </div>
-                </div>
+                {@getPagination()}
               </div>
             </DraggableModal>
           else
             <div />
         }
     </div>
+
