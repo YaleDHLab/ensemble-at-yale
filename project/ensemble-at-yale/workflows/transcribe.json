@@ -11,6 +11,9 @@
    "tasks":{  
       "ey_title":{  
          "tool":"compositeTool",
+	 "help": {
+           "file": "transcribe_help"
+     	 },
          "tool_config":{  
             "tools":{  
                "ey_transcribed_title":{  
@@ -27,18 +30,30 @@
       },
       "ey_playwright":{  
          "tool":"textTool",
-         "tool_config":{},
+   	 "help": {
+           "file": "transcribe_help"
+     	 },
+         "tool_config":{  
+
+         },
          "instruction":"Type the author of the play.",
          "generates_subject_type":"ey_transcribed_playwright"
       },
       "ey_director":{  
          "tool":"textTool",
-         "tool_config":{},
+   	 "help": {
+           "file": "ey_director"
+     	 },
+         "tool_config":{  
+         },
          "instruction":"Type the director of the play.",
          "generates_subject_type":"ey_transcribed_director"
       },
       "ey_dates":{  
          "tool":"compositeTool",
+	 "help": {
+           "file": "ey_dates"
+     	 },
          "tool_config":{  
             "tools":{  
                "ey_transcribed_date_start":{  
@@ -62,6 +77,9 @@
       },
       "ey_actor_character":{  
          "tool":"compositeTool",
+	 "help": {
+           "file": "transcribe_help"
+     	 },
          "tool_config":{  
             "tools":{  
                "ey_ac_charactername":{  
@@ -87,10 +105,13 @@
                }
             }
          },
-         "instruction":"Type the name of the actor and the name of the character. For roles with multiple actors and only one character name, draw a box around each actor."
+         "instruction":"Type the name of the actor and the name of the character."
       },
       "ey_prod_staff":{  
          "tool":"compositeTool",
+	 "help": {
+           "file": "transcribe_help"
+     	 },
          "tool_config":{  
             "tools":{  
                "ey_ps_responsibility":{  
@@ -109,7 +130,7 @@
                }
             }
          },
-         "instruction":"Type the name of the person and responsibility they have. For roles with multiple people and only one description, draw a box around each person."
+         "instruction":"Type the name of the person and responsibility they have."
       }
    }
 }
