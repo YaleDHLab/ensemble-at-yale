@@ -34,7 +34,13 @@ def build_group_spreadsheets():
           written_by     = row[7].replace('"','')
           director       = row[8].replace('"','')
           location       = " ".join( row[9].replace('"','').split() )
+          non_theatrical = row[11]
+          multiplay      = row[12]
           group_key      = row[-1]
+
+          if (non_theatrical == "y" or multiplay == "y"):
+            print "skipping", group_key, "because it's non-theatrical or a multiplay"
+            continue
 
           # The group key is the reference to the group of subject sets
           # And the set key is the unique identifier for all pages of a
