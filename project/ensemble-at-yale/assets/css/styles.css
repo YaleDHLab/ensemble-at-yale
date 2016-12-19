@@ -902,8 +902,16 @@ select::-ms-expand {
 }
 
 #about-page h2 {
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: #00356B;
+  font-family: Mallory;
+    
+}
+
+#about-page p {
+  font-size: .925em;
+  color: #000000;
+  font-family: Mallory Light;
 }
 
 .about-page-container {
@@ -933,14 +941,6 @@ select::-ms-expand {
 
 .about-left {
   margin: 40px;
-  font-family: "Mallory Light";
-  color: #333333;
-  font-size: .825em;
-}
-
-.about-left h2 {
-  font-size: 1.25em;
-  color: #00356B;
 }
 
 .about-right-container {
