@@ -1,0 +1,1 @@
+Draw one rectangle around each staff member and their role in the production. 

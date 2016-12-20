@@ -12,29 +12,35 @@
    "tasks":{  
       "core_metadata":{  
          "tool":"pickOneMarkOne",
-         "instruction":"Draw one rectangle around the text that represents the title. Click the **DONE** box, then select another field to mark, until you have completed as many of these four fields as you can.",
+         "instruction":"Click on a tool below to mark fields that will subsequently be transcribed.",
          "generates_subjects":true,
          "tool_config":{  
             "displays_transcribe_button":true,
             "options":[  
-               {  
+               {
                   "type":"rectangleTool",
                   "label":"Title (and Subtitle)",
                   "color":"#FD953A",
-                  "generates_subject_type":"ey_title"
+                  "generates_subject_type":"ey_title",
+                  "help":{
+                     "file":"ey_title"
+                  }
                },
                {  
                   "type":"rectangleTool",
                   "label":"Playwright",
                   "color":"#98BA01",
-                  "generates_subject_type":"ey_playwright"
+                  "generates_subject_type":"ey_playwright",
+                  "help":{
+                     "file":"ey_playwright"
+                  }
                },
                {  
                   "type":"rectangleTool",
                   "label":"Director",
                   "color":"#1D7F9D",
                   "generates_subject_type":"ey_director",
-                  "help":{  
+                  "help":{
                      "file":"ey_director"
                   }
                },
@@ -43,58 +49,27 @@
                   "label":"Dates",
                   "color":"#2EC6EA",
                   "generates_subject_type":"ey_dates",
-                  "help":{  
+                  "help":{
                      "file":"ey_dates"
                   }
-               }
-            ]
-         },
-         "next_task":"determine_org"
-      },
-      "determine_org":{  
-         "tool":"pickOne",
-         "instruction":"According to the text in the program, which organization put on this play?",
-         "tool_config":{  
-            "options":{  
-               "yalerep":{  
-                  "label":"Yale Repertory Theatre"
                },
-               "school_drama":{  
-                  "label":"Yale School of Drama"
-               }
-            }
-         },
-         "next_task":"actors_roles"
-      },
-      "actors_roles":{  
-         "tool":"pickOneMarkOne",
-         "instruction":"Locate the cast listing for this play. Draw a box around each pairing of actor and role.  For roles with multiple actors and only one character name, draw a box around each actor.",
-         "generates_subjects":true,
-         "tool_config":{  
-            "displays_transcribe_button":true,
-            "options":[  
                {  
                   "type":"rectangleTool",
                   "label":"Actor and Role",
                   "color":"orange",
-                  "generates_subject_type":"ey_actor_character"
-               }
-            ]
-         },
-         "next_task":"prod_staff"
-      },
-      "prod_staff":{  
-         "tool":"pickOneMarkOne",
-         "instruction":"Draw a box around each pairing of production staff role (ex. &#x201C;sets by,&#x201D; &#x201C;costume design,&#x201D; &#x201C;fight director,&#x201D; &#x201C;translation by&#x201D;) and person with that responsibility.",
-         "generates_subjects":true,
-         "tool_config":{  
-            "displays_transcribe_button":true,
-            "options":[  
+                  "generates_subject_type":"ey_actor_character",
+                  "help":{
+                     "file":"ey_actor_character"
+                  }
+               },
                {  
                   "type":"rectangleTool",
-                  "label":"Staff and Role",
+                  "label":"Staff Member and Role",
                   "color":"purple",
-                  "generates_subject_type":"ey_prod_staff"
+                  "generates_subject_type":"ey_prod_staff",
+                  "help":{
+                     "file":"ey_prod_staff"
+                  }
                }
             ]
          },

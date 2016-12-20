@@ -1,1 +1,1 @@
-For opening and closing dates, use the date picker to choose the calendar dates of the first and last performances.
+Draw one rectangle around the opening and closing dates of this play. If the dates aren't printed on the playbill, proceed to the next tool below.
