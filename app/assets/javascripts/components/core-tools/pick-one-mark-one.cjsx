@@ -37,28 +37,14 @@ icons =
 module.exports = React.createClass
   displayName: 'PickOneMarkOne'
   statics:
-    # Summary: Summary
 
     getDefaultAnnotation: ->
       _toolIndex: 0
       value: []
 
   getDefaultProps: ->
-    # task: null
-    # annotation: null
     onChange: NOOP
 
-  componentDidMount: ->
-    # @setState subToolIndex: 0
-    # @handleChange 0
-    # @setSubToolIndex @props.annotation?.subToolIndex ? 0
-
-  componentWillReceiveProps: (new_props) ->
-    # if ! new_props.annotation?.subToolIndex
-      # @props.onChange? @state.annotation
-
-    # @state.annotation
-    # @handleChange 0
   componentWillUnmount:->
     @setState
       subToolIndex: 0
@@ -69,8 +55,6 @@ module.exports = React.createClass
   getInitialState: ->
     subToolIndex: 0 # @props.annotation?.subToolIndex ? 0
     tool: @props.task?.tool_config.options[0]
-
-    # annotation: $.extend({subToolIndex: null}, @props.annotation ? {})
 
   render: ->
     # Calculate number of existing marks for each tool instance:
@@ -87,40 +71,43 @@ module.exports = React.createClass
       # How many prev marks? (i.e. child_subjects with same generates_subject_type)
       count = counts["#{tool.generates_subject_type}-#{i}"] ? 0
       classes = ['answer']
+      containerClass = 'label-container'
       classes.push 'active' if i is @getSubToolIndex()
+      containerClass += ' active' if i is @getSubToolIndex()
       classes.push 'has-help' if tool.help && tool.generates_subject_type
 
-      <label
-        key={tool._key}
-        className="#{classes.join ' '}"
-        style={borderColor: tool.color}
-      >
-        <span
-          className="drawing-tool-icon"
-          style={color: tool.color}>{icons[tool.type]}
-        </span>{' '}
+      <div className={containerClass}>
+        <label
+          key={tool._key}
+          className="#{classes.join ' '}"
+          style={borderColor: tool.color}
+        >
+          <span
+            className="drawing-tool-icon"
+            style={color: tool.color}>{icons[tool.type]}
+          </span>{' '}
 
-        <input
-          type="radio"
-          className="drawing-tool-input"
-          checked={ i is @getSubToolIndex() }
-          ref={"inp-" + i}
-          tool={tool}
-          onChange={ @handleChange.bind this, i }
-        />
+          <input
+            type="radio"
+            className="drawing-tool-input"
+            checked={ i is @getSubToolIndex() }
+            ref={"inp-" + i}
+            tool={tool}
+            onChange={ @handleChange.bind this, i }
+          />
 
-        <span>
-          {tool.label}
-          {if count
-            <span className="count">{count}</span>
-          }
-        </span>
-
+          <span>
+            {tool.label}
+            {if count
+              <span className="count">{count}</span>
+            }
+          </span>
+        </label>
         {if tool.help && tool.generates_subject_type
-          <span className="help" onClick={@props.onSubjectHelp.bind null, tool.generates_subject_type}><i className="fa fa-question"></i></span>
+          <div className="mark-step-help">{tool.help.body}</div>
         }
 
-      </label>
+      </div>
 
     # tools = null if tools.length == 1
 

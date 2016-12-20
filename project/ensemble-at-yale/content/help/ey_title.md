@@ -1,0 +1,1 @@
+Draw one rectangle around the title of the play, then click "Playwright" to proceed.
