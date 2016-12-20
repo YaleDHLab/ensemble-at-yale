@@ -38,7 +38,7 @@ module.exports = React.createClass
         className="mark-tool mark-button"
         transform=
           "
-            translate(#{@props.position.x},#{@props.position.y})
+            translate(#{@props.position.x},#{@props.position.y + 2})
             scale(#{1 / @props.tool.props.xScale}, #{1 / @props.tool.props.yScale})
           "
       >
