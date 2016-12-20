@@ -19,6 +19,7 @@ YaleTutorial            = require '../yale-tutorial'
 YaleMarkTutorialText    = require '../tutorial-text/yale-mark-tutorial-text'
 BooleanToggle           = require './tools/boolean-toggle/boolean-toggle'
 Classification          = require 'models/classification.coffee'
+MarkOrTranscribeModal   = require '../mark-or-transcribe-modal'
 
 module.exports = React.createClass # rename to Classifier
   displayName: 'Mark'
@@ -49,6 +50,7 @@ module.exports = React.createClass # rename to Classifier
     yaleTutorial:        true
     markingIsDone:       0
     showNavButtons:      0
+    nextTaskModal:       0
 
   componentWillReceiveProps: (new_props) ->
     @setState yaleTutorial: @showTutorialBasedOnUser(new_props.user)
@@ -192,8 +194,9 @@ module.exports = React.createClass # rename to Classifier
   # playbill. Once this action is called, we check to see the current state of two toggles. First
   # check if the user has reported that this is a bad playbill, and if so, send a POST request with
   # that information. Then check if the user has indicated the playbill has been fully marked, and
-  # either way, send a POST request with that data.
-  completeThisSubjectSetAndGetAnother: () ->
+  # either way, send a POST request with that data. Then prompt the user with a modal asking if 
+  # they want to transcribe this playbill or mark another
+  completeThisSubjectSetThenMarkOrTranscribe: () ->
     # create and post an annotation that indicates the current state of the boolean toggle
     classification = new Classification()
 
@@ -213,12 +216,15 @@ module.exports = React.createClass # rename to Classifier
         classification.annotation = {value: "incomplete_subject"}
 
     @commitClassification(classification)
-    @advanceToNextSubject()
 
     # after submitting the completion_assessment_task, ensure the boolean toggle
     # that indicates whether the user has marked everything is marked as "No"
-    @setState(markingIsDone: 0)
+    # and show the modal so the user can advance to the next task
+    @setState(markingIsDone: 0, nextTaskModal: 1)
 
+  hideNextTaskModal: () ->
+    @setState
+      nextTaskModal: 0
 
   updateBooleanToggle: () ->
     if @state.markingIsDone == 0
@@ -335,16 +341,11 @@ module.exports = React.createClass # rename to Classifier
                     }
                   </div>
 
-                  <a className="transcribe-this-playbill-button"
-                      href={"/#/transcribe?subject_set_id=" + @state.subjectSets[@state.subject_set_index].subjects[0].subject_set_id}>
-                    <div className="major-button">Transcribe this program</div>
-                  </a>
-
                   <div className="boolean-toggle-container">
                     <div className="prompt">Is marking complete for this program?</div>
                     <BooleanToggle clickHandler={@updateBooleanToggle} active={@state.markingIsDone} />
                   </div>
-                  <div className="complete-this-playbill-button major-button" onClick={@completeThisSubjectSetAndGetAnother}>Submit</div>
+                  <div className="complete-this-playbill-button major-button" onClick={@completeThisSubjectSetThenMarkOrTranscribe}>Submit</div>
                 </div>
               </div>
           }
@@ -411,6 +412,11 @@ module.exports = React.createClass # rename to Classifier
           for tool, i in @getCurrentTask().tool_config.options
             if tool.help && tool.generates_subject_type && @state.activeSubjectHelper == tool.generates_subject_type
               <HelpModal key={i} help={tool.help} onDone={@hideSubjectHelp} />
+      }
+
+      {
+        if @state.nextTaskModal == 1
+          <MarkOrTranscribeModal onClick={@hideNextTaskModal} subjectSetId={@getCurrentSubjectSet().id} />
       }
 
     </div>
