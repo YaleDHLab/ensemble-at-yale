@@ -63,6 +63,10 @@ body {
   background-color: #1A1A1A;
 }
 
+.react-wrapper {
+  background-color: #1A1A1A;
+}
+
 /*********
 * Navbar *
 *********/
@@ -888,7 +892,6 @@ select::-ms-expand {
   background-color: #1A1A1A !important;
 }
 
-/* About page */
 #about-page {
   padding: 60px 80px;
   background: #1A1A1A;
@@ -1000,6 +1003,7 @@ select::-ms-expand {
   border-radius: 0px;
   font-family: "Mallory Light";
   font-size: .825em;
+  height: 85vh;
 }
 
 .help-modal, .draggable-modal {
@@ -1010,7 +1014,7 @@ select::-ms-expand {
   background: #69A7C7;
   font-weight: 500;
   letter-spacing: 1px;
-  font-family: Mallory;
+  font-family: Mallory Light;
   padding-top: 8px;
 }
 
@@ -1087,6 +1091,15 @@ select::-ms-expand {
   left: 50%;
 }
 
+.classifier .right-column {
+  width: 290px;
+  padding-right: 0px;
+}
+
+.classifier .right-column .task-area .task-container {
+  width: 290px;
+}
+
 .classifier .right-column .task-area .task-secondary-area {
   display: none;
 }
@@ -1116,6 +1129,14 @@ rect.shape {
   fill: none;
 }
 
+.marking-surface .rectangle-tool .resize-button {
+  r: 6;
+}
+
+.rectangle-tool polyline {
+  cursor: move;
+}
+
 .workflow-task .drawing-tool-icon {
   margin-right: 12px;
 }
@@ -1130,6 +1151,7 @@ rect.shape {
   font-size: 13px;
   font-family: Mallory;
   color: #746F73;
+  margin: 4px 0;
 }
 
 .classifier .right-column .task-area .workflow-task .answer.active {
@@ -1139,11 +1161,7 @@ rect.shape {
 
 .classifier .right-column .task-area.mark {
   padding: 20px 0;
-  width: 100%;
-}
-
-.classifier .right-column .task-area .task-container {
-  width: 260px;
+  width: inherit;
 }
 
 .workflow-task {
@@ -1156,6 +1174,7 @@ rect.shape {
 
 .classifier .right-column .task-area .task-nav {
   margin: 0 20px;
+  width: inherit;
 }
 
 .task-button-container {
@@ -1197,7 +1216,7 @@ span.help {
 }
 
 .toggle-help-button img {
-  margin-left: 214px;
+  margin-left: 243px;
 }
 
 .task-area.transcribe {
@@ -1207,6 +1226,11 @@ span.help {
 .right-column .small-button.ghost {
   border: 2px solid #69A7C7;
   color: #69A7C7;
+}
+
+/* Hide the default Scribe help button to avoid duplicating fields */
+button.small-button.help-button.ghost.minor-button {
+  display: none;
 }
 
 .subject-set-toolbar {
@@ -1234,6 +1258,21 @@ span.help {
 .light-box-area ul li.active,
 .light-box-area ul li:hover {
   border-width: 2px;
+}
+
+.mark-step-help {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.85s;
+}
+
+.label-container.active .mark-step-help {
+  max-height: 200px;
+}
+
+.complete-this-playbill-button.major-button {
+  margin: 20px;
+  width: 210px;
 }
 
 /***
@@ -1274,6 +1313,107 @@ span.help {
 
 .subject-set-toolbar-links a.active:after {
   display: none;
+}
+
+/***
+* Mark page boolean toggle
+***/
+
+.boolean-toggle-container {
+  margin: 20px 20px 0;
+}
+
+.boolean-toggle-container .prompt {
+  width: 140px;
+  display: inline-block;
+}
+
+.boolean-toggle {
+  display: inline-block;
+  top: -8px;
+  position: relative;
+}
+
+.boolean-toggle .track {
+  width: 60px;
+  height: 22px;
+  background: #e22929;
+  border-radius: 10px;
+}
+
+.boolean-toggle .knob {
+  height: 24px;
+  width: 24px;
+  background: #fff;
+  top: -2px;
+  position: relative;
+  border-radius: 15px;
+  border: 1px solid #737373;
+  cursor: pointer;
+  left: -1px;
+}
+
+.boolean-toggle .label {
+  color: #fff;
+  font-weight: 800;
+  position: relative;
+  left: 29px;
+  top: 4px;
+}
+
+.boolean-toggle.active .track {
+  background: green;
+}
+
+.boolean-toggle.active .knob {
+  left: 36px;
+}
+
+.boolean-toggle.active .label {
+  left: -28px;
+}
+
+
+/***
+* Mark or transcribe modal
+***/
+
+.mark-or-transcribe-modal-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.mark-or-transcribe-modal {
+  width: 600px;
+  margin: 10% auto;
+  background: #fff;
+  color: #000;
+  padding: 40px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.mark-or-transcribe-modal .greeting {
+  margin-bottom: 14px;
+}
+
+a.transcribe-this-playbill-button {
+  width: 273px;
+  height: 31px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+a.transcribe-this-playbill-button .major-button {
+  padding: 8px 0 6px;
+  width: 100%;
+}
+
+.mark-or-transcribe-modal .major-button {
+  letter-spacing: .02em;
 }
 
 /***
@@ -1318,6 +1458,9 @@ span.help {
 
 .draggable-modal .modal-body {
   overflow: hidden;
+}
+
+.transcribe-tool .modal-body {
   margin-right: 40px;
 }
 

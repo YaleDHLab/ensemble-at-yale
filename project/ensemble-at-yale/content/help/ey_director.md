@@ -1,4 +1,1 @@
-In early plays, the director was sometimes indicated as:
-
-* Staged by
-* Produced by
+Draw one rectangle around the director of this playbill. Note that in early plays, the director was sometimes indicated as "Staged by" or "Produced by". If the director's name isn't printed on the playbill, proceed to the next tool.
