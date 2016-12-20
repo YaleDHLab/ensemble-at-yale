@@ -189,20 +189,13 @@ module.exports = React.createClass # rename to Classifier
       activeSubjectHelper: null
 
   # This method should be called when users click a button that indicates they're done with this
-  # playbill. Once this action is called, we check to see the current state of the boolean toggle
-  # that indicates whether the user has marked all fields in this subject set. If they have,
-  # we send the server a POST request with an annotation task_key "completion_assessment_task"
-  # (i.e. the annotation task that indicates whether a subject set has been fully marked by the user)
-  # with a value of "complete_subject". If the user did not indicate they've marked every field
-  # in this record, the POST request indicates the user has not marked everything
+  # playbill. Once this action is called, we check to see the current state of two toggles. First
+  # check if the user has reported that this is a bad playbill, and if so, send a POST request with
+  # that information. Then check if the user has indicated the playbill has been fully marked, and
+  # either way, send a POST request with that data.
   completeThisSubjectSetAndGetAnother: () ->
     # create and post an annotation that indicates the current state of the boolean toggle
     classification = new Classification()
-
-    if @state.markingIsDone == 1
-      classification.annotation = {value: "complete_subject"}
-    else
-      classification.annotation = {value: "incomplete_subject"}
 
     classification.subject_id = @getCurrentSubject()?.id
     classification.subject_set_id = @getCurrentSubjectSet().id if @getCurrentSubjectSet()?
@@ -213,6 +206,11 @@ module.exports = React.createClass # rename to Classifier
       classification.task_key = 'flag_illegible_subject_task'
     else
       classification.task_key = "completion_assessment_task"
+
+      if @state.markingIsDone == 1
+        classification.annotation = {value: "complete_subject"}
+      else
+        classification.annotation = {value: "incomplete_subject"}
 
     @commitClassification(classification)
     @advanceToNextSubject()
@@ -333,7 +331,7 @@ module.exports = React.createClass # rename to Classifier
                       <BadSubjectButton class="bad-subject-button" label={"Bad " + @props.project.term('subject')} active={@state.badSubject} onClick={@toggleBadSubject} />
                     }
                     { if @state.badSubject
-                      <p>Thanks for letting us know about the problem! <strong>Press DONE to continue.</strong></p>
+                      <p>Thanks for letting us know about the problem! Click SUBMIT to continue.</p>
                     }
                   </div>
 
