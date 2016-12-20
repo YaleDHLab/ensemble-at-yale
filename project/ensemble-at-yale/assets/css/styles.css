@@ -1130,7 +1130,7 @@ rect.shape {
 }
 
 .marking-surface .rectangle-tool .resize-button {
-  r: 7;
+  r: 6;
 }
 
 .rectangle-tool polyline {

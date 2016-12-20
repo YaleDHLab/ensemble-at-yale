@@ -23,7 +23,7 @@ module.exports = React.createClass
   render: ->
 
     transform = "
-      translate(#{@props.x}, #{@props.y})
+      translate(#{@props.x + 6}, #{@props.y})
       rotate(#{@props.rotate})
       scale(#{1 / @props.scale}, #{1 / @props.scale})
     "
