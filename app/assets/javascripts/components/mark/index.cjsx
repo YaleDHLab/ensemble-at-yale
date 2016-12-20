@@ -17,6 +17,8 @@ Draggable               = require 'lib/draggable'
 {Link}                  = require 'react-router'
 YaleTutorial            = require '../yale-tutorial'
 YaleMarkTutorialText    = require '../tutorial-text/yale-mark-tutorial-text'
+BooleanToggle           = require './tools/boolean-toggle/boolean-toggle'
+Classification          = require 'models/classification.coffee'
 
 module.exports = React.createClass # rename to Classifier
   displayName: 'Mark'
@@ -45,6 +47,8 @@ module.exports = React.createClass # rename to Classifier
     activeSubjectHelper: null
     subjectCurrentPage:  1
     yaleTutorial:        true
+    markingIsDone:       0
+    showNavButtons:      0
 
   componentWillReceiveProps: (new_props) ->
     @setState yaleTutorial: @showTutorialBasedOnUser(new_props.user)
@@ -103,7 +107,6 @@ module.exports = React.createClass # rename to Classifier
       # store the fact that this user has completed the tutorial
       @props.onCloseTutorial()
       @setState({yaleTutorial: false})
-    console.log(@state.yaleTutorial)
 
   # Handle user selecting a pick/drawing tool:
   handleDataFromTool: (d) ->
@@ -185,6 +188,49 @@ module.exports = React.createClass # rename to Classifier
     @setState
       activeSubjectHelper: null
 
+  # This method should be called when users click a button that indicates they're done with this
+  # playbill. Once this action is called, we check to see the current state of the boolean toggle
+  # that indicates whether the user has marked all fields in this subject set. If they have,
+  # we send the server a POST request with an annotation task_key "completion_assessment_task"
+  # (i.e. the annotation task that indicates whether a subject set has been fully marked by the user)
+  # with a value of "complete_subject". If the user did not indicate they've marked every field
+  # in this record, the POST request indicates the user has not marked everything
+  completeThisSubjectSetAndGetAnother: () ->
+    # create and post an annotation that indicates the current state of the boolean toggle
+    classification = new Classification()
+
+    if @state.markingIsDone == 1
+      classification.annotation = {value: "complete_subject"}
+    else
+      classification.annotation = {value: "incomplete_subject"}
+
+    classification.subject_id = @getCurrentSubject()?.id
+    classification.subject_set_id = @getCurrentSubjectSet().id if @getCurrentSubjectSet()?
+    classification.workflow_id = @getActiveWorkflow().id
+    if @state.badSubject
+      classification.task_key = 'flag_bad_subject_task'
+    else if @state.illegibleSubject
+      classification.task_key = 'flag_illegible_subject_task'
+    else
+      classification.task_key = "completion_assessment_task"
+
+    @commitClassification(classification)
+    @advanceToNextSubject()
+
+    # after submitting the completion_assessment_task, ensure the boolean toggle
+    # that indicates whether the user has marked everything is marked as "No"
+    @setState(markingIsDone: 0)
+
+
+  updateBooleanToggle: () ->
+    if @state.markingIsDone == 0
+      @setState
+        markingIsDone: 1
+
+    else
+      @setState
+        markingIsDone: 0
+
   render: ->
     return null unless @getCurrentSubjectSet()? && @getActiveWorkflow()?
 
@@ -259,22 +305,25 @@ module.exports = React.createClass # rename to Classifier
                 />
 
                 <div className="task-button-container">
-                  <nav className="task-nav">
-                    { if false
-                      <button type="button" className="back minor-button" disabled={onFirstAnnotation} onClick={@destroyCurrentAnnotation}>Back</button>
-                    }
-                    { if @getNextTask() and @state.badSubject != true?
-                        <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@advanceToNextTask}>Next</button>
-                      else
-                        if @state.taskKey == "completion_assessment_task"
-                          if @getCurrentSubject() == @getCurrentSubjectSet().subjects[@getCurrentSubjectSet().subjects.length-1]
-                            <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectAssessment}>Next</button>
-                          else
-                            <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectAssessment}>Next Program</button>
+
+                  { if @state.showNavButtons == 1
+                    <nav className="task-nav">
+                      { if false
+                        <button type="button" className="back minor-button" disabled={onFirstAnnotation} onClick={@destroyCurrentAnnotation}>Back</button>
+                      }
+                      { if @getNextTask() and @state.badSubject != true?
+                          <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@advanceToNextTask}>Next</button>
                         else
-                          <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectSet}>Done</button>
-                    }
-                  </nav>
+                          if @state.taskKey == "completion_assessment_task"
+                            if @getCurrentSubject() == @getCurrentSubjectSet().subjects[@getCurrentSubjectSet().subjects.length-1]
+                              <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectAssessment}>Next</button>
+                            else
+                              <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectAssessment}>Next Program</button>
+                          else
+                            <button type="button" className="continue major-button" disabled={waitingForAnswer} onClick={@completeSubjectSet}>Done</button>
+                      }
+                    </nav>
+                  }
 
                   <div className="help-bad-subject-holder">
                     { if @getCurrentTask().help?
@@ -287,6 +336,17 @@ module.exports = React.createClass # rename to Classifier
                       <p>Thanks for letting us know about the problem! <strong>Press DONE to continue.</strong></p>
                     }
                   </div>
+
+                  <a className="transcribe-this-playbill-button"
+                      href={"/#/transcribe?subject_set_id=" + @state.subjectSets[@state.subject_set_index].subjects[0].subject_set_id}>
+                    <div className="major-button">Transcribe this program</div>
+                  </a>
+
+                  <div className="boolean-toggle-container">
+                    <div className="prompt">Is marking complete for this program?</div>
+                    <BooleanToggle clickHandler={@updateBooleanToggle} active={@state.markingIsDone} />
+                  </div>
+                  <div className="complete-this-playbill-button major-button" onClick={@completeThisSubjectSetAndGetAnother}>Submit</div>
                 </div>
               </div>
           }
@@ -352,7 +412,7 @@ module.exports = React.createClass # rename to Classifier
         if @getCurrentTask()?
           for tool, i in @getCurrentTask().tool_config.options
             if tool.help && tool.generates_subject_type && @state.activeSubjectHelper == tool.generates_subject_type
-              <HelpModal help={tool.help} onDone={@hideSubjectHelp} />
+              <HelpModal key={i} help={tool.help} onDone={@hideSubjectHelp} />
       }
 
     </div>
