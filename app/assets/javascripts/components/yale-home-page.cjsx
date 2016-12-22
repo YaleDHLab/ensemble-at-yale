@@ -54,46 +54,46 @@ HomePage = React.createClass
 
   updateImage: ->
     # first make the foreground and the background the same
-    try
-      self = this
-      currentBackgroundIndex = @state.backgroundImageIndex
-      currentBackgroundPosition = @state.backgroundImagePosition
-      nextIndexPosition = (currentBackgroundIndex+1) % 5
-      nextBackgroundPosition = @state.backgroundPositions[nextIndexPosition]
 
+    self = this
+    currentBackgroundIndex = @state.backgroundImageIndex
+    currentBackgroundPosition = @state.backgroundImagePosition
+    nextIndexPosition = (currentBackgroundIndex+1) % 5
+    nextBackgroundPosition = @state.backgroundPositions[nextIndexPosition]
+
+    try
       @setState({
         foregroundImageIndex: currentBackgroundIndex,
         backgroundImageIndex: currentBackgroundIndex,
         foregroundImagePosition: currentBackgroundPosition,
         backgroundImagePosition: currentBackgroundPosition
       })
-
-      # then remove opacity from the background image
-      setTimeout ( ->
-        self.setState({
-          backgroundImageOpacity: 0
-        })
-      ), 500
-
-      # next set the background image to the next image to display
-      setTimeout ( ->
-        self.setState({
-          backgroundImageIndex: nextIndexPosition,
-          backgroundImagePosition: nextBackgroundPosition
-        })
-      ), 2000
-
-      # then fade the new background into view
-      setTimeout ( ->
-        self.setState({
-          backgroundImageOpacity: 1
-        })
-      ), 4000
-
-      # then place the next update cycle on the call stack
-      self.requestImageUpdate()
     catch e
 
+    # then remove opacity from the background image
+    setTimeout ( ->
+      self.setState({
+        backgroundImageOpacity: 0
+      })
+    ), 500
+
+    # next set the background image to the next image to display
+    setTimeout ( ->
+      self.setState({
+        backgroundImageIndex: nextIndexPosition,
+        backgroundImagePosition: nextBackgroundPosition
+      })
+    ), 2000
+
+    # then fade the new background into view
+    setTimeout ( ->
+      self.setState({
+        backgroundImageOpacity: 1
+      })
+    ), 4000
+
+    # then place the next update cycle on the call stack
+    self.requestImageUpdate()
 
   render:->
     <div className="home-page">
