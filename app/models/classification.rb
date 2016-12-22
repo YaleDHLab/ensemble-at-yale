@@ -38,6 +38,8 @@ class Classification
   """
 
   def update_subject_set_mark_transcribe_counts
+
+    # first handle the case of user indicating there's nothing left to mark
     if self["task_key"] == "completion_assessment_task"
       annotation_value = self["annotation"]["value"]
 
@@ -54,9 +56,11 @@ class Classification
         subject_set.inc(nothing_left_to_mark: 1)
 
         # then check to see if this subject set should be retired
-        self.check_if_subject_set_should_be_retired(subject_set_id)
+        self.should_subject_set_be_retired_from_mark(subject_set_id)
       end
     end
+
+    # otherwise handle the case of a user annotating a record (if appropriate)
   end
 
   """
@@ -65,13 +69,23 @@ class Classification
   is nothing left to mark.
   """
 
-  def check_if_subject_set_should_be_retired(subject_set_id)
+  def should_subject_set_be_retired_from_mark(subject_set_id)
     minimum_votes_to_retire = 3
     subject_set = SubjectSet.where('_id' => subject_set_id).entries.first
     votes_to_retire = subject_set.nothing_left_to_mark
     if votes_to_retire >= minimum_votes_to_retire
-      subject_set.update_attributes(:retired => 1)
+      subject_set.update_attributes(:retired_from_mark => 1)
+      self.retire_subject_set_first_page_from_mark(subject_set_id)
     end
+  end
+
+  # retire a subject set first page record from the mark workflow;
+  # this information is only used in the group browser page, in order
+  # to hide the "Mark" button from records that have been retired from
+  # the mark workflow
+  def retire_subject_set_first_page_from_mark(subject_set_id)
+    subject_set_first_page = SubjectSetFirstPage.where('subject_set_id' => subject_set_id).entries.first
+    subject_set_first_page.update_attributes(:retired_from_mark => 1)
   end
 
   def generate_new_subjects
