@@ -76,12 +76,14 @@ module.exports = React.createClass
 
   # Register given zoom/pan state and notify parent
   _changed: (zoom) ->
-    @setState zoom: zoom, () =>
-      w = @props.subject.width / @state.zoom.level
-      h = @props.subject.height / @state.zoom.level
-      x = @props.subject.width * @state.zoom.x
-      y = @props.subject.height * @state.zoom.y
-      @props.onChange? [ x, y, w, h ]
+    try
+      @setState zoom: zoom, () =>
+        w = @props.subject.width / @state.zoom.level
+        h = @props.subject.height / @state.zoom.level
+        x = @props.subject.width * @state.zoom.x
+        y = @props.subject.height * @state.zoom.y
+        @props.onChange? [ x, y, w, h ]
+    catch e
 
   # Compute next value for either x or y given pan direction
   _computeNewPanValue: (dir) ->
