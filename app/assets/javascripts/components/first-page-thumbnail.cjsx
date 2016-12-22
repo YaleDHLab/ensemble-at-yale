@@ -15,9 +15,15 @@ module.exports = React.createClass
       <img src={@props.page_json.thumbnail} 
            className='group-page-image-thumbnail' />
       <div className='collection-thumbnail-button-container' >
-        <a href={@getHref('mark')}>
-          <div className='collection-thumbnail-mark'>MARK</div>
-        </a>
+        {
+          if @props.page_json.retired_from_mark != 1
+            <a href={@getHref('mark')}>
+              <div className='collection-thumbnail-mark'>MARK</div>
+            </a>
+          else
+            <div className='collection-thumbnail-mark thumbnail-retired-from-mark'>MARKED!</div>
+        }
+
         <a href={@getHref('transcribe')}>
           <div className='collection-thumbnail-transcribe'>TRANSCRIBE</div>
         </a>
