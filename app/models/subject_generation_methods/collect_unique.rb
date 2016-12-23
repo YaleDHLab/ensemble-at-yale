@@ -7,8 +7,11 @@ module SubjectGenerationMethods
       atts = subject_attributes_from_classification(classification)
       atts[:status] = 'inactive'
 
+      # if this is the transcribe workflow and both generates_subjects_after and
+      # retire_limit are set to 1 in the workflow/transcribe.json config file,
+      # one gets 500's when posting the first transcription for a mark...
       classification.child_subject = Subject.find_or_initialize_by(workflow: atts[:workflow], parent_subject: atts[:parent_subject], type: atts[:type])
-      classification.save
+      classification.save!
 
       ann = classification.annotation.except(:key, :tool, :generates_subject_type)
 
