@@ -545,15 +545,13 @@ a.drama-era-group-link {
   position: absolute;
   left: 60px;
   background: #fff;
-  font-family: "Mallory Light";
+  font-family: Mallory Light;
   color: #333333;
-  font-size: .825em;
+  font-size: .85em;
+  font-weight: 600;
 }
 
 .collection-browse-controls-content {
-  font-size: .85em;
-  font-family: Arial;
-  color: #787878;
   margin: 28px;
 }
 
@@ -578,7 +576,7 @@ a.drama-era-group-link {
 }
 
 .collection-question-mark-inner {
-  padding: 3px 6px;
+  padding: 2px 8px;
   color: #fff;
   font-weight: 800;
 }
@@ -658,7 +656,7 @@ a.drama-era-group-link {
 **************************/
 
 .collection-mark-transcribe-container {
-  background: #e6e6e6;
+  background: #EDF6FA;
   padding: 30px;
 }
 
@@ -669,23 +667,24 @@ a.drama-era-group-link {
 .collection-button {
   border-radius: 4px;
   text-align: center;
-  padding: 9px;
+  padding: 10px;
   color: #fff;
+  background: #679db8;
+  font-family: Mallory;
+  letter-spacing: 1px;
+  font-size: 1.1em;
+}
+
+.collection-button:hover {
+  background: #31627E;
 }
 
 .collection-button.transcribe-button a {
   text-decoration: none !important;
 }
 
-.mark-button {
-  background: #2f5a6f;
-  font-family: Mallory;
-}
-
 .transcribe-button {
   margin-top: 8px;
-  background: #679db8;
-  font-family: Mallory;
 }
 
 .hide-buttons button {
@@ -714,11 +713,12 @@ a.drama-era-group-link {
 .custom-select select {
   background: transparent;
   border: none;
-  font-size: 14px;
+  font-size: 13px;
   height: 29px;
   padding: 5px;
   width: 260px;
   margin: 0px;
+  margin-left: 8px;
   color: #656565;
   cursor: pointer;
   padding-right: 41px;
@@ -1015,8 +1015,9 @@ select::-ms-expand {
 
 .classifier .right-column .task-area.mark {
   border-radius: 0px;
-  font-family: "Mallory Light";
-  font-size: .825em;
+  font-family: Mallory Light;
+  font-weight: 600;
+  font-size: .85em;
   height: 85vh;
 }
 
@@ -1064,7 +1065,8 @@ select::-ms-expand {
   font-size: 1em;
   line-height: 1.4em;
   overflow: visible;
-  font-family: Mallory;
+  font-family: Mallory Light;
+  font-weight: 600;
 }
 
 .close-modal {
@@ -1127,7 +1129,6 @@ select::-ms-expand {
   font-weight: 400;
   font-family: Mallory;
   letter-spacing: 0.25px;
-  padding: .5em 1em 0.3em 1em;
 }
 
 .classifier .right-column .task-area .help-bad-subject-holder {
@@ -1287,6 +1288,7 @@ button.small-button.help-button.ghost.minor-button {
 .complete-this-playbill-button.major-button {
   margin: 20px;
   width: 210px;
+  font-family: Mallory;
 }
 
 /***
@@ -1372,7 +1374,7 @@ button.small-button.help-button.ghost.minor-button {
   font-weight: 800;
   position: relative;
   left: 29px;
-  top: 4px;
+  top: 3px;
 }
 
 .boolean-toggle.active .track {
@@ -1437,6 +1439,8 @@ a.transcribe-this-playbill-button .major-button {
 .transcribe-tool .small-button {
   padding: 0.45em 1em;
   margin: 0 4px;
+  font-family: Mallory;
+  letter-spacing: .5px;
 }
 
 .transcribe-tool .minor-button.ghost, .small-button.ghost {
