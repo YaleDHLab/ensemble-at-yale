@@ -66,6 +66,7 @@ module.exports = React.createClass # rename to Classifier
   componentWillMount: ->
     @setState taskKey: @getActiveWorkflow().first_task
     @beginClassification()
+    console.log("mount")
 
   componentDidMount: ->
     @getCompletionAssessmentTask()
@@ -220,11 +221,12 @@ module.exports = React.createClass # rename to Classifier
     # after submitting the completion_assessment_task, ensure the boolean toggle
     # that indicates whether the user has marked everything is marked as "No"
     # and show the modal so the user can advance to the next task
-    @setState(markingIsDone: 0, nextTaskModal: 1)
+    @setState(nextTaskModal: 1)
 
   hideNextTaskModal: () ->
     @setState
       nextTaskModal: 0
+      markingIsDone: 0
 
   updateBooleanToggle: () ->
     if @state.markingIsDone == 0
