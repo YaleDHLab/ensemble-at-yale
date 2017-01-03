@@ -831,11 +831,19 @@ select::-ms-expand {
   height: 100%;
   max-height: 100%;
   position: absolute;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
 }
 
 /********************************
 * Collection Thumbnail Overlays *
 ********************************/
+
+.collection-thumbnail {
+  font-size: 0.9em;
+}
 
 .collection-thumbnail-button-container {
   position: absolute;
@@ -844,9 +852,9 @@ select::-ms-expand {
 .collection-thumbnail-mark,
 .collection-thumbnail-transcribe {
   position: absolute;
-  width: 109px;
+  width: 116px;
   height: 14px;
-  padding: 7px;
+  padding: 6px 0 8px 0;
   margin-left: 10px;
   background: #679db8;
   color: #fff;
@@ -870,6 +878,12 @@ select::-ms-expand {
 
 .collection-thumbnail-transcribe {
   margin-top: 100px;
+}
+
+.collection-thumbnail-mark.retired-from-workflow,
+.collection-thumbnail-transcribe.retired-from-workflow {
+  background: #2f5a6f;
+  cursor: default;
 }
 
 /*************
@@ -905,8 +919,16 @@ select::-ms-expand {
 }
 
 #about-page h2 {
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: #00356B;
+  font-family: Mallory;
+    
+}
+
+#about-page p {
+  font-size: .925em;
+  color: #000000;
+  font-family: Mallory Light;
 }
 
 .about-page-container {
@@ -936,14 +958,6 @@ select::-ms-expand {
 
 .about-left {
   margin: 40px;
-  font-family: "Mallory Light";
-  color: #333333;
-  font-size: .825em;
-}
-
-.about-left h2 {
-  font-size: 1.25em;
-  color: #00356B;
 }
 
 .about-right-container {
