@@ -98,12 +98,14 @@ module.exports = React.createClass
       img = new Image()
       img.src = url
       img.onload = =>
-        @setState
-          url: url
-          loading: false
-          scale: @getScale(), () =>
-            @updateDimensions()
-            @scrollToSubject()
+        try
+          @setState
+            url: url
+            loading: false
+            scale: @getScale(), () =>
+              @updateDimensions()
+              @scrollToSubject()
+        catch e
 
   # VARIOUS EVENT HANDLERS
 

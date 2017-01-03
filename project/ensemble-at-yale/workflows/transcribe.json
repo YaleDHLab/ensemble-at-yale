@@ -1,136 +1,136 @@
-{  
-   "name":"transcribe",
-   "label":"Transcribe Workflow",
-   "subject_fetch_limit":"50",
-   "retire_limit":30,
-   "generates_subjects":true,
-   "generates_subjects_for":"verify",
-   "generates_subjects_after":3,
-   "generates_subjects_max":10,
-   "generates_subjects_method":"collect-unique",
-   "tasks":{  
-      "ey_title":{  
-         "tool":"compositeTool",
-	 "help": {
-           "file": "transcribe_help"
-     	 },
-         "tool_config":{  
-            "tools":{  
-               "ey_transcribed_title":{  
-                  "tool":"textTool",
-                  "label":"Title"
-               },
-               "ey_transcribed_subtitle":{  
-                  "tool":"textTool",
-                  "label":"Subtitle (Optional)"
-               }
-            }
-         },
-         "instruction":"Type the title of the play."
-      },
-      "ey_playwright":{  
-         "tool":"textTool",
-   	 "help": {
-           "file": "transcribe_help"
-     	 },
-         "tool_config":{  
-
-         },
-         "instruction":"Type the author of the play.",
-         "generates_subject_type":"ey_transcribed_playwright"
-      },
-      "ey_director":{  
-         "tool":"textTool",
-   	 "help": {
-           "file": "ey_director"
-     	 },
-         "tool_config":{  
-         },
-         "instruction":"Type the director of the play.",
-         "generates_subject_type":"ey_transcribed_director"
-      },
-      "ey_dates":{  
-         "tool":"compositeTool",
-	 "help": {
-           "file": "ey_dates"
-     	 },
-         "tool_config":{  
-            "tools":{  
-               "ey_transcribed_date_start":{  
-                  "tool":"dateTool",
-                  "tool_config":{ 
-	                  "minimum" : "1924-01-01",
-	                  "maximum" : "2013-01-01",
-	                  "range" : true,
-	                  "allow_approximate": true 
-                  },
-                  "label":"Opening Date"
-               },
-               "ey_transcribed_date_stop":{  
-                  "tool":"dateTool",
-                  "tool_config":{},
-                  "label":"Closing Date"
-               }
-            }
-         },
-         "instruction":"Indicate the opening and closing date of the play."
-      },
-      "ey_actor_character":{  
-         "tool":"compositeTool",
-	 "help": {
-           "file": "transcribe_help"
-     	 },
-         "tool_config":{  
-            "tools":{  
-               "ey_ac_charactername":{  
-                  "tool":"textTool",
-                  "tool_config":{  
-
-                  },
-                  "label":"Character"
-               },
-               "ey_ac_characterdesc":{  
-                  "tool":"textTool",
-                  "tool_config":{  
-
-                  },
-                  "label":"Character Description (Optional)"
-               },
-               "ey_ac_actor":{  
-                  "tool":"textTool",
-                  "tool_config":{  
-
-                  },
-                  "label":"Actor"
-               }
-            }
-         },
-         "instruction":"Type the name of the actor and the name of the character."
-      },
-      "ey_prod_staff":{  
-         "tool":"compositeTool",
-	 "help": {
-           "file": "transcribe_help"
-     	 },
-         "tool_config":{  
-            "tools":{  
-               "ey_ps_responsibility":{  
-                  "tool":"textTool",
-                  "tool_config":{  
-
-                  },
-                  "label":"Responsibility"
-               },
-               "ey_ps_person":{  
-                  "tool":"textTool",
-                  "tool_config":{  
-
-                  },
-                  "label":"Person"
-               }
-            }
-         },
-         "instruction":"Type the name of the person and responsibility they have."
+{
+ "name": "transcribe",
+ "label": "Transcribe Workflow",
+ "subject_fetch_limit": 10,
+ "generates_subjects": true,
+ "generates_subjects_for": "verify",
+ "generates_subjects_after": 1,
+ "retire_limit": 1,
+ "generates_subjects_max": 10,
+ "generates_subjects_method": "most-popular",
+ "generates_subjects_agreement": 0.75,
+ "tasks": {
+  "ey_title": {
+    "tool": "compositeTool",
+    "help": {
+      "file": "transcribe_help"
+    },
+    "tool_config": {
+      "tools": {
+        "ey_transcribed_title": {
+          "tool": "textTool",
+          "label": "Title"
+        },
+        "ey_transcribed_subtitle": {
+          "tool": "textTool",
+          "label": "Subtitle (Optional)"
+        }
       }
-   }
+    },
+    "instruction": "Type the title of the play."
+  },
+  "ey_playwright": {
+    "tool": "textTool",
+    "help": {
+      "file": "transcribe_help"
+    },
+    "tool_config": {
+
+    },
+    "instruction": "Type the author of the play.",
+    "generates_subject_type": "ey_transcribed_playwright"
+  },
+  "ey_director": {
+    "tool": "textTool",
+    "help": {
+      "file": "ey_director"
+    },
+    "tool_config": {},
+    "instruction": "Type the director of the play.",
+    "generates_subject_type": "ey_transcribed_director"
+  },
+  "ey_dates": {
+    "tool": "compositeTool",
+    "help": {
+      "file": "ey_dates"
+    },
+    "tool_config": {
+      "tools": {
+        "ey_transcribed_date_start": {
+          "tool": "dateTool",
+          "tool_config": {
+            "minimum": "1924-01-01",
+            "maximum": "2013-01-01",
+            "range": true,
+            "allow_approximate": true
+          },
+          "label": "Opening Date"
+        },
+        "ey_transcribed_date_stop": {
+          "tool": "dateTool",
+          "tool_config": {},
+          "label": "Closing Date"
+        }
+      }
+    },
+    "instruction": "Indicate the opening and closing date of the play."
+  },
+  "ey_actor_character": {
+    "tool": "compositeTool",
+    "help": {
+      "file": "transcribe_help"
+    },
+    "tool_config": {
+      "tools": {
+        "ey_ac_charactername": {
+          "tool": "textTool",
+          "tool_config": {
+
+          },
+          "label": "Character"
+        },
+        "ey_ac_characterdesc": {
+          "tool": "textTool",
+          "tool_config": {
+
+          },
+          "label": "Character Description (Optional)"
+        },
+        "ey_ac_actor": {
+          "tool": "textTool",
+          "tool_config": {
+
+          },
+          "label": "Actor"
+        }
+      }
+    },
+    "instruction": "Type the name of the actor and the name of the character."
+  },
+  "ey_prod_staff": {
+    "tool": "compositeTool",
+    "help": {
+      "file": "transcribe_help"
+    },
+    "tool_config": {
+      "tools": {
+        "ey_ps_responsibility": {
+          "tool": "textTool",
+          "tool_config": {
+
+          },
+          "label": "Responsibility"
+        },
+        "ey_ps_person": {
+          "tool": "textTool",
+          "tool_config": {
+
+          },
+          "label": "Person"
+        }
+      }
+    },
+    "instruction": "Type the name of the person and responsibility they have."
+  }
+ }
 }

@@ -89,9 +89,14 @@ module.exports =
       # If this is the interim mark to hide, hide it:
       if m.interim_id == interim_mark.interim_id
         m.show = false
-        @setState interimMarks: interimMarks
-        # We found it, move on:
-        break
+
+        # if this component isn't mounted when the callback fires, catch
+        # the warning that springs
+        try
+          @setState interimMarks: interimMarks
+          # We found it, move on:
+          break
+        catch e
 
   # used to commit task-level classifications, i.e. not from marking tools
   commitCurrentClassification: () ->
