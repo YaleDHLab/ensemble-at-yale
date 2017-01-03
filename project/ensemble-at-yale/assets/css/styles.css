@@ -1169,8 +1169,8 @@ rect.shape {
 }
 
 .classifier .right-column .task-area .workflow-task .answer.active {
-  background: #D4E0E6;
-  color: #273D61;
+  background: #C4E4F5;
+  color: #1D7F9D;
 }
 
 .classifier .right-column .task-area.mark {
@@ -1193,7 +1193,7 @@ rect.shape {
 
 .task-button-container {
   padding: 20px 0px;
-  background: #EBEBEB;
+  background: #EDF6FA;
 }
 
 .classifier .right-column .task-area .help-bad-subject-holder {
@@ -1222,7 +1222,7 @@ span.help {
 }
 
 .classifier .right-column .task-area .workflow-task .answer:hover {
-  background: #afcad8;
+  background: #69A7C7;
 }
 
 .toggle-help-button {
@@ -1282,6 +1282,8 @@ button.small-button.help-button.ghost.minor-button {
 
 .label-container.active .mark-step-help {
   max-height: 200px;
+  padding-bottom: 12px;
+  padding-top: 4px;
 }
 
 .complete-this-playbill-button.major-button {
@@ -1351,7 +1353,7 @@ button.small-button.help-button.ghost.minor-button {
 .boolean-toggle .track {
   width: 60px;
   height: 22px;
-  background: #e22929;
+  background: #bcbcbc;
   border-radius: 10px;
 }
 
@@ -1362,7 +1364,7 @@ button.small-button.help-button.ghost.minor-button {
   top: -2px;
   position: relative;
   border-radius: 15px;
-  border: 1px solid #737373;
+  border: 1px solid #cccccc;
   cursor: pointer;
   left: -1px;
 }
@@ -1376,7 +1378,7 @@ button.small-button.help-button.ghost.minor-button {
 }
 
 .boolean-toggle.active .track {
-  background: green;
+  background: #A2D530;
 }
 
 .boolean-toggle.active .knob {
