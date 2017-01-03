@@ -35,43 +35,79 @@ class Classification
   workflow. If so, fetch the subject set to which the annotated subject belongs,
   increment the number of times users have completed the Mark stage for this subject set,
   and then check to see if this subject set should be retired.
+
+  If the annotation is a transcription of a marked field, check if this annotation
+  retires its given mark. If so, check if the subject is retired from marking. If so,
+  check if all of the subject set's marks are retired. If so, retire the given subject
+  set from the transcription workflow and change the subject set's status to retired
   """
 
   def update_subject_set_mark_transcribe_counts
-    if self["task_key"] == "completion_assessment_task"
-      annotation_value = self["annotation"]["value"]
 
-      # annotation is either "complete_subject" or "incomplete_subject"
-      if annotation_value == "complete_subject"
+    # first handle the case of user indicating there's nothing left to mark
+    workflow = Workflow.find(self.workflow_id)
 
-        # if the user indicated this subject is complete, increment
-        # the number of times users have indicated there's nothing
-        # left to mark
-        subject_id = self.subject_id
-        subject = Subject.where('_id' => subject_id).entries.first
-        subject_set_id = subject.subject_set_id
-        subject_set = SubjectSet.where('_id' => subject_set_id).entries.first
-        subject_set.inc(nothing_left_to_mark: 1)
+    if workflow.name == "mark"
+      if self["task_key"] == "completion_assessment_task"
+        annotation_value = self["annotation"]["value"]
 
-        # then check to see if this subject set should be retired
-        self.check_if_subject_set_should_be_retired(subject_set_id)
+        # annotation is either "complete_subject" or "incomplete_subject"
+        if annotation_value == "complete_subject"
+
+          # if the user indicated this subject is complete, increment
+          # the number of times users have indicated there's nothing
+          # left to mark
+          subject = Subject.find(self.subject_id)
+          subject_set = SubjectSet.find(subject.subject_set_id)
+          subject_set.inc(nothing_left_to_mark: 1)
+
+          # then check to see if this subject set should be retired
+          self.should_subject_set_be_retired_from_mark(subject.subject_set_id)
+        end
+      end
+
+    # if this a transcription, check first if the subject is retired from marking
+    elsif workflow.name == "transcribe"
+      subject = Subject.find(self.subject_id)
+      subject_set = SubjectSet.find(subject.subject_set_id)
+      if subject_set.retired_from_mark == 1
+
+        # check if there are any active subjects (aside from the root). If so,
+        # this subject set can't be retired from transcription, else it can
+        active_subjects = Subject.where(:subject_set_id => subject.subject_set_id).where(:type.nin => ["root", nil]).where(:status => "active").entries.length
+
+        # the root subject will always still be active
+        if active_subjects == 0
+          subject_set.update_attributes(:retired_from_transcribe => 1)
+          self.retire_subject_set_first_page_from_transcribe(subject.subject_set_id)
+        end
       end
     end
+
   end
 
-  """
-  Check to see if the current subject set should be retired. To do so,
-  check to see if the minimum number of users have indicated that there
-  is nothing left to mark.
-  """
-
-  def check_if_subject_set_should_be_retired(subject_set_id)
+  def should_subject_set_be_retired_from_mark(subject_set_id)
     minimum_votes_to_retire = 3
     subject_set = SubjectSet.where('_id' => subject_set_id).entries.first
     votes_to_retire = subject_set.nothing_left_to_mark
     if votes_to_retire >= minimum_votes_to_retire
-      subject_set.update_attributes(:retired => 1)
+      subject_set.update_attributes(:retired_from_mark => 1)
+      self.retire_subject_set_first_page_from_mark(subject_set_id)
     end
+  end
+
+  # retire a subject set first page record from the mark workflow;
+  # this information is only used in the group browser page, in order
+  # to hide the "Mark" button from records that have been retired from
+  # the mark workflow
+  def retire_subject_set_first_page_from_mark(subject_set_id)
+    subject_set_first_page = SubjectSetFirstPage.where(:subject_set_id => subject_set_id).entries.first
+    subject_set_first_page.update_attributes(:retired_from_mark => 1)
+  end
+
+  def retire_subject_set_first_page_from_transcribe(subject_set_id)
+    subject_set_first_page = SubjectSetFirstPage.where(:subject_set_id => subject_set_id).entries.first
+    subject_set_first_page.update_attributes(:retired_from_transcribe => 1)
   end
 
   def generate_new_subjects
