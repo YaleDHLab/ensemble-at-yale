@@ -21,11 +21,17 @@ module.exports = React.createClass
               <div className='collection-thumbnail-mark'>MARK</div>
             </a>
           else
-            <div className='collection-thumbnail-mark thumbnail-retired-from-mark'>MARKED!</div>
+            <div className='collection-thumbnail-mark retired-from-workflow'>MARKED!</div>
         }
 
-        <a href={@getHref('transcribe')}>
-          <div className='collection-thumbnail-transcribe'>TRANSCRIBE</div>
-        </a>
+        {
+          if @props.page_json.retired_from_transcribe != 1
+            <a href={@getHref('transcribe')}>
+              <div className='collection-thumbnail-transcribe'>TRANSCRIBE</div>
+            </a>
+          else
+            <div className='collection-thumbnail-transcribe retired-from-workflow'>TRANSCRIBED!</div>
+        }
+
       </div>
     </div>
