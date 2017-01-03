@@ -831,11 +831,19 @@ select::-ms-expand {
   height: 100%;
   max-height: 100%;
   position: absolute;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
 }
 
 /********************************
 * Collection Thumbnail Overlays *
 ********************************/
+
+.collection-thumbnail {
+  font-size: 0.9em;
+}
 
 .collection-thumbnail-button-container {
   position: absolute;
@@ -844,9 +852,9 @@ select::-ms-expand {
 .collection-thumbnail-mark,
 .collection-thumbnail-transcribe {
   position: absolute;
-  width: 109px;
+  width: 116px;
   height: 14px;
-  padding: 7px;
+  padding: 6px 0 8px 0;
   margin-left: 10px;
   background: #679db8;
   color: #fff;
@@ -870,6 +878,12 @@ select::-ms-expand {
 
 .collection-thumbnail-transcribe {
   margin-top: 100px;
+}
+
+.collection-thumbnail-mark.retired-from-workflow,
+.collection-thumbnail-transcribe.retired-from-workflow {
+  background: #2f5a6f;
+  cursor: default;
 }
 
 /*************
