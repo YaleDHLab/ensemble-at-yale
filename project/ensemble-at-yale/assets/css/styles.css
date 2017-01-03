@@ -1192,16 +1192,24 @@ rect.shape {
 }
 
 .task-button-container {
-  padding: 20px 0px;
-  background: #EBEBEB;
+  padding: 30px 0px;
+  background: #EDF6FA;
 }
 
 .classifier .right-column .task-area .help-bad-subject-holder {
-  margin: 0px 20px;
+  margin: -5px 20px 20px;
+}
+
+.classifier .right-column .task-area .help-bad-subject-holder .small-button.ghost {
+  background: url(/assets/flag-an-issue-symbol.png);
+  border: 2px solid #CAC7CE;
+  color: #939393;
+  background-repeat: no-repeat;
+  background-position: 95%;
 }
 
 .classifier .right-column .task-area .workflow-task {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 
 .classifier .right-column .task-area .workflow-task .answer .help {
@@ -1285,7 +1293,7 @@ button.small-button.help-button.ghost.minor-button {
 }
 
 .complete-this-playbill-button.major-button {
-  margin: 20px;
+  margin: 15px 20px 0;
   width: 210px;
 }
 
@@ -1334,7 +1342,7 @@ button.small-button.help-button.ghost.minor-button {
 ***/
 
 .boolean-toggle-container {
-  margin: 20px 20px 0;
+  margin: 0 20px;
 }
 
 .boolean-toggle-container .prompt {
@@ -1376,7 +1384,7 @@ button.small-button.help-button.ghost.minor-button {
 }
 
 .boolean-toggle.active .track {
-  background: green;
+  background: #A2D530;
 }
 
 .boolean-toggle.active .knob {
