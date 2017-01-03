@@ -115,8 +115,23 @@ GroupPage = React.createClass
   initializeFirstPageArray: ->
     # iterate over all first pages to display and build the view
     first_pages_view = []
+    marked = []
+    transcribed = []
     for page_json, index in @state.all_first_pages
-      first_pages_view.push <FirstPageThumbnail page_json={page_json} key={index} />
+      if page_json.retired_from_mark == 1
+        marked.push page_json
+      else
+        if page_json.retired_from_transcribe == 1
+          transcribed.push page_json
+        else
+          first_pages_view.push <FirstPageThumbnail page_json={page_json} key={index} />
+
+    for page_json, index in marked
+      first_pages_view.push <FirstPageThumbnail page_json={page_json} key={"marked-" + index} />
+
+    for page_json, index in transcribed
+      first_pages_view.push <FirstPageThumbnail page_json={page_json} key={"marked-" + index} />
+
     @setState
       first_page_array: first_pages_view
 

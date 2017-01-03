@@ -220,11 +220,12 @@ module.exports = React.createClass # rename to Classifier
     # after submitting the completion_assessment_task, ensure the boolean toggle
     # that indicates whether the user has marked everything is marked as "No"
     # and show the modal so the user can advance to the next task
-    @setState(markingIsDone: 0, nextTaskModal: 1)
+    @setState(nextTaskModal: 1)
 
   hideNextTaskModal: () ->
     @setState
       nextTaskModal: 0
+      markingIsDone: 0
 
   updateBooleanToggle: () ->
     if @state.markingIsDone == 0
@@ -308,6 +309,18 @@ module.exports = React.createClass # rename to Classifier
                   subject={@getCurrentSubject()}
                 />
 
+                <div className="help-bad-subject-holder">
+                  { if @getCurrentTask().help?
+                    <HelpButton onClick={@toggleHelp} label="" className="task-help-button" />
+                  }
+                  { if onFirstAnnotation
+                    <BadSubjectButton class="bad-subject-button" label={"Flag an issue"} active={@state.badSubject} onClick={@toggleBadSubject} />
+                  }
+                  { if @state.badSubject
+                    <p>Thanks for letting us know about the problem! Click SUBMIT to continue.</p>
+                  }
+                </div>
+
                 <div className="task-button-container">
 
                   { if @state.showNavButtons == 1
@@ -328,18 +341,6 @@ module.exports = React.createClass # rename to Classifier
                       }
                     </nav>
                   }
-
-                  <div className="help-bad-subject-holder">
-                    { if @getCurrentTask().help?
-                      <HelpButton onClick={@toggleHelp} label="" className="task-help-button" />
-                    }
-                    { if onFirstAnnotation
-                      <BadSubjectButton class="bad-subject-button" label={"Bad " + @props.project.term('subject')} active={@state.badSubject} onClick={@toggleBadSubject} />
-                    }
-                    { if @state.badSubject
-                      <p>Thanks for letting us know about the problem! Click SUBMIT to continue.</p>
-                    }
-                  </div>
 
                   <div className="boolean-toggle-container">
                     <div className="prompt">Is marking complete for this program?</div>
