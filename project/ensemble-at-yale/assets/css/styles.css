@@ -354,33 +354,33 @@ a.drama-era-group-link {
 }
 
 .drama-era-hover-image-0 {
-  background-image: url("/assets/1-eclipsed.jpg");
-  background-position: 50% 65%;
+  background-image: url("/assets/7-DivineComedy.jpg");
+  background-position: 50% 55%;
 }
 
 .drama-era-hover-image-1 {
-  background-image: url("/assets/2-Baltimore.jpg");
-  background-position: 50% 35%;
-}
-
-.drama-era-hover-image-2 {
-  background-image: url("/assets/3-piano.jpg");
-  background-position: 50% 15%;
-}
-
-.drama-era-hover-image-3 {
-  background-image: url("/assets/4-bacchae.jpg");
-  background-position: 50% 35%;
-}
-
-.drama-era-hover-image-4 {
   background-image: url("/assets/5-booth.jpg");
   background-position: 50% 35%;
 }
 
+.drama-era-hover-image-2 {
+  background-image: url("/assets/4-bacchae.jpg");
+  background-position: 50% 35%;
+}
+
+.drama-era-hover-image-3 {
+  background-image: url("/assets/3-piano.jpg");
+  background-position: 50% 15%;
+}
+
+.drama-era-hover-image-4 {
+  background-image: url("/assets/2-Baltimore.jpg");
+  background-position: 50% 35%;
+}
+
 .drama-era-hover-image-5 {
-  background-image: url("/assets/7-DivineComedy.jpg");
-  background-position: 50% 55%;
+  background-image: url("/assets/1-eclipsed.jpg");
+  background-position: 50% 65%;
 }
 
 .drama-era-group-link {
