@@ -66,7 +66,6 @@ module.exports = React.createClass # rename to Classifier
   componentWillMount: ->
     @setState taskKey: @getActiveWorkflow().first_task
     @beginClassification()
-    console.log("mount")
 
   componentDidMount: ->
     @getCompletionAssessmentTask()
