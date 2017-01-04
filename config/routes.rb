@@ -14,6 +14,7 @@ API::Application.routes.draw do
 
   get '/current_user',                                        to: "users#logged_in_user"
   post '/tutorial_complete',                                  to: "users#tutorial_complete"
+  post '/save_requested_route',                               to: "users#save_requested_route"
   
   get '/projects/stats',                                      to: 'projects#stats'
 
