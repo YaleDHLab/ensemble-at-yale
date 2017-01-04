@@ -9,7 +9,7 @@ Transcribe    = require './transcribe'
 Verify        = require './verify'
 GroupPage     = require './group-page'
 GroupBrowser  = require './group-browser'
-AboutPage     = require './yale-about-page'
+AboxutPage    = require './yale-about-page'
 YaleLogin     = require './yale-login'
 
 Project       = require 'models/project.coffee'
@@ -59,7 +59,7 @@ class AppRouter
   runRoutes: (project) ->
     self = this
     routes =
-      <Route name="root" path="/" handler={App} onLogin={@userLoggedIn}>
+      <Route name="root" path="/" handler={App} >
 
         <Redirect from="_=_" to="/" />
 
