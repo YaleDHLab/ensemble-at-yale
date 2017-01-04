@@ -1,17 +1,18 @@
 React = require("react")
 App         = require './app'
 Router      = require 'react-router'
-{Handler, Root, RouteHandler, Route, DefaultRoute, Redirect, Navigation, Link} = Router
+{Handler, Root, RouteHandler, Route, DefaultRoute, Redirect, Navigation, Link, Transition} = Router
 
-HomePage                      = require './yale-home-page'
-Mark                          = require './mark'
-Transcribe                    = require './transcribe'
-Verify                        = require './verify'
-GroupPage                     = require './group-page'
-GroupBrowser                  = require './group-browser'
-AboutPage                     = require './yale-about-page'
+HomePage      = require './yale-home-page'
+Mark          = require './mark'
+Transcribe    = require './transcribe'
+Verify        = require './verify'
+GroupPage     = require './group-page'
+GroupBrowser  = require './group-browser'
+AboutPage     = require './yale-about-page'
+YaleLogin     = require './yale-login'
 
-Project                       = require 'models/project.coffee'
+Project       = require 'models/project.coffee'
 
 class AppRouter
   constructor: ->
@@ -19,9 +20,46 @@ class AppRouter
       window.project = new Project(result[0])
       @runRoutes window.project
 
+  saveRequestedRoute: (requestedRoute) ->
+    $.post "/save_requested_route",
+      requested_route: "/#" + requestedRoute
+      (data) ->
+        response = data
+        # pass
+
+  # function to check if the current route is restricted, and if so, to redirect
+  # users to a login route
+  checkForAuthentication: (Handler, state) ->
+    self = this
+    # check if the requested route is protected
+    if state.pathname in ["/mark", "/transcribe"]
+
+      # check if the current user is logged in
+      request = $.getJSON "/current_user"
+
+      request.done (result) =>
+        if result?.data
+          user = result.data
+          if user.guest == true
+
+            self.saveRequestedRoute(state.path)
+
+            # note: React Router v13.x is now unsupported, and github docs are not comprehensive
+            # but one can array the properties of the route handler with:
+            # console.log(Object.getOwnPropertyNames(Handler))
+            # and from there consult /node-modules/react-router/umd/ReactRouter.js to find
+            # the object method of interest
+
+            # Handler.transitionTo(routeToGoTo, {the: params}, {the: query})
+            Handler.transitionTo('/login', {})
+        else
+          self.saveRequestedRoute(state.path)
+          Handler.transitionTo('/login', {})
+
   runRoutes: (project) ->
+    self = this
     routes =
-      <Route name="root" path="/" handler={App}>
+      <Route name="root" path="/" handler={App} onLogin={@userLoggedIn}>
 
         <Redirect from="_=_" to="/" />
 
@@ -93,27 +131,22 @@ class AppRouter
           handler={GroupPage}
           name='group_show'
         />
-
+        <Route
+          path='login'
+          handler={YaleLogin}
+          name='yale-login'
+        />
 
         <DefaultRoute name="home-default" handler={HomePage} />
       </Route>
 
     Router.run routes, (Handler, state) ->
+      self.checkForAuthentication(Handler, state)
       React.render <Handler />, document.body
 
   controllerForPage: (page) ->
     React.createClass
       displayName: "#{page.name}Page"
-
-      componentWillMount:->
-        # pattern = new RegExp('^(field_guide#(.*))')
-        # selectedID = pattern.match("#{window.location.hash}")
-        # if selectedID
-        #   $('.selected-content').removeClass("selected-content")
-
-        #   $("div#" + selectedID).addClass("selected-content"))
-        #   $("a#" + selectedID).addClass("selected-content"))
-
 
       componentDidMount: ->
         pattern = new RegExp('#/[A-z]*#(.*)')
