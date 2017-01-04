@@ -66,10 +66,10 @@ App = React.createClass
   checkFooter: ->
     hash = window.location.hash
     location = hash.search(/mark/gi)
-    if location == -1
-      @setState({showFooter: 1})
-    else
+    if location != -1 or hash == "#/login"
       @setState({showFooter: 0})
+    else
+      @setState({showFooter: 1})
 
   render: ->
     project = window.project
