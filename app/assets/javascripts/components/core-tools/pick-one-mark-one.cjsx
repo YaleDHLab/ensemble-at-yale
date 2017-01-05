@@ -60,18 +60,22 @@ module.exports = React.createClass
     # Calculate number of existing marks for each tool instance:
     counts = {}
     for subject in @props.subject.child_subjects
-      # Append tool index to type just in case generates_subject_type is duplicated:
-      k = "#{subject.type}-#{subject.data.subToolIndex}"
-      counts[k] ?= 0
-      counts[k] += 1 unless subject.user_has_deleted
+      # only consider those marks that the current user created
+      if subject.belongs_to_user == true
+
+        # Append tool index to type just in case generates_subject_type is duplicated:
+        k = "#{subject.type}-#{subject.data.subToolIndex}"
+        counts[k] ?= 0
+        counts[k] += 1 unless subject.user_has_deleted
 
     tools = for tool, i in @props.task.tool_config.options
-      tool._key ?= Math.random()
+      tool._key ?= i
 
       # How many prev marks? (i.e. child_subjects with same generates_subject_type)
       count = counts["#{tool.generates_subject_type}-#{i}"] ? 0
       classes = ['answer']
       containerClass = 'label-container'
+      containerClass += ' marked' if count
       classes.push 'active' if i is @getSubToolIndex()
       containerClass += ' active' if i is @getSubToolIndex()
       classes.push 'has-help' if tool.help && tool.generates_subject_type
@@ -99,7 +103,7 @@ module.exports = React.createClass
           <span>
             {tool.label}
             {if count
-              <span className="count">{count}</span>
+              <span className="marked-task-symbol"></span>
             }
           </span>
         </label>
