@@ -9,7 +9,7 @@ Transcribe    = require './transcribe'
 Verify        = require './verify'
 GroupPage     = require './group-page'
 GroupBrowser  = require './group-browser'
-AboxutPage    = require './yale-about-page'
+AboutPage    = require './yale-about-page'
 YaleLogin     = require './yale-login'
 
 Project       = require 'models/project.coffee'
