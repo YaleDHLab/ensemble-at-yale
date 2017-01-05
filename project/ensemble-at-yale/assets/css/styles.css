@@ -1257,13 +1257,35 @@ rect.shape {
   height: 1.9em;
 }
 
-.classifier .right-column .task-area .task-nav {
-  margin: 0 20px;
+.classifier .right-column .task-area .workflow-task .answer {
+  background: #EBEBEB;
+  font-weight: 400;
+  font-size: 13px;
+  font-family: Mallory;
+  color: #746F73;
+  margin: 4px 0;
+}
+
+.classifier .right-column .task-area .workflow-task .answer.active {
+  background: #C4E4F5;
+  color: #1D7F9D;
+}
+
+.classifier .right-column .task-area.mark {
+  padding: 20px 0;
   width: inherit;
 }
 
+.workflow-task {
+  padding: 0 20px;
+}
+
+.answers {
+  margin-top: 25px;
+}
+
 .task-button-container {
-  padding: 30px 0px;
+  padding: 20px 0px;
   background: #EDF6FA;
 }
 
@@ -1277,6 +1299,27 @@ rect.shape {
   color: #939393;
   background-repeat: no-repeat;
   background-position: 95%;
+}
+
+.classifier .right-column .task-area .workflow-task .answer .help {
+  height: 16px;
+  width: 0px;
+  background: #fff;
+  border-radius: 16px;
+  color: #000;
+}
+
+span.help {
+  margin: 5px;
+}
+
+.answer .fa {
+  margin-left: -4px;
+  margin-top: 0px;
+}
+
+.classifier .right-column .task-area .workflow-task .answer:hover {
+  background: #69A7C7;
 }
 
 .toggle-help-button {
@@ -1374,6 +1417,8 @@ span.help {
 
 .label-container.active .mark-step-help {
   max-height: 200px;
+  padding-bottom: 12px;
+  padding-top: 4px;
 }
 
 .label-container.marked label {}
@@ -1476,7 +1521,7 @@ span.help {
 .boolean-toggle .track {
   width: 60px;
   height: 22px;
-  background: #e22929;
+  background: #bcbcbc;
   border-radius: 10px;
 }
 
@@ -1487,7 +1532,7 @@ span.help {
   top: -2px;
   position: relative;
   border-radius: 15px;
-  border: 1px solid #737373;
+  border: 1px solid #cccccc;
   cursor: pointer;
   left: -1px;
 }
