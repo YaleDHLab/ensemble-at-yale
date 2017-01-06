@@ -9,7 +9,6 @@ module.exports = React.createClass
         <div className="hero-overlay-title">Welcome</div>
         <div className="hero-overlay-text">To begin marking and transcribing programs, please log in to your prefered account</div>
         <a href="/users/auth/cas" className="hero-overlay-button">Yale Login</a>
-        <a href="mailto:lindsay.king@yale.edu?Subject=Ensemble%20Login" target="_top" className="hero-overlay-button-help">Can't access your account?</a>
         <div className="hero-login-buttons">
           <a href="/users/auth/facebook" className="hero-login-button hero-login-facebook">
             <div className="hero-login-facebook-icon" />
