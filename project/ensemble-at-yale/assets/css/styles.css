@@ -225,7 +225,8 @@ body {
   background-position: 50% 40%;
 }
 
-.home-page .hero-overlay-container {
+.home-page .hero-overlay-container,
+.login-page .hero-overlay-container {
   position: absolute;
   color: #fff;
   background: rgba(31, 31, 60, 0.8);
@@ -237,14 +238,16 @@ body {
   z-index: 2;
 }
 
-.home-page .hero-overlay-title {
+.home-page .hero-overlay-title,
+.login-page .hero-overlay-title {
   font-family: YaleNew;
   font-size: 1.35em;
   font-weight: 300;
   line-height: 1.25em;
 }
 
-.home-page .hero-overlay-text {
+.home-page .hero-overlay-text,
+.login-page .hero-overlay-text {
   margin: 20px 0;
   font-weight: 100;
   letter-spacing: .02em;
@@ -253,7 +256,8 @@ body {
   line-height: 1.4em;
 }
 
-.home-page .hero-overlay-button {
+.home-page .hero-overlay-button,
+.login-page .hero-overlay-button {
   background: #69A7C7;
   width: 76%;
   position: relative;
@@ -268,17 +272,109 @@ body {
   font-weight: 500;
 }
 
-.home-page .hero-overlay-button:hover {
+.home-page .hero-overlay-button:hover,
+.login-page .hero-overlay-button:hover {
   background: #6085a0;
 }
 
-.home-page .hero-overlay-container {
+.home-page .hero-overlay-container,
+.login-page .hero-overlay-container {
   background: rgba(26,26,26,.8);
 }
 
 .home-page .hero-overlay-container a {
   text-decoration: none;
   color: #fff;
+}
+
+
+/***
+* Login page
+***/
+
+.login-page {
+  background: url(/assets/2012-WintersTale.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 80px);
+  overflow: hidden;
+}
+
+.login-page .hero-overlay-title {
+  font-size: 30px;
+}
+
+.login-page .hero-overlay-text {
+  font-size: 15px;
+}
+
+.login-page .hero-overlay-button {
+  width: 250px;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #fff;
+  display: block;
+  text-decoration: none;
+}
+
+.login-page a.hero-overlay-button-help {
+  color: #789BB6;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+.login-page .hero-login-buttons {
+  margin-top: 30px;
+}
+
+.login-page .hero-login-button {
+  height: 30px;
+  width: 80px;
+  display: block;
+  float: left;
+  margin: 0 5px;
+}
+
+.login-page .hero-login-facebook {
+  background: #445D95;
+}
+
+.login-page .hero-login-facebook-icon {
+  background: url(/assets/facebook-login-button.png);
+  background-position: 50% 50%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.login-page .hero-login-google {
+  background: #11A7E1;
+}
+
+.login-page .hero-login-google-icon {
+  background: url(/assets/google-login-button.png);
+  background-position: 50% 50%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.login-page .hero-login-twitter {
+  background: #CA4639;
+}
+
+.login-page .hero-login-twitter-icon {
+  background: url(/assets/twitter-login-button.png);
+  background-position: 50% 50%;
+  height: 100%;
+  background-repeat: no-repeat;
 }
 
 /********************
@@ -291,7 +387,7 @@ body {
 }
 
 .group-area-wrapper {
-  margin: 80px 0 60px 40px;
+  margin: 80px 0 35px 40px;
   width: 1200px;
   display: inline-block;
 }
@@ -430,6 +526,7 @@ a.drama-era-group-link {
 }
 
 .footer-container {
+  padding-top: 25px;
   position: relative;
   width: 100%;
   background-color: #1A1A1A;
@@ -581,6 +678,7 @@ a.drama-era-group-link {
   padding: 2px 8px;
   color: #fff;
   font-weight: 800;
+  text-align: center;
 }
 
 .collection-range-slider {
@@ -1162,33 +1260,6 @@ rect.shape {
   height: 1.9em;
 }
 
-.classifier .right-column .task-area .workflow-task .answer {
-  background: #EBEBEB;
-  font-weight: 400;
-  font-size: 13px;
-  font-family: Mallory;
-  color: #746F73;
-  margin: 4px 0;
-}
-
-.classifier .right-column .task-area .workflow-task .answer.active {
-  background: #D4E0E6;
-  color: #273D61;
-}
-
-.classifier .right-column .task-area.mark {
-  padding: 20px 0;
-  width: inherit;
-}
-
-.workflow-task {
-  padding: 0 20px;
-}
-
-.answers {
-  margin-top: 25px;
-}
-
 .classifier .right-column .task-area .task-nav {
   margin: 0 20px;
   width: inherit;
@@ -1291,8 +1362,82 @@ button.small-button.help-button.ghost.minor-button {
   transition: max-height 0.85s;
 }
 
+.complete-this-playbill-button.major-button {
+  margin: 15px 20px 0;
+  width: 210px;
+}
+
+/***
+* Mark step task labels
+***/
+
+.classifier .right-column .task-area .workflow-task {
+  margin-bottom: 0px;
+}
+
+.classifier .right-column .task-area .workflow-task .answer .help {
+  height: 16px;
+  width: 0px;
+  background: #fff;
+  border-radius: 16px;
+  color: #000;
+}
+
+span.help {
+  margin: 5px;
+}
+
+.label-container.marked .marked-task-symbol {
+  background: url(/assets/task-completed-symbol.png);
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+  position: absolute;
+  right: 11px;
+}
+
+.classifier .right-column .task-area .workflow-task .label-container.marked .answer {
+  background: #EDF6FA;
+}
+
 .label-container.active .mark-step-help {
   max-height: 200px;
+}
+
+.classifier .right-column .task-area .workflow-task .answer {
+  background: #EBEBEB;
+  font-weight: 400;
+  font-size: 13px;
+  font-family: Mallory;
+  color: #746F73;
+  margin: 4px 0;
+}
+
+.classifier .right-column .task-area .workflow-task .answer.active {
+  background: #C4E4F5;
+  color: #273D61;
+}
+
+.classifier .right-column .task-area.mark {
+  padding: 20px 0;
+  width: inherit;
+}
+
+.workflow-task {
+  padding: 0 20px;
+}
+
+.answers {
+  margin-top: 25px;
+}
+
+.answer .fa {
+  margin-left: -4px;
+  margin-top: 0px;
+}
+
+.classifier .right-column .task-area .workflow-task .answer:hover {
+  background: #afcad8;
 }
 
 .complete-this-playbill-button.major-button {
