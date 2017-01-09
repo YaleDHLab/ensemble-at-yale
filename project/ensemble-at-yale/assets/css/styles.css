@@ -1660,7 +1660,7 @@ a.transcribe-this-playbill-button .major-button {
 ***/
 
 .login .login-container {
-  width: 130px;
+  width: 200px;
 }
 
 .login object {
@@ -1670,15 +1670,15 @@ a.transcribe-this-playbill-button .major-button {
 .login .options {
   display: none;
   max-height: 100%;
-  width: 150px;
+  width: 200px;
 }
 
 .login .options a {
   background: none;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   line-height: 32px;
-  margin-top: 25px;
+  margin-top: 21px;
 }
 
 .login:hover .options {
