@@ -57,16 +57,21 @@ module.exports = React.createClass
     tool: @props.task?.tool_config.options[0]
 
   render: ->
-    # Calculate number of existing marks for each tool instance:
+    # Calculate number of existing marks for each tool instance.
+    # NB: Because we're in a multi-page context, these counts must be calculated
+    # across each of the child_subjects within each subject of
+    # @props.currentSubjectSet.subjects
     counts = {}
-    for subject in @props.subject.child_subjects
-      # only consider those marks that the current user created
-      if subject.belongs_to_user == true
+    for subject in @props.currentSubjectSet.subjects
+      for subject in subject.child_subjects
 
-        # Append tool index to type just in case generates_subject_type is duplicated:
-        k = "#{subject.type}-#{subject.data.subToolIndex}"
-        counts[k] ?= 0
-        counts[k] += 1 unless subject.user_has_deleted
+        # only consider those marks that the current user created
+        if subject.belongs_to_user == true
+
+          # Append tool index to type just in case generates_subject_type is duplicated:
+          k = "#{subject.type}-#{subject.data.subToolIndex}"
+          counts[k] ?= 0
+          counts[k] += 1 unless subject.user_has_deleted
 
     tools = for tool, i in @props.task.tool_config.options
       tool._key ?= i
