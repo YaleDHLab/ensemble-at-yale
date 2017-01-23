@@ -63,6 +63,7 @@ GroupBrowser = React.createClass
     groups = @renderGroups()
 
     <div className="group-area-wrapper">
+      <div className="group-area-prompt">Browse 90 years of programs to see what's available to mark or transcribe:</div>
       {groups}
     </div>
 

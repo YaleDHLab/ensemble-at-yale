@@ -269,7 +269,6 @@ body {
   font-family: Mallory;
   letter-spacing: .03em;
   font-size: .8em;
-  font-weight: 500;
 }
 
 .home-page .hero-overlay-button:hover,
@@ -316,6 +315,8 @@ body {
 .login-page .hero-overlay-button {
   width: 250px;
   font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
   line-height: 20px;
   cursor: pointer;
   color: #fff;
@@ -387,9 +388,15 @@ body {
 }
 
 .group-area-wrapper {
-  margin: 80px 0 35px 40px;
+  margin: 40px 0 35px 40px;
   width: 1200px;
   display: inline-block;
+}
+
+.group-area-prompt {
+  color: #fff;
+  font-size: .75em;
+  margin: 0 20px 30px;
 }
 
 .drama-era-image-wrapper {
@@ -1252,6 +1259,10 @@ rect.shape {
   cursor: move;
 }
 
+.rectangle-tool .committed polyline {
+  cursor: default;
+}
+
 .workflow-task .drawing-tool-icon {
   margin-right: 12px;
 }
@@ -1302,10 +1313,24 @@ rect.shape {
   color: #939393;
   background-repeat: no-repeat;
   background-position: 95%;
+  margin-bottom: 10px;
+}
+
+/* Flag this program active state */
+.classifier .right-column .task-area .help-bad-subject-holder .small-button.ghost.toggled {
+  border: 2px solid #FD953A;
+  background: url(/assets/flag-an-issue-symbol-active.png);
+  background-repeat: no-repeat;
+  background-position: 95%;
 }
 
 .classifier .right-column .task-area .workflow-task {
   margin-bottom: 20px;
+}
+
+/* Hide the checkmark used by scribeapi to signal bad playbill button active */
+.toggle-button.toggled:before {
+  content: "";
 }
 
 .classifier .right-column .task-area .workflow-task .answer .help {
@@ -1554,6 +1579,9 @@ span.help {
   position: relative;
   left: 29px;
   top: 3px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: .95em;
 }
 
 .boolean-toggle.active .track {
@@ -1565,7 +1593,7 @@ span.help {
 }
 
 .boolean-toggle.active .label {
-  left: -28px;
+  left: -30px;
 }
 
 
@@ -1615,6 +1643,10 @@ a.transcribe-this-playbill-button .major-button {
 /***
 * Transcribe
 ***/
+
+.transcribe-tool {
+  max-width: 600px;
+}
 
 .transcribe-tool .small-button {
   padding: 0.45em 1em;
@@ -1684,7 +1716,7 @@ a.transcribe-this-playbill-button .major-button {
 ***/
 
 .login .login-container {
-  width: 130px;
+  width: 200px;
 }
 
 .login object {
@@ -1694,15 +1726,15 @@ a.transcribe-this-playbill-button .major-button {
 .login .options {
   display: none;
   max-height: 100%;
-  width: 150px;
+  width: 200px;
 }
 
 .login .options a {
   background: none;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   line-height: 32px;
-  margin-top: 25px;
+  margin-top: 21px;
 }
 
 .login:hover .options {
