@@ -269,7 +269,6 @@ body {
   font-family: Mallory;
   letter-spacing: .03em;
   font-size: .8em;
-  font-weight: 500;
 }
 
 .home-page .hero-overlay-button:hover,
@@ -316,6 +315,8 @@ body {
 .login-page .hero-overlay-button {
   width: 250px;
   font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
   line-height: 20px;
   cursor: pointer;
   color: #fff;
@@ -1290,6 +1291,7 @@ rect.shape {
   color: #939393;
   background-repeat: no-repeat;
   background-position: 95%;
+  margin-bottom: 10px;
 }
 
 /* Flag this program active state */
@@ -1553,6 +1555,9 @@ span.help {
   position: relative;
   left: 29px;
   top: 3px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: .95em;
 }
 
 .boolean-toggle.active .track {
@@ -1564,7 +1569,7 @@ span.help {
 }
 
 .boolean-toggle.active .label {
-  left: -28px;
+  left: -30px;
 }
 
 
