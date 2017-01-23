@@ -307,6 +307,7 @@ module.exports = React.createClass # rename to Classifier
                   onChange={@handleDataFromTool}
                   onSubjectHelp={@showSubjectHelp}
                   subject={@getCurrentSubject()}
+                  currentSubjectSet={@getCurrentSubjectSet()}
                 />
 
                 <div className="help-bad-subject-holder">
