@@ -116,9 +116,7 @@ HomePage = React.createClass
                   Help create a database of Yale theater history
                 </div>
 
-                <div className="hero-overlay-text">
-                  Transcribe over 90 years of drama programs in the Yale University Library. Let's get started:
-                </div>
+                <div className="hero-overlay-text">Click a button below to get started:</div>
 
                 <a href="/#/mark">
                   <div className="hero-overlay-button">MARK</div>
