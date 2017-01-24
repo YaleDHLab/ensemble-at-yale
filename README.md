@@ -16,7 +16,8 @@ rake project:load[emigrant]
 # by replacing find_and_modify calls to find_one_and_update  
 
 # update config/mongoid.yml to follow Mongoid 5.x config syntax
-# For more on the changes made in Mongoid 5.x, see: https://docs.mongodb.com/ecosystem/tutorial/mongoid-upgrade/  
+# For more on the changes made in Mongoid 5.x, see: 
+# https://docs.mongodb.com/ecosystem/tutorial/mongoid-upgrade/  
 
 # fire up the server
 rails s {{-e production}}</code></pre>
