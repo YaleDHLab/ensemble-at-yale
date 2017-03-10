@@ -1,7 +1,6 @@
 require 'csv'
 require 'active_support'
 
-
 namespace :subjects do
   desc 'links a chain of rake tasks to setup a project, groups, and subjects'
 
@@ -150,7 +149,7 @@ namespace :subjects do
 
         # Check whether the current subject is the first page for its subject set.
         # If so, write it to the SubjectSetFirstPage table
-        if data["file_path"].include? "-p0001"
+        if data["page_no"].to_i == 1
           subject_set_first_page = SubjectSetFirstPage.where("set_key" => data["set_key"]).first
           subject_set_first_page = SubjectSetFirstPage.create if subject_set_first_page.nil?
           subject_set_first_page.update_attributes({
@@ -163,11 +162,7 @@ namespace :subjects do
 
           puts "      - saved subject_set_first_page #{subject_set._id}"
         end
-
-
       end
-
     end
   end
-
 end
