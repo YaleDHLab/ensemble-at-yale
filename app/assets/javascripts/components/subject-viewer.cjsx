@@ -184,6 +184,11 @@ module.exports = React.createClass
 
     mark = @state.uncommittedMark
 
+    # if this mark is square, delete it
+    if mark.width == mark.height
+      @setUncommittedMark null
+      return
+
     # Instantiate appropriate marking tool:
     # AMS: think this is going to markingTools[mark._toolIndex]
     MarkComponent = markingTools[mark.toolName]
