@@ -87,7 +87,7 @@ class Classification
   end
 
   def should_subject_set_be_retired_from_mark(subject_set_id)
-    minimum_votes_to_retire = 3
+    minimum_votes_to_retire = 2
     subject_set = SubjectSet.where('_id' => subject_set_id).entries.first
     votes_to_retire = subject_set.nothing_left_to_mark
     if votes_to_retire >= minimum_votes_to_retire
