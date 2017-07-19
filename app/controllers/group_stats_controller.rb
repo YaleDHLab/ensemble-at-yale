@@ -17,6 +17,7 @@ class GroupStatsController < ApplicationController
     # identify the total number of subject sets retired from marking and transcribing
     @retired_from_mark = @subject_sets.where(:retired_from_mark => 1).entries.length
     @retired_from_transcribe = @subject_sets.where(:retired_from_transcribe => 1).entries.length
+    @total_completed = @subject_sets.where(:retired_from_mark => 1).where(:retired_from_transcribe => 1).entries.length
 
     # get the marks for this group. NB: root subjects are pages themselves
     @marks = Subject.where(:type.nin => ['root'])
@@ -34,13 +35,14 @@ class GroupStatsController < ApplicationController
       end
     end
 
-    @response = {
+    @response = [{
       'retired_from_mark': @retired_from_mark,
       'retired_from_transcribe': @retired_from_transcribe,
       'total_subject_sets': @subject_set_ids.length,
       'total_marks': @mark_count,
-      'total_transcriptions': @transcription_count
-    }
+      'total_transcriptions': @transcription_count,
+      'total_completed': @total_completed
+    }]
 
     respond_to do |format|
       format.json { render json: @response }
