@@ -10,6 +10,12 @@ GroupPage = React.createClass
   displayName: "GroupPage"
 
   getInitialState: ->
+    group_stats: {
+      total_marks: 0
+      total_transcriptions: 0
+      total_completed: 0
+    }
+
     all_institutions: []
     all_playwrights: []
 
@@ -28,18 +34,23 @@ GroupPage = React.createClass
     group_name: ""
     group_description: ""
 
-
   componentDidMount: ->
-    # make a request to http://localhost:3000/groups/{{requested group id}},
+    # make a request to /groups/{{ group_id }},
     # fetch metadata that describes the group name and description, and pass those values into
     # the application state
     API.type("groups").get(@props.params.group_id).then (group_json) =>
-      this.setState({
+      @setState
         group_name: group_json.name,
         group_description: group_json.description
-      })
 
-    # make a request to http://localhost:3000/subject_set_first_pages?group_id={{requested group id}}
+    # make a request to /group_stats?group_id={{ group_id }}
+    # using the incoming data to set completion stats
+    API.type("group_stats").get(group_id: @props.params.group_id).then (stats_json) =>
+      @setState
+        group_stats: stats_json[0]
+
+
+    # make a request to /subject_set_first_pages?group_id={{ group_id }}
     # using the incoming query param, and use the results of that query to define the first page array
     # as well as the available institutions and playwrights that users can select
     API.type("subject_set_first_pages").get(group_id: @props.params.group_id).then (first_pages_json) =>
@@ -273,19 +284,19 @@ GroupPage = React.createClass
             <div className="collection-browse-controls-content">
               <div className="collection-progress-details">
                 <div className="collection-progress-overall">
-                  <div className="collection-progress-overall-label">Overall completion:</div>
-                  <div className="collection-progress-overall-value">{parseInt((@state.group.stats?.completeness ? 0) * 100)}%</div>
+                  <div className="collection-progress-overall-label">Completed Playbills:</div>
+                  <div className="collection-progress-overall-value">{@state.group_stats.total_completed}</div>
                 </div>
 
                 <div className="collection-progress-box-container">
                   <div className="collection-progress-box">
-                    <div className="collection-progress-top">{@state.group.stats?.total_pending ? 0}</div>
-                    <div className="collection-progress-bottom">In-Progress</div>
+                    <div className="collection-progress-top">{@state.group_stats.total_marks}</div>
+                    <div className="collection-progress-bottom">Marked Fields</div>
                   </div>
 
                   <div className="collection-progress-box collection-progress-box-right">
-                    <div className="collection-completed-top">{@state.group.stats?.total_finished ? 0}</div>
-                    <div className="collection-completed-bottom">Completed</div>
+                    <div className="collection-completed-top">{@state.group_stats.total_transcriptions}</div>
+                    <div className="collection-completed-bottom">Transcribed Fields</div>
                   </div>
                 </div>
               </div>
