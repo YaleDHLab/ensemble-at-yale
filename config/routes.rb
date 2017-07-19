@@ -17,6 +17,7 @@ API::Application.routes.draw do
   post '/save_requested_route',                               to: "users#save_requested_route"
   
   get '/projects/stats',                                      to: 'projects#stats'
+  get '/group_stats',                                         to: 'group_stats#index', defaults: { format: 'json' }
 
   get '/workflows/:workflow_id/subjects',                     to: 'subjects#index'
   get '/workflows/:workflow_id/subject_sets',                 to: 'subject_sets#index'
