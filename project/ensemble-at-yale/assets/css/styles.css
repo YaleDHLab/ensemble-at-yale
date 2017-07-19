@@ -884,12 +884,13 @@ select::-ms-expand {
 }
 
 .collection-progress-box {
-  display:inline-block;
+  display: inline-block;
   background: #e3e1e1;
   padding: 12px 12px;
   border-radius: 5px;
   width: 83px;
-  height: 40px;
+  height: 54px;
+  line-height: 1.2em;
 }
 
 .collection-progress-box-right {
@@ -901,6 +902,11 @@ select::-ms-expand {
 .collection-completed-top {
   font-size: 1.6em;
   line-height: 1em;
+}
+
+.collection-progress-bottom,
+.collection-completed-bottom {
+  margin-top: 2px;
 }
 
 /************************
