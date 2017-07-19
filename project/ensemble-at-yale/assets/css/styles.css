@@ -1665,8 +1665,14 @@ a.transcribe-this-playbill-button .major-button {
   padding: 0.3em 1em 0.4em 1em;
   margin: 0 4px;
   color: #31627E;
-  background: rgba(255,255,255,0.1)
+  background: rgba(255,255,255,0.1);
   border: 2px solid #EBEBEB;
+}
+
+.transcribe-tool .minor-button.ghost.toggled,
+.small-button.ghost.toggled {
+  background: #ffffff;
+  color: #d04343;
 }
 
 .transcribe-tool .minor-botton,
