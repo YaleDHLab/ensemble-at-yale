@@ -310,9 +310,11 @@ if __name__ == '__main__':
 
   # build the outfiles
   out_dir = 'newly_transcribed'
+  if not os.path.exists(out_dir):
+    os.makedirs(out_dir)
 
   # send the email
-  schedule.every().thursday.at('14:24').do(email_newly_transcribed)
+  schedule.every().thursday.at('14:42').do(email_newly_transcribed)
 
   while 1:
     schedule.run_pending()
