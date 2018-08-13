@@ -1,6 +1,6 @@
 ## Requirements
 
-This app requires Ruby 2.1.5 (available via rvm), a recent Node.js, and MongoDB.
+This app requires Ruby 2.3.0 (available via rvm or rbenv), a recent Node.js, and MongoDB.
 
 ## Quickstart
 ```
