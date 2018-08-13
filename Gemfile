@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
-#ruby '2.1.5'
+#ruby '2.4.1'
 
+gem 'rake', '10.4.2'
 gem 'rails', '4.0.13'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -15,7 +16,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-zooniverse', '~> 0.0.3'
 gem 'omniauth-cas'
 gem 'omniauth-twitter'
-
+gem 'json', '~> 1.8.6'
 gem 'mongoid', '~> 5.1.0'
 gem 'active_model_serializers'
 gem 'mongoid-serializer'
