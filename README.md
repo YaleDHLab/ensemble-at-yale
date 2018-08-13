@@ -1,6 +1,6 @@
 ## Requirements
 
-This app requires Ruby 2.4.1 (available via rvm or rbenv), a recent Node.js, and MongoDB.
+This app requires an odler Ruby (e.g. 2.1.5, available via rvm or rbenv), a recent Node.js, and MongoDB.
 
 ## Quickstart
 ```
@@ -12,7 +12,7 @@ npm install
 bundle install
 
 # build the db
-rake project:load[ensemble-at-yale]
+bundle exec rake project:load[ensemble-at-yale]
 ```
 
 ## Configure Ruby on Amazon Linux
