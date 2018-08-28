@@ -3,7 +3,7 @@ class GroupStatsController < ApplicationController
 
   # curl http://localhost:3000/group_stats?group_id=596d02bd23c5155771afa2d5
   def index
-    
+
     # parse out group attributes
     @requested_group_id = params[:group_id].to_str
     @group = Group.find(@requested_group_id)
@@ -11,7 +11,7 @@ class GroupStatsController < ApplicationController
 
     # secondary annotations have subject_set_id attributes, but not meta_data,
     # so find all subject sets for this group
-    @subject_sets = SubjectSet.where('meta_data.group_key': @group_key)
+    @subject_sets = SubjectSet.where('meta_data.group_key' => @group_key)
     @subject_set_ids = @subject_sets.all.pluck(:_id)
 
     # identify the total number of subject sets retired from marking and transcribing
@@ -36,12 +36,12 @@ class GroupStatsController < ApplicationController
     end
 
     @response = [{
-      'retired_from_mark': @retired_from_mark,
-      'retired_from_transcribe': @retired_from_transcribe,
-      'total_subject_sets': @subject_set_ids.length,
-      'total_marks': @mark_count,
-      'total_transcriptions': @transcription_count,
-      'total_completed': @total_completed
+      'retired_from_mark' => @retired_from_mark,
+      'retired_from_transcribe' => @retired_from_transcribe,
+      'total_subject_sets' => @subject_set_ids.length,
+      'total_marks' => @mark_count,
+      'total_transcriptions' => @transcription_count,
+      'total_completed' => @total_completed
     }]
 
     respond_to do |format|
