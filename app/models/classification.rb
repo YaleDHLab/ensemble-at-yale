@@ -62,37 +62,48 @@ class Classification
           subject_set.inc(nothing_left_to_mark: 1)
 
           # then check to see if this subject set should be retired
-          self.should_subject_set_be_retired_from_mark(subject.subject_set_id)
+          self.conditionally_retire_from_mark(subject.subject_set_id)
+          self.conditionally_retire_from_transcribe()
         end
       end
 
     # if this a transcription, check first if the subject is retired from marking
     elsif workflow.name == "transcribe"
-      subject = Subject.find(self.subject_id)
-      subject_set = SubjectSet.find(subject.subject_set_id)
-      if subject_set.retired_from_mark == 1
-
-        # check if there are any active subjects (aside from the root). If so,
-        # this subject set can't be retired from transcription, else it can
-        active_subjects = Subject.where(:subject_set_id => subject.subject_set_id).where(:type.nin => ["root", nil]).where(:status => "active").entries.length
-
-        # the root subject will always still be active
-        if active_subjects == 0
-          subject_set.update_attributes(:retired_from_transcribe => 1)
-          self.retire_subject_set_first_page_from_transcribe(subject.subject_set_id)
-        end
-      end
+      self.conditionally_retire_from_transcribe()
     end
 
   end
 
-  def should_subject_set_be_retired_from_mark(subject_set_id)
+  def conditionally_retire_from_mark(subject_set_id)
     minimum_votes_to_retire = 2
     subject_set = SubjectSet.where('_id' => subject_set_id).entries.first
     votes_to_retire = subject_set.nothing_left_to_mark
     if votes_to_retire >= minimum_votes_to_retire
       subject_set.update_attributes(:retired_from_mark => 1)
       self.retire_subject_set_first_page_from_mark(subject_set_id)
+    end
+  end
+
+  # if this subject's parent subject set is retired from marking and all
+  # marks have been adequately transcribed, retire this subject's parent
+  # subject set from transcription
+  def conditionally_retire_from_transcribe()
+    subject = Subject.find(self.subject_id)
+    subject_set = SubjectSet.find(subject.subject_set_id)
+    if subject_set.retired_from_mark == 1
+
+      # check if there are any active subjects (aside from the root). If so,
+      # this subject set can't be retired from transcription, else it can
+      active_subjects = Subject.where(
+        :subject_set_id => subject.subject_set_id).where(
+          :type.nin => ["root", nil]).where(
+            :status => "active").entries.length
+
+      # the root subject will always still be active
+      if active_subjects == 0
+        subject_set.update_attributes(:retired_from_transcribe => 1)
+        self.retire_subject_set_first_page_from_transcribe(subject.subject_set_id)
+      end
     end
   end
 
@@ -161,14 +172,19 @@ class Classification
   def increment_subject_classification_count
     # TODO: Probably wrong place to be reacting to completion_assessment_task & flag_bad_subject_task
     # tasks; Should perhaps generalize and place elsewhere
-    if self.task_key == "completion_assessment_task" && self.annotation["value"] == "complete_subject"
+    if self.task_key == "completion_assessment_task" &&
+        self.annotation["value"] == "complete_subject"
       subject.increment_retire_count_by_one
     end
 
     if self.task_key == "flag_bad_subject_task"
       subject.increment_flagged_bad_count_by_one
       # Push user_id onto Subject.deleting_user_ids if appropriate
-      Subject.where({id: subject.id}).find_one_and_update({"$addToSet" => {deleting_user_ids: user_id.to_s}})
+      Subject.where({id: subject.id}).find_one_and_update({
+        "$addToSet" => {
+          deleting_user_ids: user_id.to_s
+        }
+      })
     end
 
     if self.task_key == "flag_illegible_subject_task"
@@ -176,14 +192,24 @@ class Classification
     end
     # subject.inc classification_count: 1
     # Push user_id onto Subject.user_ids using mongo's fast addToSet feature, which ensures uniqueness
-    subject_returned = Subject.where({id: subject_id}).find_one_and_update({"$addToSet" => {classifying_user_ids: user_id.to_s}, "$inc" => {classification_count: 1}}, new: true)
-    
+    subject_returned = Subject.where({id: subject_id}).find_one_and_update({
+      "$addToSet" => {
+        classifying_user_ids: user_id.to_s
+      },
+      "$inc" => {
+        classification_count: 1}
+      }, new: true)
+
     #Passing the returned subject as parameters so that we eval the correct classification_count
     check_for_retirement_by_classification_count(subject_returned)
   end
 
   def to_s
-    ann = annotation.values.select { |v| v.match /[a-zA-Z]/ }.map { |v| "\"#{v}\"" }.join ', '
+    ann = annotation.values.select {
+      |v| v.match /[a-zA-Z]/
+    }.map {
+      |v| "\"#{v}\""
+    }.join ', '
     ann = ann.truncate 40
     # {! annotation["toolName"].nil? ? " (#{annotation["toolName"]})" : ''}
     workflow_name = workflow.nil? ? '[Orphaned] ' : workflow.name.capitalize
@@ -194,14 +220,14 @@ class Classification
   def self.group_by_hour(match={})
     agg = []
     agg << {"$match" => match } if match
-    agg << {"$group" => { 
+    agg << {"$group" => {
       "_id" => {
         "y" => { '$year' => '$created_at' },
         "m" => { '$month' => '$created_at' },
         "d" => { '$dayOfMonth' => '$created_at' },
         "h" => { '$hour' => '$created_at' }
       },
-      "count" => {"$sum" =>  1} 
+      "count" => {"$sum" =>  1}
     }}
     self.collection.aggregate(agg).inject({}) do |h, p|
       h[p["_id"]] = p["count"]

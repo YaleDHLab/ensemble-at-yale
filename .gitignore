@@ -97,9 +97,14 @@ server-notes.txt
 # fonts
 /app/assets/fonts
 
-#Avoid pushing images to github
+# images
 /project/ensemble-at-yale/assets/images/
 /project/ensemble-at-yale/assets/thumbs/
 /project/ensemble-at-yale/assets/group_thumbs/
 /project/ensemble-at-yale/assets/images.tar.gz
 /project/ensemble-at-yale/assets/thumbs.tar.gz
+
+# exports
+newly_transcribed.tar.gz
+transcribed_subject_set_ids.json
+*.archive
