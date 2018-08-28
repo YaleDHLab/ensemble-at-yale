@@ -5,7 +5,7 @@ from email.utils import COMMASPACE, formatdate
 from collections import defaultdict
 import dateutil.parser
 import smtplib, os, sys, subprocess, shlex, schedule
-import time, datetime, json, pymongo, glob, shutil
+import time, datetime, json, pymongo, glob, shutil, codecs
 
 def prepare_newly_transcribed_outdir():
   '''Prepare the directory of newly transcribed records'''
@@ -199,7 +199,7 @@ def get_project_metadata():
   '''Return json mapping each playbill to its given metadata'''
   metadata = {}
   for i in metadata_files:
-    with open(i) as f:
+    with codecs.open(i, 'r', 'latin1') as f:
       f = f.read()
     for j in f.split('\r')[1:]:
       cells = j.split('\t')
