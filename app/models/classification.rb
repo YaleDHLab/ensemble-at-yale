@@ -69,7 +69,7 @@ class Classification
 
     # if this a transcription, check first if the subject is retired from marking
     elsif workflow.name == "transcribe"
-      self.conditionally_retire_from_transcribe()
+      self.conditionally_retire_from_transcribe(subject.subject_set_id)
     end
 
   end
