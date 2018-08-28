@@ -63,7 +63,7 @@ class Classification
 
           # then check to see if this subject set should be retired
           self.conditionally_retire_from_mark(subject.subject_set_id)
-          self.conditionally_retire_from_transcribe()
+          self.conditionally_retire_from_transcribe(subject.subject_set_id)
         end
       end
 
@@ -87,15 +87,14 @@ class Classification
   # if this subject's parent subject set is retired from marking and all
   # marks have been adequately transcribed, retire this subject's parent
   # subject set from transcription
-  def conditionally_retire_from_transcribe()
-    subject = Subject.find(self.subject_id)
-    subject_set = SubjectSet.find(subject.subject_set_id)
+  def conditionally_retire_from_transcribe(subject_set_id)
+    subject_set = SubjectSet.find(subject_set_id)
     if subject_set.retired_from_mark == 1
 
       # check if there are any active subjects (aside from the root). If so,
       # this subject set can't be retired from transcription, else it can
       active_subjects = Subject.where(
-        :subject_set_id => subject.subject_set_id).where(
+        :subject_set_id => subject_set_id).where(
           :type.nin => ["root", nil]).where(
             :status => "active").entries.length
 
