@@ -1,4 +1,4 @@
-{  
+{
    "name":"mark",
    "label":"Mark Workflow",
    "subject_fetch_limit":"10",
@@ -7,16 +7,16 @@
    "generates_subjects_method":"one-per-classification",
    "generates_subjects_for":"transcribe",
    "generates_subjects_max":null,
-   "retire_limit":1,
+   "retire_limit":2,
    "first_task":"core_metadata",
-   "tasks":{  
-      "core_metadata":{  
+   "tasks":{
+      "core_metadata":{
          "tool":"pickOneMarkOne",
          "instruction":"Click on a tool below to mark fields that will subsequently be transcribed.",
          "generates_subjects":true,
-         "tool_config":{  
+         "tool_config":{
             "displays_transcribe_button":true,
-            "options":[  
+            "options":[
                {
                   "type":"rectangleTool",
                   "label":"Title (and Subtitle)",
@@ -26,7 +26,7 @@
                      "file":"ey_title"
                   }
                },
-               {  
+               {
                   "type":"rectangleTool",
                   "label":"Playwright",
                   "color":"#98BA01",
@@ -35,7 +35,7 @@
                      "file":"ey_playwright"
                   }
                },
-               {  
+               {
                   "type":"rectangleTool",
                   "label":"Director",
                   "color":"#1D7F9D",
@@ -44,7 +44,7 @@
                      "file":"ey_director"
                   }
                },
-               {  
+               {
                   "type":"rectangleTool",
                   "label":"Dates",
                   "color":"#2EC6EA",
@@ -53,7 +53,7 @@
                      "file":"ey_dates"
                   }
                },
-               {  
+               {
                   "type":"rectangleTool",
                   "label":"Actor and Role",
                   "color":"orange",
@@ -62,7 +62,7 @@
                      "file":"ey_actor_character"
                   }
                },
-               {  
+               {
                   "type":"rectangleTool",
                   "label":"Staff Member and Role",
                   "color":"purple",
