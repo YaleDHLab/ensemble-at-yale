@@ -46,6 +46,8 @@ class Classification
 
     # first handle the case of user indicating there's nothing left to mark
     workflow = Workflow.find(self.workflow_id)
+    subject = Subject.find(self.subject_id)
+    subject_set_id = subject.subject_set_id
 
     if workflow.name == "mark"
       if self["task_key"] == "completion_assessment_task"
@@ -57,19 +59,18 @@ class Classification
           # if the user indicated this subject is complete, increment
           # the number of times users have indicated there's nothing
           # left to mark
-          subject = Subject.find(self.subject_id)
-          subject_set = SubjectSet.find(subject.subject_set_id)
+          subject_set = SubjectSet.find(subject_set_id)
           subject_set.inc(nothing_left_to_mark: 1)
 
           # then check to see if this subject set should be retired
-          self.conditionally_retire_from_mark(subject.subject_set_id)
-          self.conditionally_retire_from_transcribe(subject.subject_set_id)
+          self.conditionally_retire_from_mark(subject_set_id)
+          self.conditionally_retire_from_transcribe(subject_set_id)
         end
       end
 
     # if this a transcription, check first if the subject is retired from marking
     elsif workflow.name == "transcribe"
-      self.conditionally_retire_from_transcribe(subject.subject_set_id)
+      self.conditionally_retire_from_transcribe(subject_set_id)
     end
 
   end
