@@ -14,7 +14,7 @@ TextTool = React.createClass
     annotation: @props.annotation ? {}
     viewerSize: @props.viewerSize
     autocompleting: false
-    
+
     # The selectedDate attribute of the DatePicker component will store the
     # currently selected date. This object must be of type moment() or blank.
     # If blank, the input element within the DatePicker component will display the
@@ -121,6 +121,9 @@ TextTool = React.createClass
   # this can go into a mixin? (common across all transcribe tools)
   # NOTE: doesn't get called unless @props.standalone is true
   commitAnnotation: ->
+    # push focus back to the first input in the transcribe box
+    document.querySelector('.draggable-modal.transcribe-tool').querySelector('input').focus()
+
     ann = @state.annotation
     @props.onComplete ann
 
