@@ -14,7 +14,8 @@ TextTool = React.createClass
     annotation: @props.annotation ? {}
     viewerSize: @props.viewerSize
     autocompleting: false
-    
+    pressed_keys: {}
+
     # The selectedDate attribute of the DatePicker component will store the
     # currently selected date. This object must be of type moment() or blank.
     # If blank, the input element within the DatePicker component will display the
@@ -79,6 +80,14 @@ TextTool = React.createClass
       annotation: new_props.annotation ? {}
       viewerSize: new_props.viewerSize
 
+    # if we receive props that designate a `date_end` value,
+    # and this component is responsible for setting the date_end,
+    # set the date in state
+    if new_props.date_end != @props.date_end
+      if @props.annotation_key == 'ey_transcribed_date_stop'
+        @setState
+          selectedDate: moment(new_props.date_end)
+
   shouldComponentUpdate: ->
     true
 
@@ -121,6 +130,9 @@ TextTool = React.createClass
   # this can go into a mixin? (common across all transcribe tools)
   # NOTE: doesn't get called unless @props.standalone is true
   commitAnnotation: ->
+    # push focus back to the first input in the transcribe box
+    document.querySelector('.draggable-modal.transcribe-tool').querySelector('input').focus()
+
     ann = @state.annotation
     @props.onComplete ann
 
@@ -162,7 +174,25 @@ TextTool = React.createClass
       this.updateValue e._d
 
   handleKeyDown: (e) ->
-    @handleChange(e) # updates any autocomplete values
+    # store the fact that the user is pressing another key
+    keys = @state.pressed_keys
+    keys[e.keyCode] = true
+    @setState
+      pressed_keys: keys
+
+    # if the user has pressed CTRL+a or COMMAND+a focus the input
+    # COMMAND = 91
+    # CTRL = 17
+    # a = 65
+    if (@state.pressed_keys[91] and @state.pressed_keys[65]) ||
+       (@state.pressed_keys[17] and @state.pressed_keys[65])
+      e.target.select()
+      e.preventDefault()
+      e.stopPropagation()
+
+    # only set state if we're not selecting the input values
+    else
+      @handleChange(e) # updates any autocomplete values
 
     if (! @state.autocompleting && [13].indexOf(e.keyCode) >= 0) && !e.shiftKey# ENTER
       @commitAnnotation()
@@ -171,6 +201,13 @@ TextTool = React.createClass
       the_text = text_area.val()
       the_text = the_text.concat("/n")
       text_area.val(the_text)
+
+  handleKeyUp: (e) ->
+    # store the fact that the user is no longer pressing this key
+    keys = @state.pressed_keys
+    keys[e.keyCode] = false
+    @setState
+      pressed_keys: keys
 
   handleBadMark: ()->
     newAnnotation = []
@@ -219,6 +256,7 @@ TextTool = React.createClass
             key: "#{@props.task.key}.#{@props.annotation_key}"
             "data-task_key": @props.task.key
             onKeyDown: @handleKeyDown
+            onKeyUp: @handleKeyUp
             onChange: @handleChange
             onFocus: ( () => @props.onInputFocus? @props.annotation_key )
             value: val
