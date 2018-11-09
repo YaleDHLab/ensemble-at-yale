@@ -17,6 +17,10 @@ CompositeTool = React.createClass
     viewerSize: @props.viewerSize
     active_field_key: (c.value for c in @props.task.tool_config.options)[0]
 
+    # to pass an ending date to children components, just set date_end
+    # and let it propagate down
+    date_end: ''
+
   getDefaultProps: ->
     annotation: {}
     task: null
@@ -46,6 +50,13 @@ CompositeTool = React.createClass
       viewerSize: size
 
   handleChange: (annotation) ->
+    # if this annotation is the start date, update the end_date
+    annotation_keys = Object.keys(annotation)
+    if annotation_keys and annotation_keys[0] == 'ey_transcribed_date_start'
+      @setState
+        date_end: annotation['ey_transcribed_date_start']
+
+    # pass the annotation(s)
     @setState annotation: annotation
 
     @props.onChange annotation # forward annotation to parent
@@ -145,6 +156,9 @@ CompositeTool = React.createClass
             scale={@props.scale}
             annotation_key={annotation_key}
             annotation={@state.annotation}
+
+            # pass selected dates to child components (if any)
+            date_end={@state.date_end}
           />
       }
 

@@ -80,6 +80,14 @@ TextTool = React.createClass
       annotation: new_props.annotation ? {}
       viewerSize: new_props.viewerSize
 
+    # if we receive props that designate a `date_end` value,
+    # and this component is responsible for setting the date_end,
+    # set the date in state
+    if new_props.date_end != @props.date_end
+      if @props.annotation_key == 'ey_transcribed_date_stop'
+        @setState
+          selectedDate: moment(new_props.date_end)
+
   shouldComponentUpdate: ->
     true
 
