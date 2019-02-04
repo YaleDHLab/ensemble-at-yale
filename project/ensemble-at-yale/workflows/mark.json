@@ -20,7 +20,7 @@
                {
                   "type":"rectangleTool",
                   "label":"Title (and Subtitle)",
-                  "color":"#FD953A",
+                  "color":"#e60000",
                   "generates_subject_type":"ey_title",
                   "help":{
                      "file":"ey_title"
