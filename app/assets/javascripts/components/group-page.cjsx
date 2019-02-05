@@ -6,6 +6,11 @@ SelectDropdown     = require('./select-dropdown')
 ReactSlider        = require('react-slider')
 API                = require('../lib/api')
 
+
+sort_first_pages_json = (a, b) ->
+  (2 * a['retired_from_mark'] + a['retired_from_transcribe']) -
+  (2 * b['retired_from_mark'] + b['retired_from_transcribe'])
+
 GroupPage = React.createClass
   displayName: "GroupPage"
 
@@ -60,6 +65,9 @@ GroupPage = React.createClass
       min_year = 9999
       max_year = 0
       min_max_year_array = []
+
+      # sort the first_pages_json so transcribed + marked appear later
+      first_pages_json.sort(sort_first_pages_json)
 
       # iterate through the first pages and update the available institutions and playwright options
       for first_page_json in first_pages_json
@@ -241,23 +249,23 @@ GroupPage = React.createClass
                 </div>
 
                 <div className="collection-range-slider">
-                  <ReactSlider 
+                  <ReactSlider
                     onAfterChange={@updateYearSliderState}
                     ref="ReactYearSlider"
-                    min={@state.min_year} 
-                    max={@state.max_year} 
+                    min={@state.min_year}
+                    max={@state.max_year}
                     value={[@state.start_year, @state.end_year]} withBars />
                 </div>
-                
+
                 <div className="custom-select collection-institution">
-                  <SelectDropdown options_array={@state.all_institutions} 
+                  <SelectDropdown options_array={@state.all_institutions}
                                   placeholder={@state.placeholder_institution}
                                   value={@state.selected_institution}
                                   onSelect={@updateSelectedInstitution} />
                 </div>
 
                 <div className="custom-select collection-playwright">
-                  <SelectDropdown options_array={@state.all_playwrights} 
+                  <SelectDropdown options_array={@state.all_playwrights}
                                   placeholder={@state.placeholder_playwright}
                                   value={@state.selected_playwright}
                                   onSelect={@updateSelectedPlaywright} />
@@ -275,7 +283,7 @@ GroupPage = React.createClass
             </div>
 
             <div className="collection-progressbar-container">
-              <div className="collection-progressbar" 
+              <div className="collection-progressbar"
                    aria-valuenow={parseInt((@state.group.stats?.completeness ? 0) * 100)}
                    aria-valuemin="0" aria-valuemax="100"
                    style={{width: parseInt((@state.group.stats?.completeness ? 0) * 100) + "%"}}></div>
