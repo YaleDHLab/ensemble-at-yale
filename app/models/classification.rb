@@ -93,11 +93,13 @@ class Classification
     if subject_set.retired_from_mark == 1
 
       # check if there are any active subjects (aside from the root). If so,
-      # this subject set can't be retired from transcription, else it can
+      # this subject set can't be retired from transcription, else it can.
+      # NB: One must remove marks that were flagged as bad from this count
       active_subjects = Subject.where(
         :subject_set_id => subject_set_id).where(
-          :type.nin => ["root", nil]).where(
-            :status => "active").entries.length
+        :type.nin => ["root", nil]).where(
+        :status => "active").where(
+        :flagged_bad_count => nil).entries.length
 
       # the root subject will always still be active
       if active_subjects == 0
