@@ -1,5 +1,8 @@
 API = require './api'
 
+sort_subjects = (a, b) ->
+  a['type'] > b['type'] ? 0 : -1
+
 module.exports =
   componentDidMount: ->
 
@@ -41,6 +44,9 @@ module.exports =
       limit: @getActiveWorkflow().subject_fetch_limit
     }, params)
     API.type('subjects').get(_params).then (subjects) =>
+      # sort the subjects by their type
+      subjects = subjects.sort(sort_subjects)
+
       if subjects.length is 0
         @setState noMoreSubjects: true
 
