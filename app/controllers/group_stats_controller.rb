@@ -7,17 +7,16 @@ class GroupStatsController < ApplicationController
     # parse out group attributes
     @requested_group_id = params[:group_id].to_str
     @group = Group.find(@requested_group_id)
-    @group_key = @group['meta_data']['key']
 
     # secondary annotations have subject_set_id attributes, but not meta_data,
     # so find all subject sets for this group
-    @subject_sets = SubjectSet.where('meta_data.group_key' => @group_key)
-    @subject_set_ids = @subject_sets.all.pluck(:_id)
+    @subject_sets = SubjectSetFirstPage.where('group_key_id' => @requested_group_id)
+    @subject_set_ids = @subject_sets.all.pluck(:subject_set_id)
 
     # identify the total number of subject sets retired from marking and transcribing
-    @retired_from_mark = @subject_sets.where(:retired_from_mark => 1).entries.length
-    @retired_from_transcribe = @subject_sets.where(:retired_from_transcribe => 1).entries.length
-    @total_completed = @subject_sets.where(:retired_from_mark => 1).where(:retired_from_transcribe => 1).entries.length
+    @retired_from_mark = @subject_sets.where(:retired_from_mark => 1).all.count
+    @retired_from_transcribe = @subject_sets.where(:retired_from_transcribe => 1).all.count
+    @total_completed = @subject_sets.where(:retired_from_mark => 1).where(:retired_from_transcribe => 1).all.count
 
     # get the marks for this group. NB: root subjects are pages themselves
     @marks = Subject.where(:type.nin => ['root'])
