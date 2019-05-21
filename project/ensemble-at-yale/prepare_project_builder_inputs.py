@@ -31,7 +31,7 @@ print(' ! max pages:', max_pages)
 # get the col headers for each subjects csv
 headers = ['set_key']
 for i in range(max_pages):
-  i = str(i)
+  i = str(i+1)
   while len(i) < 2:
     i = '0' + i
   headers += ['image' + i]
