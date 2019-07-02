@@ -1,10 +1,10 @@
-React         = require("react")
+React         = require('react')
 GroupBrowser  = require('./group-browser')
 NameSearch    = require('./name-search')
-{Navigation}  = require 'react-router'
+{Navigation}  = require('react-router')
 
 HomePage = React.createClass
-  displayName : "HomePage"
+  displayName : 'HomePage'
   mixins: [Navigation]
 
   getInitialState: ->
@@ -12,11 +12,11 @@ HomePage = React.createClass
     foregroundImageIndex: 0
     backgroundImageOpacity: 0
     heroImages: [
-      "1952-DidoAnaes.jpg",
-      "1956-right-you-are.jpg",
-      "1987-PianoLesson.jpg",
-      "2003-TamingShrew.jpg",
-      "2012-WintersTale.jpg"
+      '1952-DidoAnaes.jpg',
+      '1956-right-you-are.jpg',
+      '1987-PianoLesson.jpg',
+      '2003-TamingShrew.jpg',
+      '2012-WintersTale.jpg'
     ]
     backgroundPositions: [
       '50% 90%',
@@ -96,36 +96,38 @@ HomePage = React.createClass
     self.requestImageUpdate()
 
   render:->
-    <div className="home-page">
-      <div className="page-content">
-        <div className="hero-container">
-          <div className="image-container">
-            <div className="next-hero-image-container">
-              <div className="next-hero-image" style={
+    <div className='home-page'>
+      <div className='page-content'>
+        <div className='hero-container'>
+          <div className='image-container'>
+            <div className='next-hero-image-container'>
+              <div className='next-hero-image' style={
                 backgroundImage: 'url(/assets/' + @state.heroImages[@state.backgroundImageIndex] + ')',
                 opacity: @state.backgroundImageOpacity,
                 backgroundPosition: @state.backgroundImagePosition
               }></div>
             </div>
-            <div className="hero-image" style={
+            <div className='hero-image' style={
               backgroundImage: 'url(/assets/' + @state.heroImages[@state.foregroundImageIndex] + ')',
               backgroundPosition: @state.foregroundImagePosition
               } >
-              <div className="hero-overlay-container">
-                <div className="hero-overlay-title">
-                  Help create a database of Yale theater history
+              <div className='hero-overlay-container'>
+                <div className='hero-overlay-content'>
+                  <div className='hero-overlay-title'>
+                    Help create a database of Yale theater history
+                  </div>
+
+                  <div className='hero-overlay-text'>Click a button below to get started:</div>
+
+                  <a href='/#/mark'>
+                    <div className='hero-overlay-button'>Mark</div>
+                  </a>
+                  <a href='/#/transcribe'>
+                    <div className='hero-overlay-button'>Transcribe</div>
+                  </a>
                 </div>
-
-                <div className="hero-overlay-text">Click a button below to get started:</div>
-
-                <a href="/#/mark">
-                  <div className="hero-overlay-button">MARK</div>
-                </a>
-                <a href="/#/transcribe">
-                  <div className="hero-overlay-button">TRANSCRIBE</div>
-                </a>
               </div>
-            </div> 
+            </div>
           </div>
         </div>
 
