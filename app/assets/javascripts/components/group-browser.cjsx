@@ -10,7 +10,7 @@ GroupBrowser = React.createClass
     groups:[]
 
   componentDidMount:->
-    API.type("groups").get(project_id: @props.project.id).then (groups)=>
+    API.type('groups').get(project_id: @props.project.id).then (groups)=>
       group.showButtons = false for group in groups  # hide buttons by default
       @setState groups: groups
 
@@ -36,21 +36,21 @@ GroupBrowser = React.createClass
       buttonContainerClasses = []
       groupNameClasses = []
       if group.showButtons
-        buttonContainerClasses.push "active"
+        buttonContainerClasses.push 'active'
       else
-        groupNameClasses.push "active"
+        groupNameClasses.push 'active'
 
       display_groups.push(
 
-        <div className="drama-era-image-wrapper" key={i}>
-          <a href="/#/groups/#{group.id}" className="drama-era-group-link">
+        <div className='drama-era-image-wrapper' key={i}>
+          <a href='/#/groups/#{group.id}' className='drama-era-group-link'>
             <div
               className={'drama-era-image-container'} key={group.id}>
-                <div className="drama-era-image" style={backgroundImage: "url(#{group['cover_image_url']})"}></div>
-                <div className="drama-era-image-overlay">
+                <div className='drama-era-image' style={backgroundImage: "url(#{group['cover_image_url']})"}></div>
+                <div className='drama-era-image-overlay'>
                   {group.meta_data.start_year} &#8210; {group.meta_data.end_year} &#8231; {group.name}
                 </div>
-                <div className={"drama-era-hover-image drama-era-hover-image-" + index}></div>
+                <div className={'drama-era-hover-image drama-era-hover-image-' + index}></div>
             </div>
           </a>
         </div>
@@ -62,11 +62,11 @@ GroupBrowser = React.createClass
     return null if @state.groups.length <= 1
     groups = @renderGroups()
 
-    <div className="group-area-wrapper">
-      <div className="group-area-prompt">Browse 90 years of programs to see what's available to mark or transcribe:</div>
+    <div className='group-area-wrapper'>
+      <div className='group-area-prompt'>Browse 90 years of programs to see what's available to mark or transcribe:</div>
       {groups}
     </div>
 
-    
+
 
 module.exports = GroupBrowser
