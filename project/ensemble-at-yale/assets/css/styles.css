@@ -797,6 +797,36 @@ a.drama-era-group-link {
   height: 4px;
 }
 
+.group-status-message {
+  padding: 30px;
+}
+
+.group-status-message * {
+  display: inline-block;
+  margin-bottom: 10px;
+  vertical-align: top;
+  line-height: 19px;
+}
+
+.group-status-message span {
+  margin-bottom: 0;
+}
+
+.group-status-message .status-top {
+  font-size: 16px;
+}
+
+.group-status-message svg {
+  width: 18px;
+  position: relative;
+  top: -1px;
+  margin-right: 4px;
+}
+
+.group-status-message a {
+  color: #69A7C7;
+}
+
 .collection-browse-controls-content {
   margin: 28px;
 }
