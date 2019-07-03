@@ -6,4 +6,4 @@
 #= require 'lib/proto'
 #= require 'lib/modernizr-custom.js'
 #= require 'components'
-window.projectBuilderUrl = 'https://google.com'
+window.projectBuilderUrl = 'https://www.zooniverse.org/projects/haasarts/ensemble-at-yale/classify'
