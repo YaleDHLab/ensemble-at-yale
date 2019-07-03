@@ -504,7 +504,7 @@ body {
   font-size: 15px;
   padding: 11px;
   height: auto;
-  line-height: 14px;
+  line-height: 15px;
   color: #0F4D92;
   font-weight: 800;
   border-radius: 4px;
@@ -776,8 +776,9 @@ a.drama-era-group-link {
   background: #fff;
   font-family: Mallory Light;
   color: #333333;
-  font-size: .85em;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .group-status-container {
@@ -842,6 +843,10 @@ a.drama-era-group-link {
 
 .collection-performance-dates-container {
   margin-top: 30px;
+}
+
+.collection-performance-dates-container .custom-select {
+  margin-bottom: 7px;
 }
 
 .collection-performance-dates-label {
