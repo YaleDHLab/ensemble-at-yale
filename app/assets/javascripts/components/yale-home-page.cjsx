@@ -1,7 +1,8 @@
-React         = require('react')
-GroupBrowser  = require('./group-browser')
-NameSearch    = require('./name-search')
-{Navigation}  = require('react-router')
+React         = require 'react'
+GroupBrowser  = require './group-browser'
+NameSearch    = require './name-search'
+{Navigation}  = require 'react-router'
+require '../lib/scrolly'
 
 HomePage = React.createClass
   displayName : 'HomePage'
@@ -114,17 +115,14 @@ HomePage = React.createClass
               <div className='hero-overlay-container'>
                 <div className='hero-overlay-content'>
                   <div className='hero-overlay-title'>
-                    Help create a database of Yale theater history
+                    Help create a database of Yale theater
                   </div>
 
                   <div className='hero-overlay-text'>Click a button below to get started:</div>
-
-                  <a href='/#/mark'>
-                    <div className='hero-overlay-button'>Mark</div>
-                  </a>
-                  <a href='/#/transcribe'>
+                  <a href={window.projectBuilderUrl}>
                     <div className='hero-overlay-button'>Transcribe</div>
                   </a>
+                  <div className='hero-overlay-button' onClick={() -> smoothScroll('group-target')}>Browse</div>
                 </div>
               </div>
             </div>
