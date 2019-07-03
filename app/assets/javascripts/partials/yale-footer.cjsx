@@ -16,7 +16,7 @@ Footer = React.createClass
 
             <div className='footer-right-container'>
               <div className='footer-right'>
-                A collaboration of the Yale Digital Humanities Laboratory & Robert B. Haas Family Arts Library
+                A collaboration of the <a href='http://dhlab.yale.edu'>Yale Digital Humanities Laboratory</a> & <a href='https://web.library.yale.edu/arts'>Robert B. Haas Family Arts Library</a>
               </div>
             </div>
           </div>
