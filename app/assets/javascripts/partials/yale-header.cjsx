@@ -24,15 +24,21 @@ module.exports = React.createClass
             <div className='brand-title-text-container'>
               <a href='/#/'>
                 <div className='brand-title'>
-                    <img src='assets/ensemble-logo.png' />
+                  <img src='assets/ensemble-logo.svg' />
                 </div>
               </a>
             </div>
           </div>
 
           <div className='workflow-tab-container'>
-            <a className='main-header-item main-header-button' href='#transcribe'>Transcribe</a>
-            <Link to='/#/about' activeClassName='selected' className='main-header-item main-header-button'>About</Link>
+            <span>
+              <a href={window.projectBuilderUrl || '#'} className='main-header-item main-header-button'>Transcribe</a>
+              <div className='main-header-underline' />
+            </span>
+            <span>
+              <a href='/#/about' activeClassName='selected' className='main-header-item main-header-button'>About</a>
+              <div className='main-header-underline' />
+            </span>
           </div>
         </div>
       </nav>
