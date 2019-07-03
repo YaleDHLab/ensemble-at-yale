@@ -124,7 +124,7 @@ body {
 
 .brand-title {
   height: 46px;
-  margin-top: 9px;
+  margin-top: 20px;
 }
 
 .brand-subtitle {
@@ -727,6 +727,10 @@ a.drama-era-group-link {
   }
 }
 
+.footer-container a {
+  color: #69A7C7;
+  text-decoration: none;
+}
 
 /**********************
 * Collection Content  *
@@ -780,9 +784,13 @@ a.drama-era-group-link {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 304px;
+  height: 325px;
   background: #EBF4FD;
   overflow: hidden;
+}
+
+.group-status-container.tall {
+  height: 400px;
 }
 
 .group-status-container::before {
