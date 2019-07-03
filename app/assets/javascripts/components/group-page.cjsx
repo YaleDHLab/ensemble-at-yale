@@ -1,4 +1,4 @@
-React              = require("react")
+React              = require('react')
 GroupBrowser       = require('./group-browser')
 GenericButton      = require('components/buttons/generic-button')
 FirstPageThumbnail = require('./first-page-thumbnail')
@@ -12,7 +12,7 @@ sort_first_pages_json = (a, b) ->
   (2 * b['retired_from_mark'] + b['retired_from_transcribe'])
 
 GroupPage = React.createClass
-  displayName: "GroupPage"
+  displayName: 'GroupPage'
 
   getInitialState: ->
     group_stats: {
@@ -24,11 +24,11 @@ GroupPage = React.createClass
     all_institutions: []
     all_playwrights: []
 
-    placeholder_institution: "All Institutions"
-    selected_institution:    "All Institutions"
+    placeholder_institution: 'All Institutions'
+    selected_institution:    'All Institutions'
 
-    placeholder_playwright: "All Playwrights"
-    selected_playwright:    "All Playwrights"
+    placeholder_playwright: 'All Playwrights'
+    selected_playwright:    'All Playwrights'
 
     # min, max year will indicate the range of years from which the user can select
     # while start and end years will indicate the actual years the user has selected
@@ -36,21 +36,21 @@ GroupPage = React.createClass
     max_year: 1940
     start_year: 1920
     end_year: 1940
-    group_name: ""
-    group_description: ""
+    group_name: ''
+    group_description: ''
 
   componentDidMount: ->
     # make a request to /groups/{{ group_id }},
     # fetch metadata that describes the group name and description, and pass those values into
     # the application state
-    API.type("groups").get(@props.params.group_id).then (group_json) =>
+    API.type('groups').get(@props.params.group_id).then (group_json) =>
       @setState
         group_name: group_json.name,
         group_description: group_json.description
 
     # make a request to /group_stats?group_id={{ group_id }}
     # using the incoming data to set completion stats
-    API.type("group_stats").get(group_id: @props.params.group_id).then (stats_json) =>
+    API.type('group_stats').get(group_id: @props.params.group_id).then (stats_json) =>
       @setState
         group_stats: stats_json[0]
 
@@ -58,7 +58,7 @@ GroupPage = React.createClass
     # make a request to /subject_set_first_pages?group_id={{ group_id }}
     # using the incoming query param, and use the results of that query to define the first page array
     # as well as the available institutions and playwrights that users can select
-    API.type("subject_set_first_pages").get(group_id: @props.params.group_id).then (first_pages_json) =>
+    API.type('subject_set_first_pages').get(group_id: @props.params.group_id).then (first_pages_json) =>
       all_institutions = []
       all_playwrights = []
       author_surnames = {}
@@ -122,11 +122,11 @@ GroupPage = React.createClass
 
       @initializeFirstPageArray()
 
-    API.type("groups").get(@props.params.group_id).then (group) =>
+    API.type('groups').get(@props.params.group_id).then (group) =>
       @setState
         group: group
 
-    API.type("subject_sets").get(group_id: @props.params.group_id).then (sets) =>
+    API.type('subject_sets').get(group_id: @props.params.group_id).then (sets) =>
       @setState
         subject_sets: sets
 
@@ -146,10 +146,10 @@ GroupPage = React.createClass
           first_pages_view.push <FirstPageThumbnail page_json={page_json} key={index} />
 
     for page_json, index in marked
-      first_pages_view.push <FirstPageThumbnail page_json={page_json} key={"marked-" + index} />
+      first_pages_view.push <FirstPageThumbnail page_json={page_json} key={'marked-' + index} />
 
     for page_json, index in transcribed
-      first_pages_view.push <FirstPageThumbnail page_json={page_json} key={"marked-" + index} />
+      first_pages_view.push <FirstPageThumbnail page_json={page_json} key={'marked-' + index} />
 
     @setState
       first_page_array: first_pages_view
@@ -167,18 +167,18 @@ GroupPage = React.createClass
     if @state.selected_institution != @state.placeholder_institution
       selection_criteria.push(
         {
-          "label": "selected_institution",
-          "value": @state.selected_institution,
-          "key_in_first_page_json": "location"
+          'label': 'selected_institution',
+          'value': @state.selected_institution,
+          'key_in_first_page_json': 'location'
         }
       )
 
     if @state.selected_playwright != @state.placeholder_playwright
       selection_criteria.push(
         {
-          "label": "selected_playwright",
-          "value": @state.selected_playwright,
-          "key_in_first_page_json": "written_by"
+          'label': 'selected_playwright',
+          'value': @state.selected_playwright,
+          'key_in_first_page_json': 'written_by'
         }
       )
 
@@ -222,49 +222,46 @@ GroupPage = React.createClass
 
   render: ->
     if ! @state.group?
-      <div className="group-page">
+      <div className='group-page'>
         <h2>Loading...</h2>
       </div>
     else
-      <div className="collection-page-content">
-        <div className="collection-title-container">
-          <div className="collection-title">{@state.group_name}</div>
+      <div className='collection-page-content'>
+        <div className='collection-title-container'>
+          <div className='collection-title'>{@state.group_name}</div>
         </div>
 
-        <div className="collection-container">
-          <div className="collection-thumbnails">{ @state.first_page_array }</div>
-          <div className="collection-browse-controls-container">
-            <div className="collection-browse-controls-content">
-              <div className="collection-description">{@state.group_description}</div>
+        <div className='collection-container'>
+          <div className='collection-thumbnails'>{ @state.first_page_array }</div>
+          <div className='collection-browse-controls-container'>
+            <div className='collection-browse-controls-content'>
+              <div className='collection-description'>{@state.group_description}</div>
 
-              <div className="collection-performance-dates-container">
-                <div className="collection-performance-dates-label">Performance Dates</div>
-                <div className="collection-question-mark-outer">
-                  <div className="collection-question-mark-inner">?</div>
+              <div className='collection-performance-dates-container'>
+                <div className='collection-performance-dates-label'>Performance Dates</div>
+
+                <div className='min-max-dates-container'>
+                  <div className='min-date min-max-date'>{@state.min_year}</div>
+                  <div className='max-date min-max-date'>{@state.max_year}</div>
                 </div>
 
-                <div className="min-max-dates-container">
-                  <div className="min-date min-max-date">{@state.min_year}</div>
-                  <div className="max-date min-max-date">{@state.max_year}</div>
-                </div>
-
-                <div className="collection-range-slider">
+                <div className='collection-range-slider'>
                   <ReactSlider
                     onAfterChange={@updateYearSliderState}
-                    ref="ReactYearSlider"
+                    ref='ReactYearSlider'
                     min={@state.min_year}
                     max={@state.max_year}
                     value={[@state.start_year, @state.end_year]} withBars />
                 </div>
 
-                <div className="custom-select collection-institution">
+                <div className='custom-select collection-institution'>
                   <SelectDropdown options_array={@state.all_institutions}
                                   placeholder={@state.placeholder_institution}
                                   value={@state.selected_institution}
                                   onSelect={@updateSelectedInstitution} />
                 </div>
 
-                <div className="custom-select collection-playwright">
+                <div className='custom-select collection-playwright'>
                   <SelectDropdown options_array={@state.all_playwrights}
                                   placeholder={@state.placeholder_playwright}
                                   value={@state.selected_playwright}
@@ -272,42 +269,14 @@ GroupPage = React.createClass
                 </div>
               </div>
             </div>
-
-            <div className="collection-mark-transcribe-container">
-              <a href="/#/Mark">
-                <div className="collection-button mark-button">MARK</div>
-              </a>
-              <a href="/#/Transcribe">
-                <div className="collection-button transcribe-button">TRANSCRIBE</div>
+            <div className='collection-mark-transcribe-container'>
+              <a href={window.projectBuilderUrl}>
+                <div className='collection-button transcribe-button'>Transcribe</div>
               </a>
             </div>
+            <div className='group-status-container'>
 
-            <div className="collection-progressbar-container">
-              <div className="collection-progressbar"
-                   aria-valuenow={parseInt((@state.group.stats?.completeness ? 0) * 100)}
-                   aria-valuemin="0" aria-valuemax="100"
-                   style={{width: parseInt((@state.group.stats?.completeness ? 0) * 100) + "%"}}></div>
-            </div>
 
-            <div className="collection-browse-controls-content">
-              <div className="collection-progress-details">
-                <div className="collection-progress-overall">
-                  <div className="collection-progress-overall-label">Completed Playbills:</div>
-                  <div className="collection-progress-overall-value">{@state.group_stats.total_completed}</div>
-                </div>
-
-                <div className="collection-progress-box-container">
-                  <div className="collection-progress-box">
-                    <div className="collection-progress-top">{@state.group_stats.total_marks}</div>
-                    <div className="collection-progress-bottom">Marked Fields</div>
-                  </div>
-
-                  <div className="collection-progress-box collection-progress-box-right">
-                    <div className="collection-completed-top">{@state.group_stats.total_transcriptions}</div>
-                    <div className="collection-completed-bottom">Transcribed Fields</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
