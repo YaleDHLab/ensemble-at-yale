@@ -6,3 +6,4 @@
 #= require 'lib/proto'
 #= require 'lib/modernizr-custom.js'
 #= require 'components'
+window.projectBuilderUrl = 'https://google.com'
