@@ -124,7 +124,7 @@ body {
 
 .brand-title {
   height: 46px;
-  margin-top: 20px;
+  margin-top: 8px;
 }
 
 .brand-subtitle {
@@ -261,6 +261,7 @@ body {
   transition: opacity 2s;
   background-size: cover;
   background-position: 50% 40%;
+  background-image: url(/assets/winter-tale-flip.jpg);
 }
 
 .home-page .next-hero-image-container {
@@ -1599,6 +1600,7 @@ span.help {
 .subject-set-toolbar-panes .pane.active {
   left: 80px;
   width: 147px;
+  top: 30px;
 }
 
 .subject-set-toolbar-panes .pane.pan-zoom {
