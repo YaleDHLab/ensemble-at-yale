@@ -8,6 +8,7 @@ html, body {
   height: 100%;
   width: 100%;
   font-size: 1em;
+  scroll-behavior: smooth;
 }
 
 * {
@@ -38,17 +39,17 @@ body {
 
 @font-face {
   font-family: Mallory;
-  src: url("/assets/Mallory-Medium.otf") format("opentype");
+  src: url('/assets/Mallory-Medium.otf') format('opentype');
 }
 
 @font-face {
   font-family: YaleNew;
-  src: url("/assets/YaleNew-Roman.otf") format("opentype");
+  src: url('/assets/YaleNew-Roman.otf') format('opentype');
 }
 
 @font-face {
-  font-family: "Mallory Light";
-  src: url("/assets/Mallory-Light.otf") format("opentype");
+  font-family: 'Mallory Light';
+  src: url('/assets/Mallory-Light.otf') format('opentype');
 }
 
 /*************
@@ -64,7 +65,7 @@ body {
 }
 
 .react-wrapper {
-  background-color: #1A1A1A;
+  background-color: #333333;
 }
 
 /*********
@@ -76,6 +77,10 @@ body {
   background-color: #000630;
   height: 50px;
   white-space: nowrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
 .header-content {
@@ -102,8 +107,7 @@ body {
 }
 
 .brand-title-container {
-  width: 344px;
-  min-width: 344px;
+  width: 240px;
   height: 60px;
   background: #00356B;
   text-align: center;
@@ -120,7 +124,7 @@ body {
 
 .brand-title {
   height: 46px;
-  margin-top: 17px;
+  margin-top: 9px;
 }
 
 .brand-subtitle {
@@ -136,6 +140,28 @@ body {
   vertical-align: top;
   margin-top: 14px;
   box-sizing: border-box;
+}
+
+.workflow-tab-container span {
+  display: inline-block;
+  margin-right: 60px;
+  line-height: 10px;
+}
+
+.workflow-tab-container .main-header-underline {
+  height: 2px;
+  background: #69A7C7;
+  width: 0%;
+  transition: width 0.3s;
+  margin-top: 4px;
+}
+
+.workflow-tab-container span:hover .main-header-underline  {
+  width: 100%;
+}
+
+.main-header-item:hover {
+  background: transparent;
 }
 
 .login-container {
@@ -154,14 +180,9 @@ body {
 }
 
 .main-header-button {
-  margin-right: 80px;
   color: #ccc;
   padding-bottom: 4px;
-}
-
-.main-header-item:hover {
-  background: none;
-  border-bottom: 2px solid #69A7C7;
+  vertical-align: top;
 }
 
 .main-header-item.selected {
@@ -289,7 +310,7 @@ body {
   font-weight: 100;
   letter-spacing: .02em;
   font-size: .7em;
-  font-family: "Mallory Light";
+  font-family: 'Mallory Light';
   line-height: 1.4em;
 }
 
@@ -313,6 +334,7 @@ body {
   border: 1px solid #aaa;
   display: inline-block;
   margin-right: 13px;
+  cursor: pointer;
 }
 
 .home-page .hero-overlay-button:hover,
@@ -453,10 +475,52 @@ body {
 .drama-era-image-wrapper {
   display: inline-block;
   margin-bottom: 30px;
+  position: relative;
 }
 
 .drama-era-image-wrapper:nth-child(1n) {
   margin-right: 40px;
+}
+
+.program-buttons {
+  position: absolute;
+  top: 45px;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  text-align: center;
+  display: none;
+}
+
+.browse-programs-button,
+.transcribe-program-button {
+  text-align: center;
+  background: #fff;
+  display: inline-block;
+  margin-right: 8px;
+  width: 180px;
+  box-sizing: border-box;
+  font-size: 15px;
+  padding: 11px;
+  height: auto;
+  line-height: 14px;
+  color: #0F4D92;
+  font-weight: 800;
+  border-radius: 4px;
+}
+
+.browse-programs-button.left,
+.transcribe-program-button.right {
+  width: 140px;
+}
+
+.transcribe-program-button.right {
+  background: #69A7C7;
+  color: #fff;
+}
+
+.drama-era-image-wrapper:hover .program-buttons {
+  display: block;
 }
 
 .col-sm-6 {
@@ -471,10 +535,28 @@ a.drama-era-group-link {
 .drama-era-image-container {
   width: 540px;
   height: 270px;
-  border: 1px solid #555555;
   position: relative;
   transition: opacity .3s;
   opacity: 1;
+  overflow: hidden;
+  border: 1px solid #555;
+  box-sizing: border-box;
+}
+
+.drama-era-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 48px;
+  left: 0;
+  background: rgba(0,0,0,0.0);
+  z-index: 2;
+  transition: background 0.3s;
+}
+
+.drama-era-image-wrapper:hover .drama-era-image-container::after {
+  background: rgba(34, 34, 34, 0.85);
 }
 
 .flexbox-wrapper-groups {
@@ -482,61 +564,16 @@ a.drama-era-group-link {
 }
 
 .drama-era-image {
-  position: absolute;
-  z-index: 1;
-  width: 540px;
-  height: 270px;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center center;
-  transition: opacity .5s;
 }
 
 .drama-era-image-0:hover {
-  background-image: url("yellow-jacket_th.jpg");
+  background-image: url('yellow-jacket_th.jpg');
   background-size: cover;
   height: 100%;
-}
-
-.drama-era-hover-image {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background-size: cover;
-}
-
-.drama-era-image-wrapper:hover .drama-era-image {
-  opacity: 0;
-}
-
-.drama-era-hover-image-0 {
-  background-image: url("/assets/7-DivineComedy.jpg");
-  background-position: 50% 55%;
-}
-
-.drama-era-hover-image-1 {
-  background-image: url("/assets/5-booth.jpg");
-  background-position: 50% 35%;
-}
-
-.drama-era-hover-image-2 {
-  background-image: url("/assets/4-bacchae.jpg");
-  background-position: 50% 35%;
-}
-
-.drama-era-hover-image-3 {
-  background-image: url("/assets/3-piano.jpg");
-  background-position: 50% 15%;
-}
-
-.drama-era-hover-image-4 {
-  background-image: url("/assets/2-Baltimore.jpg");
-  background-position: 50% 35%;
-}
-
-.drama-era-hover-image-5 {
-  background-image: url("/assets/1-eclipsed.jpg");
-  background-position: 50% 65%;
 }
 
 .drama-era-group-link {
@@ -553,11 +590,13 @@ a.drama-era-group-link {
   letter-spacing: .03em;
   line-height: 1em;
   font-family: YaleNew;
-  margin-top: -48px;
   text-transform: uppercase;
   position: absolute;
-  top: 100%;
-  z-index: 2;
+  z-index: 3;
+  transition: background 0.5s;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .collection-thumbnail:hover .collection-thumbnail-mark,
@@ -565,8 +604,32 @@ a.drama-era-group-link {
   opacity: 1;
 }
 
-.drama-era-image-container:hover .drama-era-image-overlay {
-  background: #00356B;
+.group-status {
+  position: absolute;
+  top: 80px;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  line-height: 15px;
+  font-family: Mallory;
+  display: none;
+}
+
+.group-status * {
+  display: inline-block;
+}
+
+.group-status-text {
+  vertical-align: top;
+  margin: 4px 5px;
+  font-weight: 400;
+}
+
+.drama-era-image-wrapper:hover .group-status {
+  display: block;
 }
 
 /*********
@@ -674,7 +737,7 @@ a.drama-era-group-link {
 }
 
 .collection-title-container {
-  margin: 20px 40px;
+  margin: 20px 24px;
   color: #fff;
 }
 
@@ -683,7 +746,7 @@ a.drama-era-group-link {
   font-weight: 300;
   letter-spacing: .04em;
   font-family: YaleNew;
-  margin-left: 20px;
+  margin-left: 3px;
 }
 
 .collection-browse-container {
@@ -710,6 +773,28 @@ a.drama-era-group-link {
   color: #333333;
   font-size: .85em;
   font-weight: 600;
+}
+
+.group-status-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 304px;
+  background: #EBF4FD;
+  overflow: hidden;
+}
+
+.group-status-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -4px;
+  box-shadow: 0px 4px 5px rgba(0,0,0,0.3);
+  z-index: 10;
+  width: 300px;
+  height: 4px;
 }
 
 .collection-browse-controls-content {
@@ -810,7 +895,7 @@ a.drama-era-group-link {
 
 .bar-1 {
   height: 100%;
-  background: #679db8;
+  background: #999999;
 }
 
 /**************************
@@ -818,8 +903,7 @@ a.drama-era-group-link {
 **************************/
 
 .collection-mark-transcribe-container {
-  background: #EDF6FA;
-  padding: 30px;
+  padding: 0 30px;
 }
 
 .collection-mark-transcribe-container a {
@@ -862,13 +946,10 @@ a.drama-era-group-link {
 }
 
 .custom-select {
-  background: url("/assets/caret.png") no-repeat 96% 0;
+  background: url('/assets/caret.png') no-repeat 96% 0;
   height: 29px;
   overflow: hidden;
-  width: 260px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  width: 245px;
   background-color: #e6e6e6;
 }
 
@@ -974,7 +1055,7 @@ select::-ms-expand {
   height: 800px;
   max-height: 800px;
   overflow: scroll;
-  background: #a6b1bf;
+  background: #CCCCCC;
   min-width: 100%;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -1017,41 +1098,25 @@ select::-ms-expand {
   position: absolute;
 }
 
-.collection-thumbnail-mark,
-.collection-thumbnail-transcribe {
+.collection-thumbnail-mark {
   position: absolute;
-  width: 116px;
-  height: 14px;
-  padding: 6px 0 8px 0;
-  margin-left: 10px;
   background: #679db8;
   color: #fff;
   border-radius: 4px;
   text-align: center;
-  font-size: .9em;
   font-family: Arial;
   cursor: pointer;
-  opacity : 0;
+  opacity: 0;
   transition: opacity .3s;
+  top: 80px;
+  font-size: 15px;
+  line-height: 15px;
+  padding: 8px 29px;
+  left: 27px;
 }
 
-.collection-thumbnail:hover .collection-thumbnail-mark,
-.collection-thumbnail:hover .collection-thumbnail-transcribe {
+.collection-thumbnail:hover .collection-thumbnail-mark {
   display: block;
-}
-
-.collection-thumbnail-mark {
-  margin-top: 65px;
-}
-
-.collection-thumbnail-transcribe {
-  margin-top: 100px;
-}
-
-.collection-thumbnail-mark.retired-from-workflow,
-.collection-thumbnail-transcribe.retired-from-workflow {
-  background: #2f5a6f;
-  cursor: default;
 }
 
 /*************
@@ -1101,6 +1166,7 @@ select::-ms-expand {
 
 .about-page-container {
   background: #fff;
+  overflow: hidden;
 }
 
 #about-page h2.about-the-archive {
@@ -1148,11 +1214,11 @@ select::-ms-expand {
 }
 
 .haas-art-library {
-  background: url("/assets/haas-arts-library.jpg") no-repeat center center;
+  background: url('/assets/haas-arts-library.jpg') no-repeat center center;
 }
 
 .yale-repertory-theatre {
-  background: url("/assets/yalerep.jpg") no-repeat center center;
+  background: url('/assets/yalerep.jpg') no-repeat center center;
 }
 
 .about-page-right-text {
@@ -1177,16 +1243,27 @@ select::-ms-expand {
   margin-top: 50px;
 }
 
+.about-page-image.yale-repertory-theatre {
+  height: 302px;
+}
+
 /***
 * Mark page
 ***/
 
-.classifier .right-column .task-area.mark {
-  border-radius: 0px;
-  font-family: Mallory Light;
-  font-weight: 600;
-  font-size: .85em;
-  height: 85vh;
+.classifier .right-column {
+  display: none;
+}
+
+.classifier .subject-area {
+  padding-top: 80px;
+  box-sizing: border-box;
+}
+
+.marks-for-annotation,
+.subject-set-toolbar-links .fa-toggle-on,
+.subject-set-toolbar-links .fa-toggle-off {
+  display: none;
 }
 
 .help-modal, .draggable-modal {
@@ -1215,8 +1292,8 @@ select::-ms-expand {
   padding-bottom: 30px;
 }
 
-.yale-tutorial-modal .draggable-modal .modal-buttons {
-  padding-bottom: 54px;
+.yale-tutorial-modal {
+  display: none;
 }
 
 .draggable-modal .modal-header {
@@ -1275,19 +1352,6 @@ select::-ms-expand {
   left: 50%;
 }
 
-.classifier .right-column {
-  width: 290px;
-  padding-right: 0px;
-}
-
-.classifier .right-column .task-area .task-container {
-  width: 290px;
-}
-
-.classifier .right-column .task-area .task-secondary-area {
-  display: none;
-}
-
 .minor-button.ghost, .small-button.ghost {
   border: 2px solid #69A7C7;
   color: #69A7C7;
@@ -1297,15 +1361,6 @@ select::-ms-expand {
   font-weight: 400;
   font-family: Mallory;
   letter-spacing: 0.25px;
-}
-
-.classifier .right-column .task-area .help-bad-subject-holder {
-  margin: 0px 0 15px 0;
-}
-
-.classifier .right-column .task-area .help-bad-subject-holder button {
-  margin-top: 8px;
-  padding-top: 8px;
 }
 
 rect.shape {
@@ -1332,25 +1387,6 @@ rect.shape {
   height: 1.9em;
 }
 
-.classifier .right-column .task-area .workflow-task .answer {
-  background: #EBEBEB;
-  font-weight: 400;
-  font-size: 13px;
-  font-family: Mallory;
-  color: #746F73;
-  margin: 4px 0;
-}
-
-.classifier .right-column .task-area .workflow-task .answer.active {
-  background: #C4E4F5;
-  color: #1D7F9D;
-}
-
-.classifier .right-column .task-area.mark {
-  padding: 20px 0;
-  width: inherit;
-}
-
 .workflow-task {
   padding: 0 20px;
 }
@@ -1364,42 +1400,9 @@ rect.shape {
   background: #EDF6FA;
 }
 
-.classifier .right-column .task-area .help-bad-subject-holder {
-  margin: -5px 20px 20px;
-}
-
-.classifier .right-column .task-area .help-bad-subject-holder .small-button.ghost {
-  background: url(/assets/flag-an-issue-symbol.png);
-  border: 2px solid #CAC7CE;
-  color: #939393;
-  background-repeat: no-repeat;
-  background-position: 95%;
-  margin-bottom: 10px;
-}
-
-/* Flag this program active state */
-.classifier .right-column .task-area .help-bad-subject-holder .small-button.ghost.toggled {
-  border: 2px solid #FD953A;
-  background: url(/assets/flag-an-issue-symbol-active.png);
-  background-repeat: no-repeat;
-  background-position: 95%;
-}
-
-.classifier .right-column .task-area .workflow-task {
-  margin-bottom: 20px;
-}
-
 /* Hide the checkmark used by scribeapi to signal bad playbill button active */
 .toggle-button.toggled:before {
-  content: "";
-}
-
-.classifier .right-column .task-area .workflow-task .answer .help {
-  height: 16px;
-  width: 0px;
-  background: #fff;
-  border-radius: 16px;
-  color: #000;
+  content: '';
 }
 
 span.help {
@@ -1409,10 +1412,6 @@ span.help {
 .answer .fa {
   margin-left: -4px;
   margin-top: 0px;
-}
-
-.classifier .right-column .task-area .workflow-task .answer:hover {
-  background: #69A7C7;
 }
 
 .toggle-help-button {
@@ -1438,12 +1437,33 @@ button.small-button.help-button.ghost.minor-button {
 }
 
 .subject-set-toolbar {
-  margin-top: 8px;
   width: 72px;
+  top: 50px;
+  z-index: 1;
 }
 
 .subject-set-toolbar-links a {
   width: 73px;
+}
+
+/* loading page for subjects */
+.group-page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: block;
+}
+
+.subject-viewer,
+.subject-viewer.active {
+  z-index: 2;
+}
+
+.subject-viewer-svg {
+  background: #333;
 }
 
 .subject-set-viewer {
@@ -1479,18 +1499,6 @@ button.small-button.help-button.ghost.minor-button {
 * Mark step task labels
 ***/
 
-.classifier .right-column .task-area .workflow-task {
-  margin-bottom: 0px;
-}
-
-.classifier .right-column .task-area .workflow-task .answer .help {
-  height: 16px;
-  width: 0px;
-  background: #fff;
-  border-radius: 16px;
-  color: #000;
-}
-
 span.help {
   margin: 5px;
 }
@@ -1504,33 +1512,10 @@ span.help {
   right: 11px;
 }
 
-.classifier .right-column .task-area .workflow-task .label-container.marked .answer {
-  background: #EDF6FA;
-}
-
 .label-container.active .mark-step-help {
   max-height: 200px;
   padding-bottom: 12px;
   padding-top: 4px;
-}
-
-.classifier .right-column .task-area .workflow-task .answer {
-  background: #EBEBEB;
-  font-weight: 400;
-  font-size: 13px;
-  font-family: Mallory;
-  color: #746F73;
-  margin: 4px 0;
-}
-
-.classifier .right-column .task-area .workflow-task .answer.active {
-  background: #C4E4F5;
-  color: #273D61;
-}
-
-.classifier .right-column .task-area.mark {
-  padding: 20px 0;
-  width: inherit;
 }
 
 .workflow-task {
@@ -1544,10 +1529,6 @@ span.help {
 .answer .fa {
   margin-left: -4px;
   margin-top: 0px;
-}
-
-.classifier .right-column .task-area .workflow-task .answer:hover {
-  background: #afcad8;
 }
 
 .complete-this-playbill-button.major-button {
@@ -1666,7 +1647,7 @@ span.help {
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: 1000;
+  z-index: 10;
   background: rgba(0, 0, 0, 0.65);
   left: 0;
 }
@@ -1740,14 +1721,6 @@ a.transcribe-this-playbill-button .major-button {
   text-transform: uppercase;
   font-size: .9em;
   font-weight: 400;
-}
-
-.yale-tutorial-modal .draggable-modal.help-modal.draggable {
-  z-index: 12;
-}
-
-.yale-tutorial-modal video {
-  width: 100%;
 }
 
 .transcribe-help-icon-container {
