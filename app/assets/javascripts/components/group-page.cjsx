@@ -221,8 +221,8 @@ GroupPage = React.createClass
       @updateFirstPageArray
 
 
-  getStatusMessage: (group) ->
-    if group.status == 'complete'
+  getStatusMessage: (group_status) ->
+    if group_status == 'complete'
       return (
         <div className='group-status-message'>
           <svg xmlns='http://www.w3.org/2000/svg' width='19.003' height='19.073' viewBox='0 0 19.003 19.073'>
@@ -234,7 +234,7 @@ GroupPage = React.createClass
         </div>
       )
 
-    else if group.status == 'in_progress'
+    else if group_status == 'in_progress'
       return (
         <div className='group-status-message'>
           <svg xmlns='http://www.w3.org/2000/svg' width='22' height='19.552' viewBox='0 0 22 19.552'>
@@ -245,7 +245,7 @@ GroupPage = React.createClass
         </div>
       )
 
-    else if group.status == 'coming_soon'
+    else if group_status == 'coming_soon'
       return (
         <div className='group-status-message'>
           <svg xmlns='http://www.w3.org/2000/svg' width='19' height='18.998' viewBox='0 0 19 18.998'>
@@ -258,6 +258,30 @@ GroupPage = React.createClass
       )
     else
       return (<span />)
+
+  getStatusRegion: (group_status) ->
+    if group_status == 'in_progress'
+      return (
+        <div>
+          <div className='collection-mark-transcribe-container'>
+            <a href={window.projectBuilderUrl}>
+              <div className='collection-button transcribe-button'>Transcribe</div>
+            </a>
+          </div>
+          <div className='group-status-container short'>
+            {@getStatusMessage(group_status)}
+          </div>
+        </div>
+      )
+    else
+      return (
+        <div>
+          <div className='group-status-container tall'>
+            {@getStatusMessage(group_status)}
+          </div>
+        </div>
+      )
+
 
   render: ->
     if ! @state.group?
@@ -308,14 +332,7 @@ GroupPage = React.createClass
                 </div>
               </div>
             </div>
-            <div className='collection-mark-transcribe-container'>
-              <a href={window.projectBuilderUrl}>
-                <div className='collection-button transcribe-button'>Transcribe</div>
-              </a>
-            </div>
-            <div className='group-status-container'>
-              {@getStatusMessage(@state.group_json)}
-            </div>
+            { @getStatusRegion(@state.group_json.status) }
           </div>
         </div>
       </div>
