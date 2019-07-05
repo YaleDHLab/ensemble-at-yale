@@ -1,7 +1,7 @@
 from collections import defaultdict
 import glob, json, csv, os, shutil
 
-curate_images = False
+curate_images = True
 curate_text = True
 
 # map each group name to its group id in the ensemble platform

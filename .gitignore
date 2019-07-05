@@ -108,3 +108,4 @@ server-notes.txt
 newly_transcribed.tar.gz
 transcribed_subject_set_ids.json
 *.archive
+*-production.log

@@ -8,6 +8,7 @@ class Group
   field :cover_image_url, type: String
   field :external_url,    type: String
   field :meta_data,       type: Hash
+  field :status,          type: String
 
   include CachedStats
   update_interval 30

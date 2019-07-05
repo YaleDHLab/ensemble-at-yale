@@ -6,7 +6,7 @@ LoadingIndicator = React.createClass
   displayName: 'LoadingIndicator'
 
   render: ->
-    <span className="loading-indicator">
+    <span className='loading-indicator'>
       Loading
       <span>•</span>
       <span>•</span>
