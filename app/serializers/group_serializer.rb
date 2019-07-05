@@ -1,5 +1,5 @@
 class GroupSerializer < ActiveModel::MongoidSerializer
-  attributes :id, :type, :name, :description, :key, :cover_image_url, :external_url, :meta_data, :stats
+  attributes :id, :type, :name, :description, :key, :cover_image_url, :external_url, :meta_data, :stats, :status
 
   def type
     "groups"
