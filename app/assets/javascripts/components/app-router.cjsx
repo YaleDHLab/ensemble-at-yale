@@ -10,6 +10,7 @@ Verify        = require './verify'
 GroupPage     = require './group-page'
 GroupBrowser  = require './group-browser'
 AboutPage     = require './yale-about-page'
+FaqPage       = require './yale-faq-page'
 YaleLogin     = require './yale-login'
 
 Project       = require 'models/project.coffee'
@@ -35,6 +36,7 @@ class AppRouter
         <Redirect from='_=_' to='/' />
 
         <Route name='home' path='/home' handler={HomePage}/>
+        <Route name='faq' path='/faq' handler={FaqPage}/>
 
         { (w for w in project.workflows when w.name in ['mark','transcribe','verify']).map (workflow, key) =>
             handler = eval workflow.name.charAt(0).toUpperCase() + workflow.name.slice(1)
