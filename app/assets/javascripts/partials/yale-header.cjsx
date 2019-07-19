@@ -39,6 +39,10 @@ module.exports = React.createClass
               <a href='/#/about' activeClassName='selected' className='main-header-item main-header-button'>About</a>
               <div className='main-header-underline' />
             </span>
+            <span>
+              <a href='/#/faq' activeClassName='selected' className='main-header-item main-header-button'>FAQ</a>
+              <div className='main-header-underline' />
+            </span>
           </div>
         </div>
       </nav>
