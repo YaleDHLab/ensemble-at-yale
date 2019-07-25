@@ -7,8 +7,8 @@ FaqPage = React.createClass
 
   render:->
     <div className='static-page-container'>
-      <h1>About Ensemble@Yale</h1>
-      <div className='static-page-content'>
+      <h1>FAQ</h1>
+      <div className='static-page-content faq'>
         <div className='static-page-right'>
           <div style={{backgroundImage:'url("/assets/cover-7.jpg")'}}/>
           <div style={{backgroundImage:'url("/assets/cover-3.jpg")'}}/>
@@ -37,8 +37,6 @@ FaqPage = React.createClass
         <div className='static-page-left'>
           <div className='large-italic'>We need your help to create a searchable database of Yale theater history by transcribing cast and staff members in historical programs!</div>
 
-          <h2>FAQ</h2>
-
           <h3>What do you mean by transcribe?</h3>
           <p>For this project, transcription entails 1) identifying people who were involved in a production (cast and staff members) on digitized programs, then 2) typing their name and role exactly as they appear.</p>
 
@@ -46,7 +44,7 @@ FaqPage = React.createClass
           <p>Anyone, anytime, from anywhere! Volunteers do not have to create an account to participate, but may choose to do so on Zooniverse. If you sign up for a free account, you’ll be able to see a record of all of your contributions to this and other Zooniverse projects.</p>
 
           <h3>Why are things organized in six groups on the homepage?</h3>
-          <p>Our project has over 900 digitized programs divided into six historical eras to facilitate quick browsing. The Department of Drama era begins when Drama degrees were conferred by the School of Fine Arts, until the School of Drama became a separate professional school in 1955 (starting the Founding Era). Since1966, the Artistic Director of Yale Repertory Theatre and Dean of the School of Drama have been the same person, so the subsequent eras are named for them: Robert Brustein, Lloyd Richards, Stan Wojewodski, and James Bundy. Of course, there are many more theatrical happenings at Yale besides the School of Drama and Yale Repertory Theatre, but this chronological organization fits the programs on the platform. For more on the history of the Yale School of Drama, see <a href='https://www.drama.yale.edu/about-us/'>https://www.drama.yale.edu/about-us/</a>.</p>
+          <p>Our project has over 900 digitized programs divided into six historical eras to facilitate quick browsing. The Department of Drama era begins when Drama degrees were conferred by the School of Fine Arts, until the School of Drama became a separate professional school in 1955 (starting the Founding Era). Since 1966, the Artistic Director of Yale Repertory Theatre and Dean of the School of Drama have been the same person, so the subsequent eras are named for them: Robert Brustein, Lloyd Richards, Stan Wojewodski, and James Bundy. Of course, there are many more theatrical happenings at Yale besides the School of Drama and Yale Repertory Theatre, but this chronological organization fits the programs on the platform. For more on the history of the Yale School of Drama, see <a href='https://www.drama.yale.edu/about-us/'>https://www.drama.yale.edu/about-us/</a>.</p>
 
           <h3>Where are the original programs?</h3>
           <p>The project currently includes digitized programs from the <a href='https://archives.yale.edu/repositories/5/resources/447'>Yale Repertory Theatre and Yale School of Drama Ephemera Collection</a> housed in Yale’s <a href='https://web.library.yale.edu/arts/special-collections'>Arts Library Special Collections</a>.</p>
