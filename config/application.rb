@@ -24,6 +24,11 @@ module API
     # config.middleware.use Rack::Deflater
 
     initializer 'setup_asset_pipeline', :group => :all  do |app|
+      # Add subdirs of /assets/images to pipeline
+      Dir.glob("#{Rails.root}/app/assets/images/**/").each do |path|
+        app.config.assets.paths << path
+      end
+
       # We don't want the default of everything that isn't js or css, because it pulls too many things in
       app.config.assets.precompile.shift
 
@@ -42,8 +47,6 @@ module API
 
     config.browserify_rails.commandline_options = "-t coffee-reactify --extension=\".cjsx\" "
     # config.browserify_rails.commandline_options = "-t reactify --extension=\".js.jsx\""
-
-
 
     config.middleware.use Rack::Cors do
       allow do
