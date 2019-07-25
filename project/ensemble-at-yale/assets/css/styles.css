@@ -1750,6 +1750,10 @@ a.transcribe-this-playbill-button .major-button {
   font-size: 21px;
 }
 
+.static-page-content.faq .large-italic {
+  margin-bottom: 40px;
+}
+
 .static-page-content h2 {
   font-family: 'YaleNew';
   font-size: 24px;
