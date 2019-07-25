@@ -29,7 +29,7 @@ HomePage = React.createClass
               <div className='hero-overlay-container'>
                 <div className='hero-overlay-content'>
                   <div className='hero-overlay-title'>
-                    Transcribe programs to create<br/>a database of Yale theatre history
+                    Transcribe programs to create<br/>a database of Yale theater history
                   </div>
                   <div className='hero-overlay-text'>Click a button below to get started:</div>
                   <a href={window.projectBuilderUrl}>

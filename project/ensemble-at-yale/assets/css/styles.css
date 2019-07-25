@@ -779,38 +779,12 @@ a.drama-era-group-link {
   height: 800px;
   position: absolute;
   left: 60px;
-  background: #fff;
+  background: #EBF4FD;
   font-family: Mallory Light;
   color: #333333;
   font-size: 15px;
   font-weight: 400;
   line-height: 20px;
-}
-
-.group-status-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 325px;
-  background: #EBF4FD;
-  overflow: hidden;
-}
-
-.group-status-container.tall {
-  height: 400px;
-}
-
-.group-status-container::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -4px;
-  box-shadow: 0px 4px 5px rgba(0,0,0,0.3);
-  z-index: 10;
-  width: 300px;
-  height: 4px;
 }
 
 .group-status-message {
@@ -844,7 +818,10 @@ a.drama-era-group-link {
 }
 
 .collection-browse-controls-content {
-  margin: 28px;
+  padding: 28px;
+  background: #fff;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
 }
 
 .collection-performance-dates-container {
@@ -853,6 +830,10 @@ a.drama-era-group-link {
 
 .collection-performance-dates-container .custom-select {
   margin-bottom: 7px;
+}
+
+.collection-performance-dates-container select.collection-playwright {
+  margin-bottom: 0;
 }
 
 .collection-performance-dates-label {
@@ -1167,134 +1148,6 @@ select::-ms-expand {
 
 .collection-thumbnail:hover .collection-thumbnail-mark {
   display: block;
-}
-
-/*************
-* About Page *
-*************/
-
-#About h1 {
-  display: none;
-}
-
-#About h2 {
-  margin: 20px 0;
-}
-
-#About .updated-at {
-  display: none;
-}
-
-#About .about-page {
-  background-color: #1A1A1A !important;
-}
-
-#about-page {
-  padding: 60px 80px;
-  background: #1A1A1A;
-  height: 100%;
-}
-
-#about-page a {
-  color: #037FE8;
-  font-family: Mallory;
-  text-decoration: none;
-}
-
-#about-page h2 {
-  font-size: 1.3em;
-  color: #00356B;
-  font-family: Mallory;
-
-}
-
-#about-page p {
-  font-size: .925em;
-  color: #000000;
-  font-family: Mallory Light;
-}
-
-.about-page-container {
-  background: #fff;
-  overflow: hidden;
-}
-
-#about-page h2.about-the-archive {
-  color: #fff;
-  font-weight: 100;
-  margin-bottom: 20px;
-  font-size: 1.85em;
-  margin-left: 40px;
-  font-family: YaleNew;
-}
-
-.about-left-container {
-  width: 50%;
-  float: left;
-  display: inline-block;
-  color: #000;
-}
-
-.about-left-container h2,
-.about-left-container p {
-  margin-bottom: 15px;
-}
-
-.about-left {
-  margin: 40px;
-}
-
-.about-right-container {
-  width: 50%;
-  float: right;
-  color: #000;
-  max-width: 550px;
-}
-
-.about-right {
-  padding: 0 30px;
-}
-
-.about-page-image {
-  height: 300px;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.haas-art-library {
-  background: url('/assets/haas-arts-library.jpg') no-repeat center center;
-}
-
-.yale-repertory-theatre {
-  background: url('/assets/yalerep.jpg') no-repeat center center;
-}
-
-.about-page-right-text {
-  background: #DDDDDD;
-  min-height: 140px;
-}
-
-.about-page-right-text h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-.about-page-right-text p {
-  margin-bottom: 0;
-}
-
-.about-page-right-text {
-  padding: 30px;
-}
-
-.contact-us {
-  margin-top: 50px;
-}
-
-.about-page-image.yale-repertory-theatre {
-  height: 302px;
 }
 
 /***
@@ -1838,4 +1691,91 @@ a.transcribe-this-playbill-button .major-button {
 
 .options a:hover {
   cursor: pointer;
+}
+
+/**
+* About / FAQ Pages
+**/
+
+.static-page-container {
+  box-sizing: border-box;
+  padding: 60px;
+}
+
+.static-page-container h1 {
+  font-family: 'YaleNew';
+  color: #fff;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 300;
+  margin-bottom: 25px;
+  margin-left: 22px;
+}
+
+.static-page-content {
+  background: #fff;
+  color: #000;
+  box-sizing: border-box;
+  padding: 60px;
+  position: relative;
+  padding-right: 200px;
+}
+
+.static-page-right {
+  width: 140px;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  max-height: 100%;
+}
+
+.static-page-right * {
+  display: inline-block;
+  float: right;
+}
+
+.static-page-right div {
+  width: 100%;
+  height: 205px;
+  background-position: center center;
+  background-size: cover;
+}
+
+.static-page-content .large-italic {
+  font-family: 'YaleNew';
+  font-style: italic;
+  line-height: 29px;
+  font-size: 21px;
+}
+
+.static-page-content.faq .large-italic {
+  margin-bottom: 40px;
+}
+
+.static-page-content h2 {
+  font-family: 'YaleNew';
+  font-size: 24px;
+  margin: 30px 0 15px;
+  color: #00356b;
+}
+
+.static-page-content h3 {
+  font-family: 'Mallory';
+  font-size: 14px;
+  color: #222;
+  margin-bottom: 0;
+}
+
+.static-page-content h3 + p {
+  margin-top: 0;
+}
+
+.static-page-content p {
+  font-family: 'Mallory Light';
+  color: #222;
+  font-size: 14px;
+  margin: 20px 0;
+  font-weight: 400;
 }
