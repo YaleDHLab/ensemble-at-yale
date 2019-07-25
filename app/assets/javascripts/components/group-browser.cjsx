@@ -109,10 +109,8 @@ GroupBrowser = React.createClass
     groups = @renderGroups()
 
     <div className='group-area-wrapper' id='group-target'>
-      <div className='group-area-prompt'>Browse 90 years of programs to see what’s available to transcribe</div>
+      <div className='group-area-prompt'>Browse 90 years of programs organized chronologically by era and see what we're working on now</div>
       {groups}
     </div>
-
-
 
 module.exports = GroupBrowser
