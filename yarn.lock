@@ -1405,9 +1405,9 @@ module-deps@^3.7.11:
     through2 "^1.0.0"
     xtend "^4.0.0"
 
-moment@^2.10, moment@^2.13.0:
-  version "2.22.2"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
+moment@^2.10, moment@^2.29.4:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
 
 nan@^2.1.0:
   version "2.10.0"

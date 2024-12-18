@@ -14,7 +14,7 @@
     "coffee-reactify": "^4.0.0",
     "coffee-script": "^1.9.3",
     "json-api-client": "^0.4.4",
-    "moment": "^2.13.0",
+    "moment": "^2.29.4",
     "normalize-styl": "^3.0.3",
     "normalize.css": "^3.0.3",
     "react": "^0.13.3",
